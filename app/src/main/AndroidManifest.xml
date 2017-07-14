@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DifferentFlagsTopicActivity1" />
+        <activity android:name=".DifferentFlagsTopicActivity2" />
+        <activity android:name=".DifferentFlagsTopicActivity3" />
+        <activity android:name=".ExternalInternalIntentActivity"></activity>
     </application>
 
 </manifest>
