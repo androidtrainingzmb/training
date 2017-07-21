@@ -1,24 +1,18 @@
-package tcd.training.com.trainingproject;
+package tcd.training.com.trainingproject.DifferentFlagsTopic;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.Console;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import tcd.training.com.trainingproject.R;
 
 public class DifferentFlagsTopicActivity2 extends AppCompatActivity {
     private static final String TAG = DifferentFlagsTopicActivity2.class.getSimpleName();

@@ -1,9 +1,13 @@
-package tcd.training.com.trainingproject.FragmentsDemo;
+package tcd.training.com.trainingproject.FragmentsDemo.TabLayoutDemo;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import tcd.training.com.trainingproject.FragmentsDemo.TabPageFragment;
+
+import static tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity.mPageTitles;
 
 /**
  * Created by cpu10661-local on 20/07/2017.
@@ -11,7 +15,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TabPageFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mPageTitles = new String[]{"Page 1", "Page 2", "Page 3"};
     private Context mContext;
 
     public TabPageFragmentPagerAdapter(FragmentManager fm, Context context) {

@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.FragmentsDemo;
+package tcd.training.com.trainingproject.FragmentsDemo.FlexibleUIWithFragments;
 
 
 import android.content.Intent;
@@ -7,14 +7,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import tcd.training.com.trainingproject.R;
+
+import static tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity.mPageTitles;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,17 +31,28 @@ public class TitlesFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1);
+        arrayAdapter.addAll(mPageTitles);
+        setListAdapter(arrayAdapter);
 
         // check to see if we have the details fragment in this screen
         View detailsFrameView = getActivity().findViewById(R.id.details);
         mDualPane = detailsFrameView != null && detailsFrameView.getVisibility() == View.VISIBLE;
 
+        if (savedInstanceState != null) {
+            mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
+        }
+
         if (mDualPane) {
-            getListView().setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             showDetails(mCurCheckPosition);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("curChoice", mCurCheckPosition);
     }
 
     @Override
@@ -56,25 +68,21 @@ public class TitlesFragment extends ListFragment {
         if (mDualPane) {
             getListView().setItemChecked(index, true);
 
-            TabPageFragment detailsFragment = (TabPageFragment) getFragmentManager().findFragmentById(R.id.details);
+            DetailsFragment detailsFragment = (DetailsFragment) getFragmentManager().findFragmentById(R.id.details);
             // check what fragment is currently shown, replace if needed
             if (detailsFragment == null || detailsFragment.getPageIndex() != index) {
-                detailsFragment = TabPageFragment.newInstance(index);
+                detailsFragment = DetailsFragment.newInstance(index);
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                if (index == 0) {
-                    transaction.replace(R.id.details, detailsFragment);
-                } else {
-//                    transaction.replace(R.id.a_item, detailsFragment);
-                }
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.details, detailsFragment);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 transaction.commit();
-            } else {
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                intent.putExtra(ARG_PAGE, index);
-                startActivity(intent);
             }
+        } else {
+            Intent intent = new Intent(getActivity(), DetailsActivity.class);
+            intent.putExtra(ARG_PAGE, index);
+            startActivity(intent);
         }
-
     }
 }

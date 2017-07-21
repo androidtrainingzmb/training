@@ -8,8 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
+import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
+import tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity;
+import tcd.training.com.trainingproject.PersistentStorage.PersistentStorageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. Activity starts with different flags", DifferentFlagsTopicActivity1.class);
         topics.put("2. Difference between internal and external activity instantiation", ExternalInternalIntentActivity.class);
+        topics.put("3. Create a custom view", CreateCustomViewActivity.class);
+        topics.put("4. Persistent storage demo", PersistentStorageActivity.class);
+        topics.put("5. Fragments demo", FragmentsDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =

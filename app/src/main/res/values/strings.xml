@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Training Project</string>
+    <string name="note_shared_preferences">noteSharedPreferences</string>
+
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+    <string name="save_note">Save</string>
+
+    <string name="empty_note_title_error">Note title is required.</string>
+    <string name="empty_note_content_error">Note content is required.</string>
+    <string name="external_storage_access_error">Could not access the external storage.\nHave you included the WRITE_EXTERNAL_STORAGE permission in the manifest?</string>
+    <string name="title_activity_settings">Settings</string>
+    
+    <string name="rotate_screen_message">Rotate device to see the expanded screen.</string>
+    <string name="tap_send_data_message">Tap this button to send data to the parent activity.</string>
+    <string name="click_me">Click me</string>
 </resources>

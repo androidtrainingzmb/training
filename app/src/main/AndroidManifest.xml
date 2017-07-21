@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tcd.training.com.trainingproject">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,10 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DifferentFlagsTopicActivity1" />
-        <activity android:name=".DifferentFlagsTopicActivity2" />
-        <activity android:name=".DifferentFlagsTopicActivity3" />
-        <activity android:name=".ExternalInternalIntentActivity"></activity>
+        <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity1" />
+        <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity2" />
+        <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity3" />
+        <activity android:name=".ExternalInternalIntentActivity" />
+        <activity android:name=".CustomView.CreateCustomViewActivity" />
+        <activity android:name=".PersistentStorage.PersistentStorageActivity" />
+        <activity android:name=".PersistentStorage.AddNoteActivity" />
+        <activity android:name=".PersistentStorage.DisplayNoteDetailsActivity" />
+        <activity android:name=".FragmentsDemo.FragmentsDemoActivity" />
+        <activity android:name=".FragmentsDemo.TabLayoutDemo.TabLayoutWithFragmentsActivity" />
+        <activity android:name=".FragmentsDemo.PagerTabStripDemo.PagerTabStripWithFragmentsActivity" />
+        <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity" />
+        <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.DetailsActivity"></activity>
+
     </application>
 
 </manifest>

@@ -1,7 +1,9 @@
-package tcd.training.com.trainingproject;
+package tcd.training.com.trainingproject.DifferentFlagsTopic;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import tcd.training.com.trainingproject.R;
 
 public class DifferentFlagsTopicActivity3 extends AppCompatActivity {
 

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
+
 public class ExternalInternalIntentActivity extends AppCompatActivity {
 
     @Override

@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import tcd.training.com.trainingproject.R;
 
-public class TabLayoutWithFragmentActivity extends AppCompatActivity {
+public class TabLayoutWithFragmentsActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;

@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject;
+package tcd.training.com.trainingproject.DifferentFlagsTopic;
 
 import android.content.Intent;
 import android.os.Build;
@@ -11,8 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import tcd.training.com.trainingproject.R;
 
 public class DifferentFlagsTopicActivity1 extends AppCompatActivity {
     private static final String TAG = DifferentFlagsTopicActivity1.class.getSimpleName();

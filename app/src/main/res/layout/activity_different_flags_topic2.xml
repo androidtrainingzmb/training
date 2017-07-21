@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    tools:context="tcd.training.com.trainingproject.DifferentFlagsTopicActivity2">
+    tools:context="tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity2">
 
     <!--<ListView-->
         <!--android:id="@+id/lv_flag_options_list"-->
