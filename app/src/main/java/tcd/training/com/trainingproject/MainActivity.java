@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import java.util.LinkedHashMap;
 
+import tcd.training.com.trainingproject.CommunicateBetweenActivities.CommunicateBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
 import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
 import tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity;
@@ -24,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        String[] topics = new String[] {"Activity starts with different flags",
-//                                        "Difference between internal and external activity instantiation"};
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. Activity starts with different flags", DifferentFlagsTopicActivity1.class);
         topics.put("2. Difference between internal and external activity instantiation", ExternalInternalIntentActivity.class);
         topics.put("3. Create a custom view", CreateCustomViewActivity.class);
         topics.put("4. Persistent storage demo", PersistentStorageActivity.class);
         topics.put("5. Fragments demo", FragmentsDemoActivity.class);
+        topics.put("6. Communicate between activities", CommunicateBetweenActivitiesActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =
