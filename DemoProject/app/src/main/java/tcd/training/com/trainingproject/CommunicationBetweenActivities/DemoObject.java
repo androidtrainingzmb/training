@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.CommunicateBetweenActivities.UsingSerializeInterface;
+package tcd.training.com.trainingproject.CommunicationBetweenActivities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,19 +8,19 @@ import java.util.HashMap;
  * Created by cpu10661-local on 24/07/2017.
  */
 
-public class SerializableObject implements Serializable {
-    private int mInteger;
-    private double mDouble;
-    private boolean mBoolean;
-    private String mString;
-    private ArrayList<String> mArrayList;
-    private HashMap<String, String> mHashMap;
+public class DemoObject {
+    protected int mInteger;
+    protected double mDouble;
+    protected boolean mBoolean;
+    protected String mString;
+    protected ArrayList<String> mArrayList;
+    protected HashMap<String, String> mHashMap;
 
-    public SerializableObject() {
+    public DemoObject() {
 
     }
 
-    public SerializableObject(int mInteger, double mDouble, boolean mBoolean, String mString, ArrayList<String> mArrayList, HashMap<String, String> mHashMap) {
+    public DemoObject(int mInteger, double mDouble, boolean mBoolean, String mString, ArrayList<String> mArrayList, HashMap<String, String> mHashMap) {
         this.mInteger = mInteger;
         this.mDouble = mDouble;
         this.mBoolean = mBoolean;

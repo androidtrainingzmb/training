@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".CommunicationBetweenActivities.UsingApplicationObject.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -31,12 +32,15 @@
         <activity android:name=".FragmentsDemo.PagerTabStripDemo.PagerTabStripWithFragmentsActivity" />
         <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity" />
         <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.DetailsActivity" />
-        <activity android:name=".CommunicateBetweenActivities.CommunicateBetweenActivitiesActivity" />
-        <activity android:name=".CommunicateBetweenActivities.UsingBundle.ReceivePrimitiveTypesUsingBundleActivity" />
-        <activity android:name=".CommunicateBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableActivity" />
-        <activity android:name=".CommunicateBetweenActivities.UsingGson.ReceiveGsonObjectActivity" />
-        <activity android:name=".CommunicateBetweenActivities.UsingApplication.ReceiveObjectUsingApplicationObject" />
-        <activity android:name=".CommunicateBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface"></activity>
+        <activity android:name=".CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity" />
+        <activity android:name=".CommunicationBetweenActivities.UsingBundle.ReceiveDataWithBundleActivity" />
+        <activity android:name=".CommunicationBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableInterfaceActivity" />
+        <activity android:name=".CommunicationBetweenActivities.UsingGson.ReceiveGsonObjectActivity" />
+        <activity android:name=".CommunicationBetweenActivities.UsingApplication.ReceiveObjectUsingApplicationObject" />
+        <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
+        <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
+        <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
+        <activity android:name=".CommunicationBetweenActivities.UsingGlobalVariables.ReceiveObjectWithGlobalVariablesActivity"></activity>
     </application>
 
 </manifest>

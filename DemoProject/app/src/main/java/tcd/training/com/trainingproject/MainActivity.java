@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import java.util.LinkedHashMap;
 
-import tcd.training.com.trainingproject.CommunicateBetweenActivities.CommunicateBetweenActivitiesActivity;
+import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
 import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
 import tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity;

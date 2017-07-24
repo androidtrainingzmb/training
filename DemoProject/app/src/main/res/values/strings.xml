@@ -25,4 +25,5 @@
     <string name="hash_map_type">HashMap</string>
     <string name="not_included_type">This type was not included in bundle.</string>
     <string name="data">data</string>
+    <string name="choose_send_option">Choose a method to send data to another activity.\nThe data includes an integer, a boolean, a double, a string, an array list and a hash map.</string>
 </resources>

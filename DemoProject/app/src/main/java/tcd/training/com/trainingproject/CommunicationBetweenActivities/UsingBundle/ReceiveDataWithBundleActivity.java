@@ -1,20 +1,15 @@
-package tcd.training.com.trainingproject.CommunicateBetweenActivities.UsingBundle;
+package tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingBundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
-import tcd.training.com.trainingproject.CommunicateBetweenActivities.Global;
+import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.R;
 
-public class ReceivePrimitiveTypesUsingBundleActivity extends AppCompatActivity {
+public class ReceiveDataWithBundleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +26,7 @@ public class ReceivePrimitiveTypesUsingBundleActivity extends AppCompatActivity 
             ArrayList<String> arrayList = bundle.getStringArrayList(getString(R.string.array_list_type));
             HashMap<String, String> hashMap = (HashMap<String, String>) bundle.getSerializable(getString(R.string.hash_map_type));
 
-            Global.inflateLayout(findViewById(android.R.id.content), intVal, boolVal, doubleVal, stringVal, arrayList, hashMap);
+            CommunicateBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content), intVal, boolVal, doubleVal, stringVal, arrayList, hashMap);
         }
     }
 
