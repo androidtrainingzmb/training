@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -31,10 +30,11 @@ import tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingParc
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface;
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableInterfaceActivity;
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingSerializeInterface.SerializableObject;
+import tcd.training.com.trainingproject.FragmentsDemo.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity;
 import tcd.training.com.trainingproject.PersistentStorage.PersistentStorageActivity;
 import tcd.training.com.trainingproject.R;
 
-public class CommunicateBetweenActivitiesActivity extends AppCompatActivity {
+public class CommunicationBetweenActivitiesActivity extends AppCompatActivity {
 
     private ListView mTopicsListView;
     private ArrayList<String> mTopicsList;
@@ -62,7 +62,7 @@ public class CommunicateBetweenActivitiesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = mTopicsList.get(i);
                 Intent intent = new Intent();
-                Context context = CommunicateBetweenActivitiesActivity.this;
+                Context context = CommunicationBetweenActivitiesActivity.this;
                 if (key.endsWith("Using intent")) {
                     intent = getIntentWithDataExtras();
                     intent.setClass(context, ReceiveIntentDataActivity.class);
@@ -88,6 +88,8 @@ public class CommunicateBetweenActivitiesActivity extends AppCompatActivity {
                     intent.setClass(context, ReceiveDataWithApplicationObject.class);
                     DemoObject object = new DemoObject(mInteger, mDouble, mBoolean, mString, mArrayList, mHashMap);
                     ((MyApplication)getApplication()).setObject(object);
+                } else if (key.contains("activity and fragment")) {
+                    intent.setClass(context, FlexibleUIWithFragmentsActivity.class);
                 } else {
                     return;
                 }
@@ -109,13 +111,15 @@ public class CommunicateBetweenActivitiesActivity extends AppCompatActivity {
 
     private void initializeDataSet() {
         mTopicsList = new ArrayList<>(Arrays.asList(
-                "1. Using intent",
-                "2. Using intent with Bundle",
-                "3. Using intent with Serializable interface",
-                "4. Using intent with Parcelable interface",
-                "5. Using intent with string serialization (GSon)",
-                "6. Using storage option (see topic 4 in MainActivity)",
-                "7. Using Application object (not recommended)"
+                "A. Between Activities:",
+                "  1. Using intent",
+                "  2. Using intent with Bundle",
+                "  3. Using intent with Serializable interface",
+                "  4. Using intent with Parcelable interface",
+                "  5. Using intent with string serialization (GSon)",
+                "  6. Using storage option (see topic 4 in MainActivity)",
+                "  7. Using Application object (not recommended)",
+                "B. Between activity and fragment"
         ));
 
         mInteger = 123;

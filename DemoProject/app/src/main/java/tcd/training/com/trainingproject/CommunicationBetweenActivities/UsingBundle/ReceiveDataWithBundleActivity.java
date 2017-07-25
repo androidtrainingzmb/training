@@ -6,7 +6,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity;
+import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.R;
 
 public class ReceiveDataWithBundleActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class ReceiveDataWithBundleActivity extends AppCompatActivity {
             ArrayList<String> arrayList = bundle.getStringArrayList(getString(R.string.array_list_type));
             HashMap<String, String> hashMap = (HashMap<String, String>) bundle.getSerializable(getString(R.string.hash_map_type));
 
-            CommunicateBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content), intVal, boolVal, doubleVal, stringVal, arrayList, hashMap);
+            CommunicationBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content), intVal, boolVal, doubleVal, stringVal, arrayList, hashMap);
         }
     }
 

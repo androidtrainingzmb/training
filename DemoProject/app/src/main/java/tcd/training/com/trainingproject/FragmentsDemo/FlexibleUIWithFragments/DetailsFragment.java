@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 import tcd.training.com.trainingproject.R;
 
 /**
@@ -26,7 +28,8 @@ public class DetailsFragment extends Fragment {
     private ICommunicate mCommunicate;
     private boolean mIsPortraitMode = false;
 
-    private Button sendDataButton;
+    private Button sendDataUsingInterfaceButton;
+    private Button sendDataUsingGetActivityButton;
     private TextView tapSendDataMessageTextView;
 
     public DetailsFragment() {
@@ -60,18 +63,25 @@ public class DetailsFragment extends Fragment {
         // initialize components
         TextView pageNumberIndicatorTextView = view.findViewById(R.id.tv_page_number_indicator);
         pageNumberIndicatorTextView.setText("Fragment #" + mPage);
-        sendDataButton = view.findViewById(R.id.btn_send_data);
+        sendDataUsingInterfaceButton = view.findViewById(R.id.btn_send_data_using_interface);
+        sendDataUsingGetActivityButton = view.findViewById(R.id.btn_send_data_using_get_activity);
         tapSendDataMessageTextView = view.findViewById(R.id.tv_tap_send_data_message);
 
         // button appears in landscape mode
         if (mIsPortraitMode) {
-            sendDataButton.setVisibility(View.GONE);
+            sendDataUsingInterfaceButton.setVisibility(View.GONE);
             tapSendDataMessageTextView.setVisibility(View.GONE);
         } else {
-            sendDataButton.setOnClickListener(new View.OnClickListener() {
+            sendDataUsingInterfaceButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mCommunicate.passDataToActivity(mPage);
+                }
+            });
+            sendDataUsingGetActivityButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((FlexibleUIWithFragmentsActivity)getActivity()).updateIndicatorTextView(mPage);
                 }
             });
         }

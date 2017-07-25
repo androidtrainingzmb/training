@@ -14,7 +14,10 @@
     <!--fragment-->
     <string name="rotate_screen_message">Rotate device to see the expanded screen.</string>
     <string name="tap_send_data_message">Tap this button to send data to the parent activity.</string>
-    <string name="click_me">Click me</string>
+    <string name="send_using_interface">Send data using interface</string>
+    <string name="send_using_get_activity">Send data using getActivity</string>
+    <string name="send_data_to_activity_message">Tap the button in any fragment screen to send the fragment index to this activity.\nThis demonstrates the process of sending data from fragment to activity.</string>
+    <string name="send_data_to_fragment_message">Sending data from activity to fragment is demonstrated in the update of selection state after pressing back button in ListFragment.</string>
 
     <!--communicate between activities-->
     <string name="integer_type">Integer</string>

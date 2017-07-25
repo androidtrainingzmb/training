@@ -3,7 +3,7 @@ package tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingApp
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity;
+import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.DemoObject;
 import tcd.training.com.trainingproject.R;
 
@@ -15,7 +15,7 @@ public class ReceiveDataWithApplicationObject extends AppCompatActivity {
         setContentView(R.layout.activity_receive_intent_data);
 
         DemoObject object = ((MyApplication)getApplication()).getObject();
-        CommunicateBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content),
+        CommunicationBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content),
                 object.getmInteger(),
                 object.ismBoolean(),
                 object.getmDouble(),

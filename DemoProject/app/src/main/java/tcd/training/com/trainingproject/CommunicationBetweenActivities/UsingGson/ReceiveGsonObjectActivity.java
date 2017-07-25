@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.google.gson.Gson;
 
-import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity;
+import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.DemoObject;
 import tcd.training.com.trainingproject.R;
 
@@ -22,7 +22,7 @@ public class ReceiveGsonObjectActivity extends AppCompatActivity {
         DemoObject object = gson.fromJson(strObj, DemoObject.class);
 
         // display its info
-        CommunicateBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content),
+        CommunicationBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content),
                 object.getmInteger(),
                 object.ismBoolean(),
                 object.getmDouble(),

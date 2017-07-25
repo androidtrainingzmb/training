@@ -32,7 +32,7 @@
         <activity android:name=".FragmentsDemo.PagerTabStripDemo.PagerTabStripWithFragmentsActivity" />
         <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity" />
         <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.DetailsActivity" />
-        <activity android:name=".CommunicationBetweenActivities.CommunicateBetweenActivitiesActivity" />
+        <activity android:name=".CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingBundle.ReceiveDataWithBundleActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableInterfaceActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingGson.ReceiveGsonObjectActivity" />
@@ -40,7 +40,7 @@
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".CommunicationBetweenActivities.UsingGlobalVariables.ReceiveObjectWithGlobalVariablesActivity"></activity>
+        <activity android:name=".CommunicationBetweenActivities.UsingGlobalVariables.ReceiveObjectWithGlobalVariablesActivity" />
     </application>
 
 </manifest>

@@ -13,6 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Stack;
+
 import tcd.training.com.trainingproject.R;
 
 import static tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity.mPageTitles;
@@ -26,6 +30,7 @@ public class TitlesFragment extends ListFragment {
 
     private boolean mDualPane;
     private int mCurCheckPosition = 0;
+    private Stack<Integer> mIndexStack;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -34,6 +39,8 @@ public class TitlesFragment extends ListFragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1);
         arrayAdapter.addAll(mPageTitles);
         setListAdapter(arrayAdapter);
+
+        mIndexStack = new Stack<>();
 
         // check to see if we have the details fragment in this screen
         View detailsFrameView = getActivity().findViewById(R.id.details);
@@ -63,7 +70,13 @@ public class TitlesFragment extends ListFragment {
 
     private void showDetails(int index) {
 
+        if (index == mCurCheckPosition && mIndexStack.size() > 0) {
+            return;
+        }
+
+        // update current value
         mCurCheckPosition = index;
+        mIndexStack.add(index);
 
         if (mDualPane) {
             getListView().setItemChecked(index, true);
@@ -80,9 +93,25 @@ public class TitlesFragment extends ListFragment {
                 transaction.commit();
             }
         } else {
+            // open a new activity contains that fragment
             Intent intent = new Intent(getActivity(), DetailsActivity.class);
             intent.putExtra(ARG_PAGE, index);
             startActivity(intent);
+        }
+    }
+
+    public void updateSelectionState() {
+        // pop the index stack
+        if (mIndexStack.size() > 0) {
+            // check if it is the current position
+            if (mIndexStack.peek() == mCurCheckPosition) {
+                mIndexStack.pop();
+                if (mIndexStack.size() == 0) {
+                    return;
+                }
+            }
+            mCurCheckPosition = mIndexStack.pop();
+            getListView().setItemChecked(mCurCheckPosition, true);
         }
     }
 }
