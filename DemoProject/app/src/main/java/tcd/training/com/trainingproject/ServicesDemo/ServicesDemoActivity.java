@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject;
+package tcd.training.com.trainingproject.ServicesDemo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,29 +12,30 @@ import java.util.LinkedHashMap;
 
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
-import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
+import tcd.training.com.trainingproject.ExternalInternalIntentActivity;
 import tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity;
 import tcd.training.com.trainingproject.PersistentStorage.PersistentStorageActivity;
-import tcd.training.com.trainingproject.ServicesDemo.ServicesDemoActivity;
+import tcd.training.com.trainingproject.R;
+import tcd.training.com.trainingproject.ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class ServicesDemoActivity extends AppCompatActivity {
 
     private ListView topicsListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_services_demo);
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
-        topics.put("1. Activity starts with different flags", DifferentFlagsTopicActivity1.class);
-        topics.put("2. Difference between internal and external activity instantiation", ExternalInternalIntentActivity.class);
-        topics.put("3. Create a custom view", CreateCustomViewActivity.class);
-        topics.put("4. Persistent storage demo", PersistentStorageActivity.class);
-        topics.put("5. Fragments demo", FragmentsDemoActivity.class);
-        topics.put("6. Communication between activities", CommunicationBetweenActivitiesActivity.class);
-        topics.put("7. Services demo", ServicesDemoActivity.class);
-//        topics.put("7. Thread management", .class);
+        topics.put("1. Background services with IntentService", BackgroundTaskIntentServiceActivity.class);
+        topics.put("2. Defining custom services", ExternalInternalIntentActivity.class);
+        topics.put("3. Registering the Service", CreateCustomViewActivity.class);
+        topics.put("4. Threading within the Service", PersistentStorageActivity.class);
+        topics.put("5. Running Tasks in the Service", FragmentsDemoActivity.class);
+        topics.put("6. Communicating with the Service", CommunicationBetweenActivitiesActivity.class);
+        topics.put("7. Stopping the Service", this.getClass());
+        topics.put("8. Bound Services", this.getClass());
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(MainActivity.this, topics.get(key));
+                Intent intent = new Intent(ServicesDemoActivity.this, topics.get(key));
                 startActivity(intent);
             }
         });

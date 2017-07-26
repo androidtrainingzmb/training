@@ -36,11 +36,20 @@
         <activity android:name=".CommunicationBetweenActivities.UsingBundle.ReceiveDataWithBundleActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableInterfaceActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingGson.ReceiveGsonObjectActivity" />
-        <activity android:name=".CommunicationBetweenActivities.UsingApplication.ReceiveObjectUsingApplicationObject" />
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".CommunicationBetweenActivities.UsingGlobalVariables.ReceiveObjectWithGlobalVariablesActivity" />
+        <activity android:name=".ServicesDemo.ServicesDemoActivity" />
+        <activity android:name=".ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity"></activity>
+        <service
+            android:name=".ServicesDemo.IntentService.MyIntentService"
+            android:exported="false" />
+        <receiver
+            android:name=".ServicesDemo.IntentService.MyAlarmReceiver"
+            android:process=":remote" />
     </application>
+
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>
