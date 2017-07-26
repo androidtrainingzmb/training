@@ -1,6 +1,11 @@
 package tcd.training.com.trainingproject.FragmentsDemo.FlexibleUIWithFragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +20,7 @@ public class FlexibleUIWithFragmentsActivity extends AppCompatActivity
         implements DetailsFragment.ICommunicate {
 
     private TextView tappedIndicatorTextView;
+    private BroadcastReceiver mMessageReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,18 @@ public class FlexibleUIWithFragmentsActivity extends AppCompatActivity
         if (tappedIndicatorTextView != null) {
             tappedIndicatorTextView.setText(getString(R.string.send_data_to_activity_message));
         }
+
+        // using local broadcast receiver
+        mMessageReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                int index = intent.getIntExtra(getString(R.string.integer_type), -1);
+                String message = index == -1 ? getString(R.string.obtain_index_failed) : getString(R.string.send_using_local_broadcast_receiver);
+                updateActivityWithFragmentData(index, message);
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+                new IntentFilter(getString(R.string.send_data_to_activity_intent_name)));
     }
 
     @Override
@@ -42,17 +60,25 @@ public class FlexibleUIWithFragmentsActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        // Unregister since the activity is about to be closed.
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
+    }
+
+    @Override
     public void passDataToActivity(int index) {
-        if (tappedIndicatorTextView != null) {
-            tappedIndicatorTextView.setText("Button from fragment #" + index + " clicked");
-            Toast.makeText(this, getString(R.string.send_using_interface), Toast.LENGTH_SHORT).show();
-        }
+        updateActivityWithFragmentData(index, getString(R.string.send_using_interface));
     }
 
     public void updateIndicatorTextView(int index) {
+        updateActivityWithFragmentData(index, getString(R.string.send_using_get_activity));
+    }
+
+    private void updateActivityWithFragmentData(int index, String message) {
         if (tappedIndicatorTextView != null) {
             tappedIndicatorTextView.setText("Button from fragment #" + index + " clicked");
-            Toast.makeText(this, getString(R.string.send_using_get_activity), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
 }

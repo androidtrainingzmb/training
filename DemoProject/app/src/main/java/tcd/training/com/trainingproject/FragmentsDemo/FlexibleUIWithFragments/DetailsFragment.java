@@ -3,9 +3,11 @@ package tcd.training.com.trainingproject.FragmentsDemo.FlexibleUIWithFragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,7 @@ public class DetailsFragment extends Fragment {
 
     private Button sendDataUsingInterfaceButton;
     private Button sendDataUsingGetActivityButton;
+    private Button sendDataUsingLocalBroadcastReceiverButton;
     private TextView tapSendDataMessageTextView;
 
     public DetailsFragment() {
@@ -65,6 +68,7 @@ public class DetailsFragment extends Fragment {
         pageNumberIndicatorTextView.setText("Fragment #" + mPage);
         sendDataUsingInterfaceButton = view.findViewById(R.id.btn_send_data_using_interface);
         sendDataUsingGetActivityButton = view.findViewById(R.id.btn_send_data_using_get_activity);
+        sendDataUsingLocalBroadcastReceiverButton = view.findViewById(R.id.btn_send_data_using_local_broadcast_receiver);
         tapSendDataMessageTextView = view.findViewById(R.id.tv_tap_send_data_message);
 
         // button appears in landscape mode
@@ -82,6 +86,14 @@ public class DetailsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     ((FlexibleUIWithFragmentsActivity)getActivity()).updateIndicatorTextView(mPage);
+                }
+            });
+            sendDataUsingLocalBroadcastReceiverButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getString(R.string.send_data_to_activity_intent_name));
+                    intent.putExtra(getString(R.string.integer_type), mPage);
+                    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
                 }
             });
         }

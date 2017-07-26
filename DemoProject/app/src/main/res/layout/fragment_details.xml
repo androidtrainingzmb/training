@@ -32,6 +32,12 @@
         android:layout_height="wrap_content"
         android:text="@string/send_using_get_activity"/>
 
+    <Button
+        android:id="@+id/btn_send_data_using_local_broadcast_receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_using_local_broadcast_receiver"/>
+
     <TextView
         android:id="@+id/tv_receive_data_from_activity"
         android:layout_width="wrap_content"
