@@ -37,7 +37,7 @@ public class BackgroundTaskIntentServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_background_task_intent_service);
 
         setupServiceResultReceiver();
-//        scheduleAlarm();
+        scheduleAlarm();
 //        startIntentService(RESULT_RECEIVER_METHOD);
     }
 
@@ -46,7 +46,7 @@ public class BackgroundTaskIntentServiceActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyIntentService.class);
         intent.putExtra(getString(R.string.integer_type), currentMethod);
         if (currentMethod == RESULT_RECEIVER_METHOD) {
-            intent.putExtra("receiver", resultReceiver);
+            intent.putExtra(getString(R.string.result_receiver), resultReceiver);
         }
         startService(intent);
     }
@@ -90,10 +90,12 @@ public class BackgroundTaskIntentServiceActivity extends AppCompatActivity {
     private void scheduleAlarm() {
         // prepare intent
         Intent intent = new Intent(getApplicationContext(), MyAlarmReceiver.class);
-        intent.putExtra(getString(R.string.integer_type), currentMethod);
+        Bundle bundle = new Bundle();
+        bundle.putInt(getString(R.string.integer_type), currentMethod);
         if (currentMethod == RESULT_RECEIVER_METHOD) {
-            intent.putExtra("receiver", resultReceiver);
+            bundle.putParcelable(getString(R.string.result_receiver), resultReceiver);
         }
+        intent.putExtra(getString(R.string.data), bundle);
         // schedule alarm
         PendingIntent operation = PendingIntent.getBroadcast(this, MyAlarmReceiver.REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);

@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity1" />
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity2" />
@@ -39,8 +39,14 @@
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".ServicesDemo.ServicesDemoActivity" />
-        <activity android:name=".ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity"></activity>
+        <activity android:name=".ServicesDemo.ServicesDemoActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity"/>
         <service
             android:name=".ServicesDemo.IntentService.MyIntentService"
             android:exported="false" />
@@ -51,5 +57,6 @@
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
 </manifest>
