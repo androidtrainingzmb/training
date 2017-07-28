@@ -10,13 +10,11 @@ import android.widget.ListView;
 
 import java.util.LinkedHashMap;
 
-import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity;
-import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
-import tcd.training.com.trainingproject.ExternalInternalIntentActivity;
-import tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity;
-import tcd.training.com.trainingproject.PersistentStorage.PersistentStorageActivity;
 import tcd.training.com.trainingproject.R;
-import tcd.training.com.trainingproject.ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity;
+import tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithBinderClassDemoActivity;
+import tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity;
+import tcd.training.com.trainingproject.ServicesDemo.CustomService.CustomServiceDemoActivity;
+import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceDemoActivity;
 
 public class ServicesDemoActivity extends AppCompatActivity {
 
@@ -28,14 +26,11 @@ public class ServicesDemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_services_demo);
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
-        topics.put("1. Background services with IntentService", BackgroundTaskIntentServiceActivity.class);
-        topics.put("2. Defining custom services", ExternalInternalIntentActivity.class);
-        topics.put("3. Registering the Service", CreateCustomViewActivity.class);
-        topics.put("4. Threading within the Service", PersistentStorageActivity.class);
-        topics.put("5. Running Tasks in the Service", FragmentsDemoActivity.class);
-        topics.put("6. Communicating with the Service", CommunicationBetweenActivitiesActivity.class);
-        topics.put("7. Stopping the Service", this.getClass());
-        topics.put("8. Bound Services", this.getClass());
+        topics.put("1. IntentService with ResultReceiver", IntentServiceDemoActivity.class);
+        topics.put("2. IntentService with LocalBroadcastManager", IntentServiceDemoActivity.class);
+        topics.put("3. Defining custom services", CustomServiceDemoActivity.class);
+        topics.put("4. Bind service by extending the Binder class", BindServiceWithBinderClassDemoActivity.class);
+        topics.put("5. Bind service by using Messenger", BindServiceWithMessengerDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =
@@ -46,6 +41,11 @@ public class ServicesDemoActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(ServicesDemoActivity.this, topics.get(key));
+                if (key.contains("ResultReceiver")) {
+                    intent.putExtra(getString(R.string.integer_type), IntentServiceDemoActivity.RESULT_RECEIVER_METHOD);
+                } else if (key.contains("LocalBroadcastManager")) {
+                    intent.putExtra(getString(R.string.integer_type), IntentServiceDemoActivity.BROADCAST_RECEIVER_METHOD);
+                }
                 startActivity(intent);
             }
         });

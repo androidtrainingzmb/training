@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tcd.training.com.trainingproject.ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity">
+    android:layout_margin="16dp"
+    tools:context="tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceDemoActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intent_service_explanation"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -27,5 +35,13 @@
             android:onClick="onRadioButtonClicked"/>
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_integer_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="100sp"
+        tools:text="0"/>
 
 </LinearLayout>

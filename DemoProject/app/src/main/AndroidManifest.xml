@@ -3,6 +3,9 @@
     package="tcd.training.com.trainingproject">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".CommunicationBetweenActivities.UsingApplicationObject.MyApplication"
@@ -13,11 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity1" />
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity2" />
@@ -39,24 +44,40 @@
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".ServicesDemo.ServicesDemoActivity" >
+        <activity android:name=".ServicesDemo.ServicesDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ServicesDemo.IntentService.BackgroundTaskIntentServiceActivity"/>
-        <service
-            android:name=".ServicesDemo.IntentService.MyIntentService"
-            android:exported="false" />
-        <receiver
-            android:name=".ServicesDemo.IntentService.MyAlarmReceiver"
-            android:process=":remote" />
-    </application>
+        <activity android:name=".ServicesDemo.IntentService.IntentServiceDemoActivity" />
 
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+        <service
+            android:name=".ServicesDemo.IntentService.IntentServiceWithResultReceiver"
+            android:exported="false" />
+        <service
+            android:name=".ServicesDemo.IntentService.IntentServiceWithBroadcastReceiver"
+            android:exported="false" />
+        <service
+            android:name=".ServicesDemo.CustomService.MyCustomService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".ServicesDemo.CustomService.MyAlarmReceiver"
+            android:process=":remote" />
+
+        <activity android:name=".ServicesDemo.CustomService.CustomServiceDemoActivity" />
+        <activity android:name=".ServicesDemo.BoundService.BindServiceWithBinderClassDemoActivity" />
+
+        <service
+            android:name=".ServicesDemo.BoundService.ExtendingBinderService"
+            android:exported="false" />
+
+        <activity android:name=".ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity"></activity>
+        <service
+            android:name=".ServicesDemo.BoundService.UsingMessengerService"
+            android:exported="false"/>
+    </application>
 
 </manifest>

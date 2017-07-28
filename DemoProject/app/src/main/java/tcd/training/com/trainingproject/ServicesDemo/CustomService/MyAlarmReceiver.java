@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ServicesDemo.IntentService;
+package tcd.training.com.trainingproject.ServicesDemo.CustomService;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.os.ResultReceiver;
 import android.util.Log;
 
 import tcd.training.com.trainingproject.R;
+import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceDemoActivity;
+import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceWithBroadcastReceiver;
+import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceWithResultReceiver;
 
 import static android.content.ContentValues.TAG;
 
@@ -21,10 +24,7 @@ public class MyAlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Bundle bundle = intent.getBundleExtra(context.getString(R.string.data));
-        Intent serviceIntent = new Intent(context, MyIntentService.class);
-        serviceIntent.putExtra(context.getString(R.string.integer_type), bundle.getInt(context.getString(R.string.integer_type)));
-        serviceIntent.putExtra(context.getString(R.string.result_receiver), bundle.getParcelable(context.getString(R.string.result_receiver)));
+        Intent serviceIntent = new Intent(context, MyCustomService.class);
         context.startService(serviceIntent);
     }
 }
