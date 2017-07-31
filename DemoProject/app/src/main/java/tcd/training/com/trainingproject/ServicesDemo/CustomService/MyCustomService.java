@@ -2,6 +2,7 @@ package tcd.training.com.trainingproject.ServicesDemo.CustomService;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -9,8 +10,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
 
@@ -20,6 +24,7 @@ import static android.content.ContentValues.TAG;
 
 public class MyCustomService extends Service {
 
+    public static final String INTENT_ACTION = MyCustomService.class.getName();
     private ServiceHandler mServiceHandler;
     private volatile HandlerThread mHandlerThread;
 
@@ -32,17 +37,13 @@ public class MyCustomService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
         mServiceHandler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "run: ");
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "Service called", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                Intent broadcastIntent = new Intent(INTENT_ACTION);
+                LocalBroadcastManager.getInstance(MyCustomService.this).sendBroadcast(broadcastIntent);
+                Log.d(TAG, "run: " + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
                 stopSelf();
             }
         });

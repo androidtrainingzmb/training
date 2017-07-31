@@ -8,16 +8,33 @@
     android:layout_margin="16dp"
     tools:context="tcd.training.com.trainingproject.ServicesDemo.CustomService.CustomServiceDemoActivity">
 
-    <Button
-        android:id="@+id/btn_start_schedule"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_service_explanation"/>
+
+    <TextView
+        android:id="@+id/tv_integer_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="100sp"
+        android:layout_margin="32dp"
+        android:text="0"/>
+
+
+    <Button
+        android:id="@+id/btn_start_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/start_alarm" />
 
     <Button
-        android:id="@+id/btn_end_schedule"
+        android:id="@+id/btn_end_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/end_alarm"/>
 
 </LinearLayout>

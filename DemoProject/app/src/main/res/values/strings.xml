@@ -42,4 +42,5 @@
     <string name="end_alarm">End alarm</string>
     <string name="extending_binder_service_explanation">This demonstrates the bound service by extending the Binder class.\nWhen the button is click, the current integer value will be send to service via binding method.\nRight after that, the service will send back that integer to activity using Local Broadcast Manager and the activity will update that value on screen.</string>
     <string name="increment_by_one">Increment by 1</string>
+    <string name="custom_service_explanation">This is a custom service with a scheduled alarm.\nWhen the button StartAlarm is tapped, the alarm is fired and the below number will automatically be incremented after a certain time.</string>
 </resources>
