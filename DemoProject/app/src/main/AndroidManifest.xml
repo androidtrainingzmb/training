@@ -6,6 +6,7 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".CommunicationBetweenActivities.UsingApplicationObject.MyApplication"
@@ -74,10 +75,14 @@
             android:name=".ServicesDemo.BoundService.ExtendingBinderService"
             android:exported="false" />
 
-        <activity android:name=".ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity"></activity>
+        <activity android:name=".ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity" />
+
         <service
             android:name=".ServicesDemo.BoundService.UsingMessengerService"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <activity android:name=".ServicesDemo.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity" />
+        <activity android:name=".ServicesDemo.AsyncTaskDemo.AsyncTaskDemoActivity"></activity>
     </application>
 
 </manifest>

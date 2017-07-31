@@ -11,10 +11,12 @@ import android.widget.ListView;
 import java.util.LinkedHashMap;
 
 import tcd.training.com.trainingproject.R;
+import tcd.training.com.trainingproject.ServicesDemo.AsyncTaskDemo.AsyncTaskDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithBinderClassDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.CustomService.CustomServiceDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceDemoActivity;
+import tcd.training.com.trainingproject.ServicesDemo.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity;
 
 public class ServicesDemoActivity extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class ServicesDemoActivity extends AppCompatActivity {
         topics.put("3. Defining custom services", CustomServiceDemoActivity.class);
         topics.put("4. Bind service by extending the Binder class", BindServiceWithBinderClassDemoActivity.class);
         topics.put("5. Bind service by using Messenger", BindServiceWithMessengerDemoActivity.class);
+        topics.put("6. AsyncTask demo", AsyncTaskDemoActivity.class);
+        topics.put("7. ThreadPoolExecutor demo", ThreadPoolExecutorDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =
