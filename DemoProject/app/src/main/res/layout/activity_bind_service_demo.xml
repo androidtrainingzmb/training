@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="16dp"
-    tools:context="tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithBinderClassDemoActivity">
+    tools:context="tcd.training.com.trainingproject.ServiceAndThreadDemos.BoundService.BindServiceWithBinderClassDemoActivity">
 
     <TextView
         android:layout_width="wrap_content"

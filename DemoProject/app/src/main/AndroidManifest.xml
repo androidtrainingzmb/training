@@ -46,51 +46,51 @@
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".ServicesDemo.ServicesDemoActivity">
+        <activity android:name=".ServiceAndThreadDemos.ServicesDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ServicesDemo.IntentService.IntentServiceDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.IntentService.IntentServiceDemoActivity" />
 
         <service
-            android:name=".ServicesDemo.IntentService.ResultReceiver.IntentServiceWithResultReceiver"
+            android:name=".ServiceAndThreadDemos.IntentService.ResultReceiver.IntentServiceWithResultReceiver"
             android:exported="false" />
         <service
-            android:name=".ServicesDemo.IntentService.LocalBroadcastReceiver.IntentServiceWithBroadcastReceiver"
+            android:name=".ServiceAndThreadDemos.IntentService.LocalBroadcastReceiver.IntentServiceWithBroadcastReceiver"
             android:exported="false" />
         <service
-            android:name=".ServicesDemo.IntentService.EventBus.IntentServiceWithEventBus"
+            android:name=".ServiceAndThreadDemos.IntentService.EventBus.IntentServiceWithEventBus"
             android:exported="false" />
         <service
-            android:name=".ServicesDemo.IntentService.RxJava.IntentServiceWithRxJava"
+            android:name=".ServiceAndThreadDemos.IntentService.RxJava.IntentServiceWithRxJava"
             android:exported="false" />
         <service
-            android:name=".ServicesDemo.CustomService.MyCustomService"
+            android:name=".ServiceAndThreadDemos.CustomService.MyCustomService"
             android:exported="false" />
 
         <receiver
-            android:name=".ServicesDemo.CustomService.MyAlarmReceiver"
+            android:name=".ServiceAndThreadDemos.CustomService.MyAlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".ServicesDemo.CustomService.CustomServiceDemoActivity" />
-        <activity android:name=".ServicesDemo.BoundService.BindServiceWithBinderClassDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.CustomService.CustomServiceDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.BoundService.BindServiceWithBinderClassDemoActivity" />
 
         <service
-            android:name=".ServicesDemo.BoundService.ExtendedBinderClassService"
+            android:name=".ServiceAndThreadDemos.BoundService.ExtendedBinderClassService"
             android:exported="false" />
 
-        <activity android:name=".ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.BoundService.BindServiceWithMessengerDemoActivity" />
 
         <service
-            android:name=".ServicesDemo.BoundService.UsingMessengerService"
+            android:name=".ServiceAndThreadDemos.BoundService.UsingMessengerService"
             android:exported="false" />
 
-        <activity android:name=".ServicesDemo.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity" />
-        <activity android:name=".ServicesDemo.AsyncTaskDemo.AsyncTaskDemoActivity" />
-        <activity android:name=".ServicesDemo.HandlerThreadDemo.HandlerThreadDemoActivity"></activity>
+        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.AsyncTaskDemo.AsyncTaskDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity"></activity>
     </application>
 
 </manifest>
