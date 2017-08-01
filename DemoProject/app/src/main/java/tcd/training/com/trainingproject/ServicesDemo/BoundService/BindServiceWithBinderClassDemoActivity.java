@@ -24,7 +24,7 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
     private TextView integerValueTextView;
     private Button incrementByOneButton;
 
-    ExtendingBinderService mExtendingBinderService;
+    ExtendedBinderClassService mExtendingBinderService;
     boolean mBound = false;
     private ServiceConnection mConnection;
     private BroadcastReceiver mReceiver;
@@ -51,7 +51,7 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
         mConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                ExtendingBinderService.LocalBinder localBinder = (ExtendingBinderService.LocalBinder) iBinder;
+                ExtendedBinderClassService.LocalBinder localBinder = (ExtendedBinderClassService.LocalBinder) iBinder;
                 mExtendingBinderService = localBinder.getService();
                 mBound = true;
             }
@@ -74,7 +74,7 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this, ExtendingBinderService.class);
+        Intent intent = new Intent(this, ExtendedBinderClassService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -90,7 +90,7 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter(ExtendingBinderService.INTENT_ACTION));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter(ExtendedBinderClassService.INTENT_ACTION));
     }
 
     @Override

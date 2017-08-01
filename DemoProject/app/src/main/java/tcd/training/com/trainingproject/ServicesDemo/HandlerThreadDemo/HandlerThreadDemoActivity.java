@@ -1,7 +1,9 @@
-package tcd.training.com.trainingproject.ServicesDemo.ThreadPoolExecutorDemo;
+package tcd.training.com.trainingproject.ServicesDemo.HandlerThreadDemo;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +22,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import tcd.training.com.trainingproject.R;
+import tcd.training.com.trainingproject.ServicesDemo.ThreadPoolExecutorDemo.DownloadImageTask;
 
-public class ThreadPoolExecutorDemoActivity extends AppCompatActivity implements Handler.Callback {
+public class HandlerThreadDemoActivity extends AppCompatActivity implements Handler.Callback {
 
-    private final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
     private static int mNumberOfImages = 8;
     private final String mImageUrl = "https://source.unsplash.com/random";
 //    private final String mImageUrl = "source.unsplash.com/4MSwGhLKhi8";
@@ -32,6 +34,8 @@ public class ThreadPoolExecutorDemoActivity extends AppCompatActivity implements
     private LinearLayout mImagesListLinearLayout;
     private EditText mNumberOfImagesEditText;
     private Button mStartDownloadButton;
+
+    private HandlerThread mHandlerThread;
 
     private boolean mDisplayImages = true;
     private long mStartTime;
@@ -44,15 +48,9 @@ public class ThreadPoolExecutorDemoActivity extends AppCompatActivity implements
 
         initializeUiComponents();
 
-        final ThreadPoolExecutor executor = new ThreadPoolExecutor(
-                NUMBER_OF_CORES * 2,
-                NUMBER_OF_CORES * 2,
-                60L,
-                TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>()
-        );
-
-        final Handler handler = new Handler(this);
+        mHandlerThread = new HandlerThread(this.getLocalClassName());
+        mHandlerThread.start();
+        final Handler handler = new Handler(mHandlerThread.getLooper(), this);
 
         mStartDownloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +71,7 @@ public class ThreadPoolExecutorDemoActivity extends AppCompatActivity implements
                 mStartTime = Calendar.getInstance().getTimeInMillis();
                 // start download
                 for (int i = 0; i < mNumberOfImages; i++) {
-                    executor.execute(new DownloadImageTask(i, handler, mImageUrl));
+                    handler.post(new DownloadImageTask(i, handler, mImageUrl));
                 }}
         });
     }
@@ -92,24 +90,35 @@ public class ThreadPoolExecutorDemoActivity extends AppCompatActivity implements
     @Override
     public boolean handleMessage(Message message) {
 
-        int threadId = message.what;
-        Bitmap bitmap = (Bitmap) message.obj;
+        final int threadId = message.what;
+        final Bitmap bitmap = (Bitmap) message.obj;
 
-        mDownloadOrderTextView.append(String.valueOf(threadId + 1) + " ");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mDownloadOrderTextView.append(String.valueOf(threadId + 1) + " ");
 
-        if (mDisplayImages) {
-            ImageView imageView = new ImageView(this);
-            imageView.setImageBitmap(bitmap);
-            mImagesListLinearLayout.addView(imageView);
-        }
+                if (mDisplayImages) {
+                    ImageView imageView = new ImageView(HandlerThreadDemoActivity.this);
+                    imageView.setImageBitmap(bitmap);
+                    mImagesListLinearLayout.addView(imageView);
+                }
 
-        mCount++;
-        if (mCount == mNumberOfImages) {
-            double elapsedTime = (Calendar.getInstance().getTimeInMillis() - mStartTime) / 1000.0;
-            mDownloadOrderTextView.append("(" + String.valueOf(elapsedTime) + "s)");
-            mStartDownloadButton.setEnabled(true);
-        }
+                mCount++;
+                if (mCount == mNumberOfImages) {
+                    double elapsedTime = (Calendar.getInstance().getTimeInMillis() - mStartTime) / 1000.0;
+                    mDownloadOrderTextView.append("(" + String.valueOf(elapsedTime) + "s)");
+                    mStartDownloadButton.setEnabled(true);
+                }
+            }
+        });
 
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandlerThread.quit();
     }
 }

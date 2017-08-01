@@ -15,6 +15,7 @@ import tcd.training.com.trainingproject.ServicesDemo.AsyncTaskDemo.AsyncTaskDemo
 import tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithBinderClassDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.BoundService.BindServiceWithMessengerDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.CustomService.CustomServiceDemoActivity;
+import tcd.training.com.trainingproject.ServicesDemo.HandlerThreadDemo.HandlerThreadDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceDemoActivity;
 import tcd.training.com.trainingproject.ServicesDemo.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity;
 
@@ -30,11 +31,12 @@ public class ServicesDemoActivity extends AppCompatActivity {
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. IntentService with ResultReceiver", IntentServiceDemoActivity.class);
         topics.put("2. IntentService with LocalBroadcastManager", IntentServiceDemoActivity.class);
-        topics.put("3. Defining custom services", CustomServiceDemoActivity.class);
-        topics.put("4. Bind service by extending the Binder class", BindServiceWithBinderClassDemoActivity.class);
-        topics.put("5. Bind service by using Messenger", BindServiceWithMessengerDemoActivity.class);
+        topics.put("3. Custom services with HandlerThread", CustomServiceDemoActivity.class);
+        topics.put("4. Bound service using extended Binder class", BindServiceWithBinderClassDemoActivity.class);
+        topics.put("5. Bound service using Messenger", BindServiceWithMessengerDemoActivity.class);
         topics.put("6. AsyncTask demo", AsyncTaskDemoActivity.class);
-        topics.put("7. ThreadPoolExecutor demo", ThreadPoolExecutorDemoActivity.class);
+        topics.put("7. HandlerThread demo", HandlerThreadDemoActivity.class);
+        topics.put("8. ThreadPoolExecutor demo", ThreadPoolExecutorDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =

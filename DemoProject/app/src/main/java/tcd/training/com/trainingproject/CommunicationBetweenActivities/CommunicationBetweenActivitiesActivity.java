@@ -50,7 +50,7 @@ public class CommunicationBetweenActivitiesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_communicate_between_activities);
+        setContentView(R.layout.activity_communication_between_activities);
 
         initializeDataSet();
 

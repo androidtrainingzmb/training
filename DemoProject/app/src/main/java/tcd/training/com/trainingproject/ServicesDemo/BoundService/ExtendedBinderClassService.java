@@ -17,9 +17,9 @@ import tcd.training.com.trainingproject.R;
  * Created by cpu10661-local on 28/07/2017.
  */
 
-public class ExtendingBinderService extends Service {
+public class ExtendedBinderClassService extends Service {
 
-    public static final String INTENT_ACTION = ExtendingBinderService.class.getSimpleName();
+    public static final String INTENT_ACTION = ExtendedBinderClassService.class.getSimpleName();
 
     private volatile HandlerThread mHandlerThread;
     private ServiceHandler mServiceHandler;
@@ -30,8 +30,8 @@ public class ExtendingBinderService extends Service {
     private static int mInteger = 0;
 
     public class LocalBinder extends Binder {
-        ExtendingBinderService getService() {
-            return ExtendingBinderService.this;
+        ExtendedBinderClassService getService() {
+            return ExtendedBinderClassService.this;
         }
     }
 
@@ -74,7 +74,7 @@ public class ExtendingBinderService extends Service {
     }
 
     public void setInteger(final int integer) {
-        ExtendingBinderService.mInteger = integer + 1;
+        ExtendedBinderClassService.mInteger = integer + 1;
         mServiceHandler.post(new Runnable() {
             @Override
             public void run() {
