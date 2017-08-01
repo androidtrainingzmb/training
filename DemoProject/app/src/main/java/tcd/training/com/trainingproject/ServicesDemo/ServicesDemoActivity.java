@@ -31,12 +31,14 @@ public class ServicesDemoActivity extends AppCompatActivity {
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. IntentService with ResultReceiver", IntentServiceDemoActivity.class);
         topics.put("2. IntentService with LocalBroadcastManager", IntentServiceDemoActivity.class);
-        topics.put("3. Custom services with HandlerThread", CustomServiceDemoActivity.class);
-        topics.put("4. Bound service using extended Binder class", BindServiceWithBinderClassDemoActivity.class);
-        topics.put("5. Bound service using Messenger", BindServiceWithMessengerDemoActivity.class);
-        topics.put("6. AsyncTask demo", AsyncTaskDemoActivity.class);
-        topics.put("7. HandlerThread demo", HandlerThreadDemoActivity.class);
-        topics.put("8. ThreadPoolExecutor demo", ThreadPoolExecutorDemoActivity.class);
+        topics.put("3. IntentService with EventBus", IntentServiceDemoActivity.class);
+        topics.put("4. IntentService with RxJava", IntentServiceDemoActivity.class);
+        topics.put("5. Custom services with HandlerThread", CustomServiceDemoActivity.class);
+        topics.put("6. Bound service using extended Binder class", BindServiceWithBinderClassDemoActivity.class);
+        topics.put("7. Bound service using Messenger", BindServiceWithMessengerDemoActivity.class);
+        topics.put("8. AsyncTask demo", AsyncTaskDemoActivity.class);
+        topics.put("9. HandlerThread demo", HandlerThreadDemoActivity.class);
+        topics.put("10. ThreadPoolExecutor demo", ThreadPoolExecutorDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =
@@ -51,6 +53,10 @@ public class ServicesDemoActivity extends AppCompatActivity {
                     intent.putExtra(getString(R.string.integer_type), IntentServiceDemoActivity.RESULT_RECEIVER_METHOD);
                 } else if (key.contains("LocalBroadcastManager")) {
                     intent.putExtra(getString(R.string.integer_type), IntentServiceDemoActivity.BROADCAST_RECEIVER_METHOD);
+                } else if (key.contains("EventBus")) {
+                    intent.putExtra(getString(R.string.integer_type), IntentServiceDemoActivity.EVENT_BUS_METHOD);
+                } else if (key.contains("RxJava")) {
+                    intent.putExtra(getString(R.string.integer_type), IntentServiceDemoActivity.RX_JAVA_METHOD);
                 }
                 startActivity(intent);
             }

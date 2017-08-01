@@ -22,19 +22,20 @@
         android:layout_margin="32dp"
         android:text="0"/>
 
+        <Switch
+            android:id="@+id/sw_toggle_notification_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:text="Notification icon" />
 
-    <Button
-        android:id="@+id/btn_start_alarm"
-        android:layout_width="wrap_content"
+    <Switch
+        android:id="@+id/sw_toggle_alarm"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/start_alarm" />
+        android:layout_gravity="right|center_vertical"
+        android:text="Repeating"/>
 
-    <Button
-        android:id="@+id/btn_end_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/end_alarm"/>
+
 
 </LinearLayout>

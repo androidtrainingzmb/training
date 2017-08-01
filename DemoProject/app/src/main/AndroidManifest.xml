@@ -56,10 +56,16 @@
         <activity android:name=".ServicesDemo.IntentService.IntentServiceDemoActivity" />
 
         <service
-            android:name=".ServicesDemo.IntentService.IntentServiceWithResultReceiver"
+            android:name=".ServicesDemo.IntentService.ResultReceiver.IntentServiceWithResultReceiver"
             android:exported="false" />
         <service
-            android:name=".ServicesDemo.IntentService.IntentServiceWithBroadcastReceiver"
+            android:name=".ServicesDemo.IntentService.LocalBroadcastReceiver.IntentServiceWithBroadcastReceiver"
+            android:exported="false" />
+        <service
+            android:name=".ServicesDemo.IntentService.EventBus.IntentServiceWithEventBus"
+            android:exported="false" />
+        <service
+            android:name=".ServicesDemo.IntentService.RxJava.IntentServiceWithRxJava"
             android:exported="false" />
         <service
             android:name=".ServicesDemo.CustomService.MyCustomService"

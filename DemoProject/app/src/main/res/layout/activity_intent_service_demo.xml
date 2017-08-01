@@ -34,6 +34,20 @@
             android:text="@string/broadcast_receiver"
             android:onClick="onRadioButtonClicked"/>
 
+        <RadioButton
+            android:id="@+id/rb_event_bus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_bus"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/rb_rx_java"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rx_java"
+            android:onClick="onRadioButtonClicked"/>
+
     </RadioGroup>
 
     <TextView

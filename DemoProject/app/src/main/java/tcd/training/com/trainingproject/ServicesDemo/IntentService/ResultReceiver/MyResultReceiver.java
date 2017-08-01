@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ServicesDemo.IntentService;
+package tcd.training.com.trainingproject.ServicesDemo.IntentService.ResultReceiver;
 
 import android.os.Bundle;
 import android.os.Handler;

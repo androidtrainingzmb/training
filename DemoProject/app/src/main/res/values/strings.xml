@@ -37,10 +37,12 @@
     <string name="my_intent_service">MyIntentService</string>
     <string name="result_receiver">Result Receiver</string>
     <string name="broadcast_receiver">Broadcast Receiver</string>
-    <string name="intent_service_explanation">This is an IntentService demo.\nChoose a communication option and the current will be sent to the corresponding service. Right after that, the service will increment that value and send it back to this activity. And finally, the result will be updated on screen.</string>
+    <string name="event_bus">Event bus</string>
+    <string name="rx_java">RxJava</string>
+    <string name="intent_service_explanation">This is an IntentService demo.\nChoose a communication option and the current integer will be sent to the corresponding service using that method. Right after that, the service will increment that value and send it back to this activity. Finally, the result will be updated on screen.</string>
     <string name="start_alarm">Start alarm</string>
     <string name="end_alarm">End alarm</string>
-    <string name="extending_binder_service_explanation">This demonstrates the bound service using the extended Binder class.\nWhen the button is tapped, the current integer will be sent to the service via binding method.\nRight after that, the service will increment that value and send it back to this activity using Local Broadcast Manager. And finally, the result will be updated on screen.</string>
+    <string name="extending_binder_service_explanation">This demonstrates the bound service using the extended Binder class.\nWhen the button is tapped, the current integer will be sent to the service via binding method.\nRight after that, the service will increment that value and send it back to this activity using Local Broadcast Manager. Finally, the result will be updated on screen.</string>
     <string name="increment_by_one">Increment by 1</string>
     <string name="custom_service_explanation">This is a custom service with a scheduled alarm.\nWhen the button StartAlarm is tapped, the alarm is fired and the below number will be automatically incremented after a certain time.</string>
     <string name="using_execute_on_executor">Using ExecuteOnExecutor?</string>

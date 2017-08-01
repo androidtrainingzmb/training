@@ -1,5 +1,7 @@
 package tcd.training.com.trainingproject.ServicesDemo.CustomService;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import tcd.training.com.trainingproject.R;
+
 import static android.content.ContentValues.TAG;
 
 /**
@@ -25,6 +29,12 @@ import static android.content.ContentValues.TAG;
 public class MyCustomService extends Service {
 
     public static final String INTENT_ACTION = MyCustomService.class.getName();
+
+    public static final String NOTIFICATION_EXTRA = "notification";
+    public static final int NOTIFICATION_ON = 1;
+    public static final int NOTIFICATION_OFF = -1;
+
+    private static final int ONGOING_NOTIFICATION_ID = 1;
     private ServiceHandler mServiceHandler;
     private volatile HandlerThread mHandlerThread;
 
@@ -38,16 +48,40 @@ public class MyCustomService extends Service {
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
-        mServiceHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Intent broadcastIntent = new Intent(INTENT_ACTION);
-                LocalBroadcastManager.getInstance(MyCustomService.this).sendBroadcast(broadcastIntent);
-                Log.d(TAG, "run: " + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
-                stopSelf();
+        // intent for the notification
+        if (intent.hasExtra(NOTIFICATION_EXTRA)) {
+            if (intent.getIntExtra(NOTIFICATION_EXTRA, NOTIFICATION_OFF) == NOTIFICATION_ON) {
+                createNotificationIcon();
+            } else {
+                stopForeground(true);
             }
-        });
+        }
+        // intent of the alarm
+        else {
+            mServiceHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Intent broadcastIntent = new Intent(INTENT_ACTION);
+                    LocalBroadcastManager.getInstance(MyCustomService.this).sendBroadcast(broadcastIntent);
+                    Log.d(TAG, "run: " + Calendar.getInstance().get(Calendar.MINUTE) + ":" + Calendar.getInstance().get(Calendar.SECOND));
+                }
+            });
+        }
         return START_STICKY;
+    }
+
+    private void createNotificationIcon() {
+        Intent notificationIntent = new Intent(this, CustomServiceDemoActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("Content title")
+                .setContentText("Content text")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        startForeground(ONGOING_NOTIFICATION_ID, notification);
     }
 
     @Nullable

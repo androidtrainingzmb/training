@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ServicesDemo.IntentService;
+package tcd.training.com.trainingproject.ServicesDemo.IntentService.ResultReceiver;
 
 
 import android.app.Activity;
@@ -7,28 +7,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-
-import java.util.Calendar;
 
 import tcd.training.com.trainingproject.R;
-
+import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceDemoActivity;
 
 /**
  * Created by cpu10661-local on 26/07/2017.
  */
 
-public class IntentServiceWithBroadcastReceiver extends IntentService {
+public class IntentServiceWithResultReceiver extends IntentService {
 
+    public static final String INTENT_ACTION = IntentServiceWithResultReceiver.class.getName();
     public static final String TAG = IntentServiceDemoActivity.TAG;
-    public static final String INTENT_ACTION = IntentServiceWithBroadcastReceiver.class.getName();
 
-    private static int mInteger;
+    private ResultReceiver mReceiver;
+    private int mInteger;
 
-    public IntentServiceWithBroadcastReceiver() {
+    public IntentServiceWithResultReceiver() {
 //        super(Resources.getSystem().getString(R.string.my_intent_service));
-        super("IntentServiceWithBroadcastReceiver");
+        super("IntentServiceWithResultReceiver");
     }
 
     @Override
@@ -39,13 +36,14 @@ public class IntentServiceWithBroadcastReceiver extends IntentService {
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         mInteger = intent.getIntExtra(getString(R.string.integer_type), -1) + 1;
+        mReceiver = intent.getParcelableExtra(getString(R.string.result_receiver));
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Intent broadcastIntent = new Intent(INTENT_ACTION);
-        broadcastIntent.putExtra(getString(R.string.integer_type), mInteger);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
+        Bundle resultData = new Bundle();
+        resultData.putInt(getString(R.string.integer_type), mInteger);
+        mReceiver.send(Activity.RESULT_OK, resultData);
     }
 }

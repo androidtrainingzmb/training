@@ -1,6 +1,7 @@
 package tcd.training.com.trainingproject.ServicesDemo.CustomService;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,19 +13,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import tcd.training.com.trainingproject.R;
-import tcd.training.com.trainingproject.ServicesDemo.IntentService.IntentServiceWithBroadcastReceiver;
+
+import static tcd.training.com.trainingproject.ServicesDemo.CustomService.MyCustomService.NOTIFICATION_EXTRA;
+import static tcd.training.com.trainingproject.ServicesDemo.CustomService.MyCustomService.NOTIFICATION_OFF;
+import static tcd.training.com.trainingproject.ServicesDemo.CustomService.MyCustomService.NOTIFICATION_ON;
 
 public class CustomServiceDemoActivity extends AppCompatActivity {
 
     private static int mInteger = 0;
 
     private TextView mIntegerValueTextView;
-    private Button mStartAlarmButton;
-    private Button mEndAlarmButton;
+    private Switch mToggleAlarmSwitch;
+    private Switch mToggleNotificationIconSwitch;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -40,28 +46,34 @@ public class CustomServiceDemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_service_demo);
 
         mIntegerValueTextView = findViewById(R.id.tv_integer_value);
-        mStartAlarmButton = findViewById(R.id.btn_start_alarm);
-        mEndAlarmButton = findViewById(R.id.btn_end_alarm);
 
-        mStartAlarmButton.setOnClickListener(new View.OnClickListener() {
+        mToggleAlarmSwitch = findViewById(R.id.sw_toggle_alarm);
+        mToggleAlarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                startAlarm();
-                Toast.makeText(CustomServiceDemoActivity.this, "Alarm started", Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    startAlarm();
+                    Toast.makeText(CustomServiceDemoActivity.this, "Alarm started", Toast.LENGTH_SHORT).show();
+                } else {
+                    endAlarm();
+                    Toast.makeText(CustomServiceDemoActivity.this, "Alarm ended", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        mEndAlarmButton.setOnClickListener(new View.OnClickListener() {
+
+        mToggleNotificationIconSwitch = findViewById(R.id.sw_toggle_notification_icon);
+        mToggleNotificationIconSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                endAlarm();
-                Toast.makeText(CustomServiceDemoActivity.this, "Alarm ended", Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                Intent intent = new Intent(CustomServiceDemoActivity.this, MyCustomService.class);
+                if (isChecked) {
+                    intent.putExtra(NOTIFICATION_EXTRA, NOTIFICATION_ON);
+                } else {
+                    intent.putExtra(NOTIFICATION_EXTRA, NOTIFICATION_OFF);
+                }
+                startService(intent);
             }
         });
-    }
-
-    private void startCustomService() {
-        Intent intent = new Intent(this, MyCustomService.class);
-        startService(intent);
     }
 
     // for alarm
@@ -97,5 +109,11 @@ public class CustomServiceDemoActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, MyCustomService.class));
     }
 }
