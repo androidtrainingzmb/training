@@ -65,7 +65,7 @@
             android:name=".ServiceAndThreadDemos.IntentService.EventBus.IntentServiceWithEventBus"
             android:exported="false" />
         <service
-            android:name=".ServiceAndThreadDemos.IntentService.RxJava.IntentServiceWithRxJava"
+            android:name=".ServiceAndThreadDemos.IntentService.RxAndroid.IntentServiceWithRxAndroid"
             android:exported="false" />
         <service
             android:name=".ServiceAndThreadDemos.CustomService.MyCustomService"
@@ -86,7 +86,8 @@
 
         <service
             android:name=".ServiceAndThreadDemos.BoundService.UsingMessengerService"
-            android:exported="false" />
+            android:exported="false"
+            android:process=":remote"/>
 
         <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.AsyncTaskDemo.AsyncTaskDemoActivity" />

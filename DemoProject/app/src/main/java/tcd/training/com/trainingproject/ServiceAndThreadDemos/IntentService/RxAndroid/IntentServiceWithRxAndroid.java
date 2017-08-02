@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxJava;
+package tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxAndroid;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -11,14 +11,14 @@ import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.Even
  * Created by cpu10661-local on 01/08/2017.
  */
 
-public class IntentServiceWithRxJava extends IntentService {
+public class IntentServiceWithRxAndroid extends IntentService {
 
-    public static final String TAG = IntentServiceWithRxJava.class.getSimpleName();
+    public static final String TAG = IntentServiceWithRxAndroid.class.getSimpleName();
 
     private static int mInteger;
 
-    public IntentServiceWithRxJava() {
-        super("IntentServiceWithRxJava");
+    public IntentServiceWithRxAndroid() {
+        super("IntentServiceWithRxAndroid");
     }
 
     @Override

@@ -8,11 +8,10 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-
-import tcd.training.com.trainingproject.R;
 
 /**
  * Created by cpu10661-local on 28/07/2017.
@@ -22,8 +21,8 @@ public class UsingMessengerService extends Service {
 
     public static final String TAG = UsingMessengerService.class.getSimpleName();
 
-    public static final int MSG_RETRIEVE_INTEGER = 1;
-    public static final String INTENT_ACTION = UsingMessengerService.class.getSimpleName();
+    public static final int MSG_SEND_INTEGER = 1;
+    public static final int MSG_RETRIEVE_INTEGER = 2;
 
     private ServiceHandler mServiceHandler;
     private volatile HandlerThread mHandlerThread;
@@ -31,32 +30,34 @@ public class UsingMessengerService extends Service {
     final Messenger mMessenger = new Messenger(new IncomingHandler());
 
     private int mInteger;
-    private LocalBroadcastManager mLocalBroadcastManager;
 
-    class ServiceHandler extends Handler {
+    private class ServiceHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
         }
 
-        public ServiceHandler(Looper looper) {
+        private ServiceHandler(Looper looper) {
             super(looper);
         }
     }
 
-    class IncomingHandler extends Handler {
+    private class IncomingHandler extends Handler {
         @Override
         public void handleMessage(final Message msg) {
-            Log.d(TAG, "handleMessage: ");
             switch (msg.what) {
-                case MSG_RETRIEVE_INTEGER:
+                case MSG_SEND_INTEGER:
                     mInteger = msg.arg1 + 1;
+                    final Messenger messenger = msg.replyTo;
                     mServiceHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(INTENT_ACTION);
-                            intent.putExtra(getString(R.string.integer_type), mInteger);
-                            mLocalBroadcastManager.sendBroadcast(intent);
+                            Message response = Message.obtain(null, MSG_RETRIEVE_INTEGER, mInteger, 0);
+                            try {
+                                messenger.send(response);
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                     break;
@@ -72,8 +73,6 @@ public class UsingMessengerService extends Service {
         mHandlerThread = new HandlerThread(getPackageName());
         mHandlerThread.start();
         mServiceHandler = new ServiceHandler(mHandlerThread.getLooper());
-
-        mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
     }
 
     @Override

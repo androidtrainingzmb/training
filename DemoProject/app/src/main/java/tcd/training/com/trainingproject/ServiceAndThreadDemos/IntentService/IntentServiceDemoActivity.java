@@ -25,8 +25,8 @@ import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.Even
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.LocalBroadcastReceiver.IntentServiceWithBroadcastReceiver;
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.ResultReceiver.IntentServiceWithResultReceiver;
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.ResultReceiver.MyResultReceiver;
-import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxJava.IntentServiceWithRxJava;
-import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxJava.RxBus;
+import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxAndroid.IntentServiceWithRxAndroid;
+import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxAndroid.RxBus;
 
 public class IntentServiceDemoActivity extends AppCompatActivity {
 
@@ -133,7 +133,7 @@ public class IntentServiceDemoActivity extends AppCompatActivity {
                 serviceIntent.setClass(this, IntentServiceWithEventBus.class);
                 break;
             case RX_JAVA_METHOD:
-                serviceIntent.setClass(this, IntentServiceWithRxJava.class);
+                serviceIntent.setClass(this, IntentServiceWithRxAndroid.class);
                 break;
         }
         serviceIntent.putExtra(getString(R.string.integer_type), mInteger);

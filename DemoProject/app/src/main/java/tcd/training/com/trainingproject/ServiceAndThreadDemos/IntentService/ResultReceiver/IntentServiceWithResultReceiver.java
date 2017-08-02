@@ -17,7 +17,6 @@ import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.Inte
 
 public class IntentServiceWithResultReceiver extends IntentService {
 
-    public static final String INTENT_ACTION = IntentServiceWithResultReceiver.class.getName();
     public static final String TAG = IntentServiceDemoActivity.TAG;
 
     private ResultReceiver mReceiver;
@@ -42,6 +41,7 @@ public class IntentServiceWithResultReceiver extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        //
         Bundle resultData = new Bundle();
         resultData.putInt(getString(R.string.integer_type), mInteger);
         mReceiver.send(Activity.RESULT_OK, resultData);

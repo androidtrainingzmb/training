@@ -21,7 +21,7 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
 
 //    public static final TAG = BindServiceWithBinderClassDemoActivity.class.getSimpleName();
 
-    private TextView integerValueTextView;
+    private TextView mIntegerValueTextView;
     private Button incrementByOneButton;
 
     ExtendedBinderClassService mExtendingBinderService;
@@ -35,8 +35,8 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bind_service_demo);
 
-        integerValueTextView = findViewById(R.id.tv_integer_value);
-        integerValueTextView.setText(String.valueOf(mInteger));
+        mIntegerValueTextView = findViewById(R.id.tv_integer_value);
+        mIntegerValueTextView.setText(String.valueOf(mInteger));
 
         incrementByOneButton = findViewById(R.id.btn_increment_by_one);
         incrementByOneButton.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class BindServiceWithBinderClassDemoActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 mInteger = intent.getIntExtra(getString(R.string.integer_type), -1);
-                integerValueTextView.setText(String.valueOf(mInteger));
+                mIntegerValueTextView.setText(String.valueOf(mInteger));
             }
         };
     }

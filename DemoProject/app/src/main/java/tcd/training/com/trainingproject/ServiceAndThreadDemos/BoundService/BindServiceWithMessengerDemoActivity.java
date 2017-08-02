@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -24,23 +25,21 @@ public class BindServiceWithMessengerDemoActivity extends AppCompatActivity {
 
     private static final String TAG = BindServiceWithMessengerDemoActivity.class.getSimpleName();
 
-    private TextView integerValueTextView;
-    private Button incrementByOneButton;
+    private TextView mIntegerValueTextView;
+    private Button mIncrementByOneButton;
 
     private int mInteger = 0;
     private ServiceConnection mConnection;
     private Messenger mMessenger = null;
     private boolean mBound;
 
-    private BroadcastReceiver mReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bind_service_demo);
 
-        integerValueTextView = findViewById(R.id.tv_integer_value);
-        integerValueTextView.setText(String.valueOf(mInteger));
+        mIntegerValueTextView = findViewById(R.id.tv_integer_value);
+        mIntegerValueTextView.setText(String.valueOf(mInteger));
 
         mConnection = new ServiceConnection() {
             @Override
@@ -56,12 +55,26 @@ public class BindServiceWithMessengerDemoActivity extends AppCompatActivity {
             }
         };
 
-        incrementByOneButton = findViewById(R.id.btn_increment_by_one);
-        incrementByOneButton.setOnClickListener(new View.OnClickListener() {
+        mIncrementByOneButton = findViewById(R.id.btn_increment_by_one);
+        mIncrementByOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mBound) {
-                    Message message = Message.obtain(null, UsingMessengerService.MSG_RETRIEVE_INTEGER, mInteger, mInteger);
+                    Message message = Message.obtain(null, UsingMessengerService.MSG_SEND_INTEGER, mInteger, mInteger);
+                    // create a handler to handle response message
+                    message.replyTo = new Messenger(new Handler(new Handler.Callback() {
+                        @Override
+                        public boolean handleMessage(Message message) {
+                            switch (message.what) {
+                                case UsingMessengerService.MSG_RETRIEVE_INTEGER:
+                                    mInteger = message.arg1;
+                                    mIntegerValueTextView.setText(String.valueOf(mInteger));
+                                    break;
+                            }
+                            return true;
+                        }
+                    }));
+                    // send it
                     try {
                         mMessenger.send(message);
                     } catch (RemoteException e) {
@@ -69,17 +82,9 @@ public class BindServiceWithMessengerDemoActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(BindServiceWithMessengerDemoActivity.this, "The service has not been bound to the activity.", Toast.LENGTH_SHORT).show();
-                } 
+                }
             }
         });
-
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                mInteger = intent.getIntExtra(getString(R.string.integer_type), -1);
-                integerValueTextView.setText(String.valueOf(mInteger));
-            }
-        };
     }
 
 
@@ -97,17 +102,5 @@ public class BindServiceWithMessengerDemoActivity extends AppCompatActivity {
             unbindService(mConnection);
             mBound = false;
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter(UsingMessengerService.INTENT_ACTION));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
     }
 }

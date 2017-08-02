@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxJava;
+package tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.RxAndroid;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -26,10 +26,6 @@ public class RxBus {
 
     public static Disposable subscribe(@NonNull Consumer<EventBusMessage> action) {
         return mSubjects.subscribe(action);
-    }
-
-    public Observable<EventBusMessage> getEventObservable() {
-        return mSubjects;
     }
 
     public static void publish(@NonNull EventBusMessage message) {
