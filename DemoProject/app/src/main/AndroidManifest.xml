@@ -87,11 +87,11 @@
         <service
             android:name=".ServiceAndThreadDemos.BoundService.UsingMessengerService"
             android:exported="false"
-            android:process=":remote"/>
+            android:process=":remote" />
 
         <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.AsyncTaskDemo.AsyncTaskDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity"></activity>
+        <activity android:name=".ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity" />
     </application>
 
 </manifest>

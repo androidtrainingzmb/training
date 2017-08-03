@@ -46,7 +46,13 @@ public class HandlerThreadDemoActivity extends AppCompatActivity implements Hand
 
         mHandlerThread = new HandlerThread(this.getLocalClassName());
         mHandlerThread.start();
-        final Handler handler = new Handler(mHandlerThread.getLooper(), this);
+        final Handler handler = new Handler(mHandlerThread.getLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+            }
+        };
+        final Handler mainUiHandler = new Handler(this);
 
         mStartDownloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +73,7 @@ public class HandlerThreadDemoActivity extends AppCompatActivity implements Hand
                 mStartTime = Calendar.getInstance().getTimeInMillis();
                 // start download
                 for (int i = 0; i < mNumberOfImages; i++) {
-                    handler.post(new DownloadImageTask(i, handler, mImageUrl));
+                    handler.post(new DownloadImageTask(i, mainUiHandler, mImageUrl));
                 }}
         });
     }
@@ -89,9 +95,6 @@ public class HandlerThreadDemoActivity extends AppCompatActivity implements Hand
         final int threadId = message.what;
         final Bitmap bitmap = (Bitmap) message.obj;
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
                 mDownloadOrderTextView.append(String.valueOf(threadId + 1) + " ");
 
                 if (mDisplayImages) {
@@ -106,8 +109,7 @@ public class HandlerThreadDemoActivity extends AppCompatActivity implements Hand
                     mDownloadOrderTextView.append("(" + String.valueOf(elapsedTime) + "s)");
                     mStartDownloadButton.setEnabled(true);
                 }
-            }
-        });
+            
 
         return true;
     }
