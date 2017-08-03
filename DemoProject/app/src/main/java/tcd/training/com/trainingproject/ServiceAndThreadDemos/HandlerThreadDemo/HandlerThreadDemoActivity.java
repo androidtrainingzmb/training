@@ -46,12 +46,7 @@ public class HandlerThreadDemoActivity extends AppCompatActivity implements Hand
 
         mHandlerThread = new HandlerThread(this.getLocalClassName());
         mHandlerThread.start();
-        final Handler handler = new Handler(mHandlerThread.getLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-            }
-        };
+        final Handler handler = new Handler(mHandlerThread.getLooper());
         final Handler mainUiHandler = new Handler(this);
 
         mStartDownloadButton.setOnClickListener(new View.OnClickListener() {

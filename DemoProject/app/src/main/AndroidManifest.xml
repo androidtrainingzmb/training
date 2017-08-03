@@ -18,13 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity1" />
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity2" />
@@ -46,13 +43,7 @@
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".ServiceAndThreadDemos.ServicesDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ServiceAndThreadDemos.ServicesDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.IntentService.IntentServiceDemoActivity" />
 
         <service
@@ -89,9 +80,10 @@
             android:exported="false"
             android:process=":remote" />
 
-        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingRunnableDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.AsyncTaskDemo.AsyncTaskDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity" />
+        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingCallableDemoActivity"></activity>
     </application>
 
 </manifest>

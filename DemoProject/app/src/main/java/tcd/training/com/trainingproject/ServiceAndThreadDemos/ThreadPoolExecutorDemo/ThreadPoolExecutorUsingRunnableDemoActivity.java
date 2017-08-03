@@ -21,12 +21,13 @@ import java.util.concurrent.TimeUnit;
 
 import tcd.training.com.trainingproject.R;
 
-public class ThreadPoolExecutorDemoActivity extends AppCompatActivity implements Handler.Callback {
+public class ThreadPoolExecutorUsingRunnableDemoActivity extends AppCompatActivity implements Handler.Callback {
 
     private final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
     private static int mNumberOfImages = 8;
     private final String mImageUrl = "https://source.unsplash.com/random";
-//    private final String mImageUrl = "source.unsplash.com/4MSwGhLKhi8";
+//    private final String mImageUrl = "https://source.unsplash.com/daily";
+//    private final String mImageUrl = "https://source.unsplash.com/WLUHO9A_xik/1600x900";
 
     private TextView mDownloadOrderTextView;
     private LinearLayout mImagesListLinearLayout;

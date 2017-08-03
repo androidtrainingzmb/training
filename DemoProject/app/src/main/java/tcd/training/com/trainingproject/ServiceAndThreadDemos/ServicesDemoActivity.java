@@ -17,7 +17,8 @@ import tcd.training.com.trainingproject.ServiceAndThreadDemos.BoundService.BindS
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.CustomService.CustomServiceDemoActivity;
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity;
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.IntentService.IntentServiceDemoActivity;
-import tcd.training.com.trainingproject.ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorDemoActivity;
+import tcd.training.com.trainingproject.ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingRunnableDemoActivity;
+import tcd.training.com.trainingproject.ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingCallableDemoActivity;
 
 public class ServicesDemoActivity extends AppCompatActivity {
 
@@ -38,7 +39,8 @@ public class ServicesDemoActivity extends AppCompatActivity {
         topics.put("7. Bound service using Messenger", BindServiceWithMessengerDemoActivity.class);
         topics.put("8. AsyncTask demo", AsyncTaskDemoActivity.class);
         topics.put("9. HandlerThread demo", HandlerThreadDemoActivity.class);
-        topics.put("10. ThreadPoolExecutor demo", ThreadPoolExecutorDemoActivity.class);
+        topics.put("10. ThreadPoolExecutor using Runnable demo", ThreadPoolExecutorUsingRunnableDemoActivity.class);
+        topics.put("11. ThreadPoolExecutor using Callable demo", ThreadPoolExecutorUsingCallableDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =
