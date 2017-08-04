@@ -14,6 +14,8 @@ import tcd.training.com.trainingproject.CommunicationBetweenActivities.Communica
 import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
 import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
 import tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity;
+import tcd.training.com.trainingproject.ImagesTopic.ImageViewScaleTypeDemoActivity;
+import tcd.training.com.trainingproject.ImagesTopic.ImagesTopicActivity;
 import tcd.training.com.trainingproject.PersistentStorage.PersistentStorageActivity;
 import tcd.training.com.trainingproject.ServiceAndThreadDemos.ServicesDemoActivity;
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         topics.put("5. Fragments demo", FragmentsDemoActivity.class);
         topics.put("6. Communication between activities", CommunicationBetweenActivitiesActivity.class);
         topics.put("7. Service and Thread demos", ServicesDemoActivity.class);
-//        topics.put("7. Thread management", .class);
+        topics.put("8. Images Topic", ImagesTopicActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =

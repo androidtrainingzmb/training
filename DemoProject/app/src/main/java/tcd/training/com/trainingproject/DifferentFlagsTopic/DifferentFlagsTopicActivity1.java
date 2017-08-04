@@ -22,7 +22,7 @@ public class DifferentFlagsTopicActivity1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_different_flags_topic);
+        setContentView(R.layout.activity_simple_list_view);
         getSupportActionBar().setTitle(getLocalClassName());
 
         Log.d(TAG, "onCreate: Instantiating activity 1");
@@ -46,7 +46,7 @@ public class DifferentFlagsTopicActivity1 extends AppCompatActivity {
         flagOptions.put("FLAG_ACTIVITY_SINGLE_TOP", Intent.FLAG_ACTIVITY_SINGLE_TOP);
         flagOptions.put("FLAG_ACTIVITY_TASK_ON_HOME", Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 
-        ListView flagOptionsList = (ListView) findViewById(R.id.lv_flag_options_list);
+        ListView flagOptionsList = (ListView) findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text1, flagOptions.keySet().toArray(new String[0]));
         flagOptionsList.setAdapter(arrayAdapter);

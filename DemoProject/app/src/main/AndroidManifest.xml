@@ -18,10 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity1" />
         <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity2" />
@@ -83,7 +86,18 @@
         <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingRunnableDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.AsyncTaskDemo.AsyncTaskDemoActivity" />
         <activity android:name=".ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingCallableDemoActivity"></activity>
+        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingCallableDemoActivity" />
+        <activity android:name=".ImagesTopic.ImageViewScaleTypeDemoActivity" />
+        <activity android:name=".ImagesTopic.ImagesTopicActivity" />
+        <activity android:name=".ImagesTopic.LoadImageFromSdCardDemoActivity" />
+        <activity android:name=".ImagesTopic.LoadImageFromUrlDemoActivity" />
+        <activity android:name=".ImagesTopic.CacheImageUsingMemoryDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

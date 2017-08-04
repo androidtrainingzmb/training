@@ -23,14 +23,14 @@ public class FragmentsDemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragments_demo);
+        setContentView(R.layout.activity_simple_list_view);
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. TabLayout with Fragments", TabLayoutWithFragmentsActivity.class);
         topics.put("2. PagerTabStrip with Fragments", PagerTabStripWithFragmentsActivity.class);
         topics.put("3. Flexible UI with Fragments", FlexibleUIWithFragmentsActivity.class);
 
-        fragmentsDemoListView = findViewById(R.id.lv_fragments_demo);
+        fragmentsDemoListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.addAll(topics.keySet());
         fragmentsDemoListView.setAdapter(arrayAdapter);

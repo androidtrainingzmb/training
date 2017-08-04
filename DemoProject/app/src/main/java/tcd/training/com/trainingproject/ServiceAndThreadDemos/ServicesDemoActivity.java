@@ -27,7 +27,7 @@ public class ServicesDemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_services_demo);
+        setContentView(R.layout.activity_simple_list_view);
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. IntentService with ResultReceiver", IntentServiceDemoActivity.class);
@@ -42,7 +42,7 @@ public class ServicesDemoActivity extends AppCompatActivity {
         topics.put("10. ThreadPoolExecutor using Runnable demo", ThreadPoolExecutorUsingRunnableDemoActivity.class);
         topics.put("11. ThreadPoolExecutor using Callable demo", ThreadPoolExecutorUsingCallableDemoActivity.class);
 
-        topicsListView = (ListView) findViewById(R.id.lv_topics_list);
+        topicsListView = (ListView) findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
         topicsListView.setAdapter(arrayAdapter);

@@ -50,4 +50,28 @@
     <string name="number_of_images">Number of images</string>
     <string name="number_of_images_empty_error">Number of images is required.</string>
     <string name="display_images">Display images?</string>
+
+    <!--image-->
+    <string name="image_size">Image size</string>
+    <string name="small">Small</string>
+    <string name="large">Large</string>
+    <string name="orientation">Orientation</string>
+    <string name="portrait">Portrait</string>
+    <string name="landscape">Landscape</string>
+    <string name="choose_scale_type">Choose a scale type</string>
+    <string-array name="scale_type_arrays">
+        <item>center</item>
+        <item>centerCrop</item>
+        <item>centerInside</item>
+        <item>fitCenter</item>
+        <item>fitStart</item>
+        <item>fitEnd</item>
+        <item>fitXY</item>
+        <item>matrix</item>
+    </string-array>
+    <string name="wait_download">Please wait until the download process is finished.</string>
+    <string name="use_cache">Use cache</string>
+    <string name="shown_images">Number of shown images:</string>
+    <string name="cache_explanation">Toggle the UseCache switch and all images will be reloaded with the according cache state.</string>
 </resources>
+
