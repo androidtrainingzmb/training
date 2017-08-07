@@ -1,15 +1,21 @@
 package tcd.training.com.trainingproject.ImagesTopic;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +35,8 @@ import tcd.training.com.trainingproject.R;
 
 public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
 
+    private static final String TAG = CacheImageUsingMemoryDemoActivity.class.getSimpleName();
+
     // for caching
     private static final int NUMBER_OF_IMAGES = 5;
     private LruCache<String, Bitmap> mMemoryCache;
@@ -36,6 +44,7 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
 
     // layout
     private LinearLayout mRootLinearLayout;
+    private Switch mUsingCacheSwitch;
     private TextView mShownImagesTextView;
 
     // loading info
@@ -56,8 +65,32 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
 
         initializeUiComponents();
 
-        prepareToCache();
-        loadAllImages();
+        // get the old cache (if exists)
+        RetainFragment retainFragment = RetainFragment.findOrCreateRetainFragment(getSupportFragmentManager());
+        mMemoryCache = retainFragment.mRetainedCache;
+        if (mMemoryCache == null) {
+            prepareToCache();
+            retainFragment.mRetainedCache = mMemoryCache;
+        }
+
+        // retain switch state
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(getString(R.string.boolean_type))) {
+                mIsUsingCache = savedInstanceState.getBoolean(getString(R.string.boolean_type));
+            }
+            if (mIsUsingCache) {
+                loadAllImages();
+            }
+        } else {
+            mIsUsingCache = mUsingCacheSwitch.isChecked();
+            loadAllImages();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(getString(R.string.boolean_type), mIsUsingCache);
+        super.onSaveInstanceState(outState);
     }
 
     private void increaseImageIndex() {
@@ -66,6 +99,7 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
         if (mImageIndex == NUMBER_OF_IMAGES) {
             long end = Calendar.getInstance().getTimeInMillis();
             mShownImagesTextView.append(" (" + String.valueOf(end - mStartTime) + "ms)");
+            mUsingCacheSwitch.setEnabled(true);
         }
     }
 
@@ -73,7 +107,7 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
         mRootLinearLayout = findViewById(R.id.linear_layout_images_list);
         mShownImagesTextView = findViewById(R.id.tv_shown_images);
 
-        Switch mUsingCacheSwitch = findViewById(R.id.sw_using_cache);
+        mUsingCacheSwitch = findViewById(R.id.sw_using_cache);
         mUsingCacheSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -81,7 +115,6 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
                 loadAllImages();
             }
         });
-
         mIsUsingCache = mUsingCacheSwitch.isChecked();
     }
 
@@ -92,6 +125,7 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
         mImageIndex = 0;
         mStartTime = Calendar.getInstance().getTimeInMillis();
         // start loading
+        mUsingCacheSwitch.setEnabled(false);
         for (int i = 0; i < NUMBER_OF_IMAGES; i++) {
             loadBitmap(mImagesUrl[i % mImagesUrl.length], createAnImageView());
         }
@@ -182,13 +216,37 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
 
     private ImageView createAnImageView() {
         ImageView imageView = new ImageView(this);
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-//        imageView.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int dpToPx_8 =(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        layoutParams.setMargins(0, dpToPx_8, 0, 0);
+        imageView.setLayoutParams(layoutParams);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setAdjustViewBounds(true);
         mRootLinearLayout.addView(imageView);
 
         return imageView;
+    }
+
+    public static class RetainFragment extends Fragment {
+        private static final String TAG = RetainFragment.class.getSimpleName();
+        public LruCache<String, Bitmap> mRetainedCache;
+
+        public RetainFragment() {}
+
+        public static RetainFragment findOrCreateRetainFragment(FragmentManager manager) {
+            RetainFragment fragment = (RetainFragment) manager.findFragmentByTag(TAG);
+            if (fragment == null) {
+                fragment = new RetainFragment();
+                manager.beginTransaction().add(fragment, TAG).commit();
+            }
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setRetainInstance(true);
+        }
     }
 
     /*
