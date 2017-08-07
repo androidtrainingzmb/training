@@ -20,8 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -136,9 +136,9 @@ public class LoadImageFromSdCardDemoActivity extends AppCompatActivity {
         snackbar.show();
         // start downloading image
         String imageUrl = "https://source.unsplash.com/TGBfUv0ZgD8/";
-        Glide.with(this).asBitmap().load(imageUrl).into(new SimpleTarget<Bitmap>(SIZE_ORIGINAL, SIZE_ORIGINAL) {
+        Glide.with(this).load(imageUrl).asBitmap().into(new SimpleTarget<Bitmap>(SIZE_ORIGINAL, SIZE_ORIGINAL) {
             @Override
-            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 try {
                     FileOutputStream out = new FileOutputStream(mFile);
                     resource.compress(Bitmap.CompressFormat.JPEG, 90, out);

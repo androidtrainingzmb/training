@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
@@ -176,7 +177,7 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
 //            final Bitmap bitmap = decodeBitmapFromResource(getResources(), strings[0], 100, 100);
             Bitmap bitmap = null;
             try {
-                bitmap = Glide.with(CacheImageUsingMemoryDemoActivity.this).asBitmap().load(strings[0]).into(500, 500).get();
+                bitmap = Glide.with(CacheImageUsingMemoryDemoActivity.this).load(strings[0]).asBitmap().into(500, 500).get();
                 addBitmapToMemoryCache(strings[0], bitmap);
             } catch (InterruptedException e) {
                 e.printStackTrace();

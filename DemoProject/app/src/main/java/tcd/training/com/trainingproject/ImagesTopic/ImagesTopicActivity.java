@@ -23,7 +23,12 @@ public class ImagesTopicActivity extends AppCompatActivity {
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. ImageView scaleType demo", ImageViewScaleTypeDemoActivity.class);
-        topics.put("2. Load images demo", LoadImageFromSdCardDemoActivity.class);
+        topics.put("2. Load images from SD card demo", LoadImageFromSdCardDemoActivity.class);
+        topics.put("3. Load images from Url demo", LoadImageFromUrlDemoActivity.class);
+        topics.put("4. Cache images using Memory demo", CacheImageUsingMemoryDemoActivity.class);
+        topics.put("5. Cache images using Disk demo", CacheImageUsingDiskDemoActivity.class);
+        topics.put("6. Cache images using Glide demo", CacheImageUsingExternalLibraryDemoActivity.class);
+        topics.put("7. Cache images using Picasso demo", CacheImageUsingExternalLibraryDemoActivity.class);
 
         topicsListView = (ListView) findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
@@ -34,6 +39,11 @@ public class ImagesTopicActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(ImagesTopicActivity.this, topics.get(key));
+                if (key.contains("Glide")) {
+                    intent.putExtra(getString(R.string.integer_type), CacheImageUsingExternalLibraryDemoActivity.GLIDE_METHOD);
+                } else if (key.contains("Picasso")) {
+                    intent.putExtra(getString(R.string.integer_type), CacheImageUsingExternalLibraryDemoActivity.PICASSO_METHOD);
+                }
                 startActivity(intent);
             }
         });
