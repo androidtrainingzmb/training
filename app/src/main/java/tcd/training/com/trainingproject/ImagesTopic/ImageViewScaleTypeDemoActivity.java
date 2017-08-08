@@ -2,6 +2,7 @@ package tcd.training.com.trainingproject.ImagesTopic;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
@@ -18,8 +19,9 @@ public class ImageViewScaleTypeDemoActivity extends AppCompatActivity {
     private Spinner mScaleTypeSpinner;
     private ImageView mImageView;
     private Switch mAdjustViewBoundsSwitch;
-    
-    private boolean mIsImageSmall;
+
+    enum ImageSize {SMALL, MEDIUM, LARGE};
+    private ImageSize mImageSize;
     private boolean mIsImageInPortraitMode;
 
     @Override
@@ -40,32 +42,22 @@ public class ImageViewScaleTypeDemoActivity extends AppCompatActivity {
         mAdjustViewBoundsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                mImageView.setAdjustViewBounds(isChecked);
+                refreshImageView();
             }
         });
 
         mScaleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ImageView.ScaleType scaleType = null;
-                switch (adapterView.getItemAtPosition(i).toString()) {
-                    case "center": scaleType = ImageView.ScaleType.CENTER; break;
-                    case "centerCrop": scaleType = ImageView.ScaleType.CENTER_CROP; break;
-                    case "centerInside": scaleType = ImageView.ScaleType.CENTER_INSIDE; break;
-                    case "fitCenter": scaleType = ImageView.ScaleType.FIT_CENTER; break;
-                    case "fitStart": scaleType = ImageView.ScaleType.FIT_START; break;
-                    case "fitEnd": scaleType = ImageView.ScaleType.FIT_END; break;
-                    case "fitXY": scaleType = ImageView.ScaleType.FIT_XY; break;
-                    case "matrix": scaleType = ImageView.ScaleType.MATRIX; break;
-                }
-                mImageView.setScaleType(scaleType);
+                refreshImageView();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
+
+        refreshImageView();
     }
 
     private void initializeUiComponents() {
@@ -75,19 +67,53 @@ public class ImageViewScaleTypeDemoActivity extends AppCompatActivity {
         mAdjustViewBoundsSwitch = findViewById(R.id.sw_adjust_view_bounds);
 
         mIsImageInPortraitMode = mImageInPortraitSwitch.isChecked();
-        mIsImageSmall = ((RadioButton)findViewById(R.id.rb_small_image)).isChecked();
+        if (((RadioButton)findViewById(R.id.rb_small_image)).isChecked()) {
+            mImageSize = ImageSize.SMALL;
+        } else if (((RadioButton)findViewById(R.id.rb_medium_image)).isChecked()) {
+            mImageSize = ImageSize.MEDIUM;
+        } else {
+            mImageSize = ImageSize.LARGE;
+        }
         updateImageView();
     }
 
+    private void refreshImageView() {
+        updateImageView();
+        updateScaleType((String) mScaleTypeSpinner.getSelectedItem());
+        mImageView.setAdjustViewBounds(mAdjustViewBoundsSwitch.isChecked());
+    }
+
+    private void updateScaleType(String scaleType) {
+        ImageView.ScaleType type = null;
+        switch (scaleType) {
+            case "center": type = ImageView.ScaleType.CENTER; break;
+            case "centerCrop": type = ImageView.ScaleType.CENTER_CROP; break;
+            case "centerInside": type = ImageView.ScaleType.CENTER_INSIDE; break;
+            case "fitCenter": type = ImageView.ScaleType.FIT_CENTER; break;
+            case "fitStart": type = ImageView.ScaleType.FIT_START; break;
+            case "fitEnd": type = ImageView.ScaleType.FIT_END; break;
+            case "fitXY": type = ImageView.ScaleType.FIT_XY; break;
+            case "matrix": type = ImageView.ScaleType.MATRIX; break;
+        }
+        mImageView.setScaleType(type);
+        mImageView.setAdjustViewBounds(mAdjustViewBoundsSwitch.isChecked());
+    }
+
     private void updateImageView() {
-        int imageId;
-        if (mIsImageSmall) {
+        int imageId = R.drawable.portrait_small;
+        if (mImageSize == ImageSize.SMALL) {
             if (mIsImageInPortraitMode) {
                 imageId = R.drawable.portrait_small;
             } else {
                 imageId = R.drawable.landscape_small;
             }
-        } else {
+        } else if (mImageSize == ImageSize.MEDIUM) {
+            if (mIsImageInPortraitMode) {
+                imageId = R.drawable.portrait_medium;
+            } else {
+                imageId = R.drawable.landscape_medium;
+            }
+        } else if (mImageSize == ImageSize.LARGE){
             if (mIsImageInPortraitMode) {
                 imageId = R.drawable.portrait_large;
             } else {
@@ -101,10 +127,13 @@ public class ImageViewScaleTypeDemoActivity extends AppCompatActivity {
         if (((RadioButton)view).isChecked()) {
             switch (view.getId()) {
                 case R.id.rb_small_image:
-                    mIsImageSmall = true;
+                    mImageSize = ImageSize.SMALL;
                     break;
                 case R.id.rb_large_image:
-                    mIsImageSmall = false;
+                    mImageSize = ImageSize.LARGE;
+                    break;
+                case R.id.rb_medium_image:
+                    mImageSize = ImageSize.MEDIUM;
                     break;
             }
             updateImageView();

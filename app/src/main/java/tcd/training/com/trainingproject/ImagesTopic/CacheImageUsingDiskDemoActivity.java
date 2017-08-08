@@ -6,12 +6,9 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AndroidException;
 import android.util.TypedValue;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -141,14 +138,14 @@ public class CacheImageUsingDiskDemoActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bitmap);
                 increaseImageIndex();
             } else {
-                new GetBitmapFromDiskCacheTask().execute(imageUrl);
+                new LoadAndCacheBitmapTask().execute(imageUrl);
             }
         } else {
-            new GetBitmapFromDiskCacheTask().execute(imageUrl);
+            new LoadAndCacheBitmapTask().execute(imageUrl);
         }
     }
 
-    private class GetBitmapFromDiskCacheTask extends AsyncTask<String, Void, Bitmap> {
+    private class LoadAndCacheBitmapTask extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... strings) {
             String imageUrl = strings[0];

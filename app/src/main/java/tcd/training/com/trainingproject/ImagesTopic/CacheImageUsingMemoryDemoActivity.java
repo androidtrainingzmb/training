@@ -161,7 +161,7 @@ public class CacheImageUsingMemoryDemoActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bitmap);
                 increaseImageIndex();
             } else {
-                loadImageUsingDecodeStream(imageUrl);
+                loadImageUsingDecodeStream(imageUrl);               // load image using normal method
                 CacheBitmapTask task = new CacheBitmapTask();
                 task.execute(imageUrl);
             }

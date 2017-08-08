@@ -28,6 +28,13 @@
             android:onClick="onRadioButtonClicked"
             android:text="@string/small" />
         <RadioButton
+            android:id="@+id/rb_medium_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/medium" />
+        <RadioButton
             android:id="@+id/rb_large_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +140,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@mipmap/ic_launcher"
-        android:background="@drawable/border_image_view"
+        android:background="@android:color/darker_gray"
         android:padding="1dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"/>

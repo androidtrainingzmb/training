@@ -56,6 +56,7 @@ public class LoadImageFromUrlDemoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    //
                     InputStream inputStream = (InputStream) new URL(mImageUrl).getContent();
                     final Drawable drawable = Drawable.createFromStream(inputStream, "image");
                     runOnUiThread(new Runnable() {

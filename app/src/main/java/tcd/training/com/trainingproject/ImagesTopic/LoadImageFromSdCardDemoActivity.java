@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +106,7 @@ public class LoadImageFromSdCardDemoActivity extends AppCompatActivity {
     private void loadImageUsingBitmapDecode() {
         addMethodNameTextView("BitmapDecode");
         try {
+            //
             Bitmap bitmap = BitmapFactory.decodeFile(mImagePath);
             createAnImageView().setImageBitmap(bitmap);
         } catch (OutOfMemoryError error) {
@@ -117,12 +119,14 @@ public class LoadImageFromSdCardDemoActivity extends AppCompatActivity {
         Picasso.with(this).load(mFile).into(createAnImageView());
 //        Picasso.with(this).load("file://" + mImagePath).into(createAnImageView());
 //        Picasso.with(this).load(Uri.fromFile(mFile)).into(createAnImageView());
+//        Picasso.with(this).load(R.drawable.landscape_small).into(createAnImageView());
     }
 
     private void loadImageUsingGlide() {
         addMethodNameTextView("Glide");
-        Glide.with(this).load(Uri.fromFile(mFile)).into(createAnImageView());
-//        Glide.with(this).load(mFile).into(createAnImageView());
+        Glide.with(this).load(mFile).into(createAnImageView());
+//        Glide.with(this).load(Uri.fromFile(mFile)).into(createAnImageView());
+//        Glide.with(this).load(mImagePath).into(createAnImageView());
 //        Glide.with(this).load(R.drawable.landscape_small).into(createAnImageView());
     }
 

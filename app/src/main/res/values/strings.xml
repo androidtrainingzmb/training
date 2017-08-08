@@ -74,5 +74,6 @@
     <string name="shown_images">Number of shown images:</string>
     <string name="cache_explanation">Toggle the UseCache switch and all images will be reloaded with the according cache state.</string>
     <string name="refresh">Refresh</string>
+    <string name="medium">Medium</string>
 </resources>
 
