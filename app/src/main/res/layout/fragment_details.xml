@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginLeft="16dp"
-    tools:context="tcd.training.com.trainingproject.FragmentsDemo.FlexibleUIWithFragments.DetailsActivity">
+    tools:context="tcd.training.com.trainingproject.Fragments.FlexibleUIWithFragments.DetailsActivity">
 
     <TextView
         android:id="@+id/tv_page_number_indicator"

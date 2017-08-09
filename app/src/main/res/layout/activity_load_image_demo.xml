@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="16dp"
-    tools:context="tcd.training.com.trainingproject.ImagesTopic.LoadImageFromSdCardDemoActivity">
+    tools:context="tcd.training.com.trainingproject.ImagesProcessing.LoadImages.LoadImageFromSdCardActivity">
 
     <LinearLayout
         android:id="@+id/linear_layout_images_list"

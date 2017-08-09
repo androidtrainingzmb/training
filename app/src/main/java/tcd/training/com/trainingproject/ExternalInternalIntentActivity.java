@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import tcd.training.com.trainingproject.DifferentFlagsTopic.DifferentFlagsTopicActivity1;
+import tcd.training.com.trainingproject.IntentFlags.IntentFlagsActivity;
 
 public class ExternalInternalIntentActivity extends AppCompatActivity {
 
@@ -23,7 +23,7 @@ public class ExternalInternalIntentActivity extends AppCompatActivity {
         internalIntentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ExternalInternalIntentActivity.this, DifferentFlagsTopicActivity1.class);
+                Intent intent = new Intent(ExternalInternalIntentActivity.this, IntentFlagsActivity.class);
                 startActivity(intent);
             }
         });

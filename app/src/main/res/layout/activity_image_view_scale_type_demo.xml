@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="16dp"
-    tools:context="tcd.training.com.trainingproject.ImagesTopic.ImageViewScaleTypeDemoActivity">
+    tools:context="tcd.training.com.trainingproject.ImagesProcessing.ScaleTypeActivity">
 
     <RadioGroup
         android:layout_width="match_parent"

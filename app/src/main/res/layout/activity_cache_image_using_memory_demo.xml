@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="16dp"
-    tools:context="tcd.training.com.trainingproject.ImagesTopic.CacheImageUsingMemoryDemoActivity">
+    tools:context="tcd.training.com.trainingproject.ImagesProcessing.CacheImages.CacheImageUsingMemoryActivity">
 
     <LinearLayout
         android:id="@+id/linear_layout_root"

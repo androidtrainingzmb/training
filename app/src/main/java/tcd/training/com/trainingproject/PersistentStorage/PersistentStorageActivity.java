@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.nfc.Tag;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -14,26 +13,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import tcd.training.com.trainingproject.R;
 
-public class PersistentStorageActivity extends AppCompatActivity implements NoteListAdapter.ListItemClickListener {
+public class PersistentStorageActivity extends AppCompatActivity implements NotesListAdapter.ListItemClickListener {
 
     private static final String TAG_LOG = PersistentStorageActivity.class.getSimpleName();
     private static final int RC_ADD_NODE = 1;
     private RecyclerView mNotesListRecyclerView;
-    private NoteListAdapter mNoteListAdapter;
+    private NotesListAdapter mNoteListAdapter;
     private FloatingActionButton mFAB;
 
     @Override
@@ -63,7 +57,7 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mNotesListRecyclerView.setLayoutManager(layoutManager);
         mNotesListRecyclerView.setHasFixedSize(true);
-        mNoteListAdapter = new NoteListAdapter(this);
+        mNoteListAdapter = new NotesListAdapter(this);
         mNotesListRecyclerView.setAdapter(mNoteListAdapter);
 
         readNoteFromSharedPreferences();

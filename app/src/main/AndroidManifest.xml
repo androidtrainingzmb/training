@@ -19,82 +19,82 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity1" />
-        <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity2" />
-        <activity android:name=".DifferentFlagsTopic.DifferentFlagsTopicActivity3" />
+        <activity android:name=".IntentFlags.IntentFlagsActivity" />
+        <activity android:name=".IntentFlags.IntentFlagsSecondActivity" />
+        <activity android:name=".IntentFlags.IntentFlagsThirdActivity" />
         <activity android:name=".ExternalInternalIntentActivity" />
         <activity android:name=".CustomView.CreateCustomViewActivity" />
         <activity android:name=".PersistentStorage.PersistentStorageActivity" />
         <activity android:name=".PersistentStorage.AddNoteActivity" />
         <activity android:name=".PersistentStorage.DisplayNoteDetailsActivity" />
-        <activity android:name=".FragmentsDemo.FragmentsDemoActivity" />
-        <activity android:name=".FragmentsDemo.TabLayoutDemo.TabLayoutWithFragmentsActivity" />
-        <activity android:name=".FragmentsDemo.PagerTabStripDemo.PagerTabStripWithFragmentsActivity" />
-        <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity" />
-        <activity android:name=".FragmentsDemo.FlexibleUIWithFragments.DetailsActivity" />
+        <activity android:name=".Fragments.FragmentTopicActivity" />
+        <activity android:name=".Fragments.TabLayout.TabLayoutWithFragmentsActivity" />
+        <activity android:name=".Fragments.PagerTabStrip.PagerTabStripWithFragmentsActivity" />
+        <activity android:name=".Fragments.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity" />
+        <activity android:name=".Fragments.FlexibleUIWithFragments.DetailsActivity" />
         <activity android:name=".CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingBundle.ReceiveDataWithBundleActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableInterfaceActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingGson.ReceiveGsonObjectActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
-        <activity android:name=".CommunicationBetweenActivities.UsingOnlyIntent.ReceiveIntentDataActivity" />
+        <activity android:name=".CommunicationBetweenActivities.UsingIntentOnly.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-        <activity android:name=".ServiceAndThreadDemos.ServicesDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.IntentService.IntentServiceDemoActivity" />
+        <activity android:name=".ServicesAndThreads.ServiceTopicActivity" />
+        <activity android:name=".ServicesAndThreads.IntentService.IntentServiceActivity" />
 
         <service
-            android:name=".ServiceAndThreadDemos.IntentService.ResultReceiver.IntentServiceWithResultReceiver"
+            android:name=".ServicesAndThreads.IntentService.ResultReceiver.IntentServiceWithResultReceiver"
             android:exported="false" />
         <service
-            android:name=".ServiceAndThreadDemos.IntentService.LocalBroadcastReceiver.IntentServiceWithBroadcastReceiver"
+            android:name=".ServicesAndThreads.IntentService.LocalBroadcastReceiver.IntentServiceWithBroadcastReceiver"
             android:exported="false" />
         <service
-            android:name=".ServiceAndThreadDemos.IntentService.EventBus.IntentServiceWithEventBus"
+            android:name=".ServicesAndThreads.IntentService.EventBus.IntentServiceWithEventBus"
             android:exported="false" />
         <service
-            android:name=".ServiceAndThreadDemos.IntentService.RxAndroid.IntentServiceWithRxAndroid"
+            android:name=".ServicesAndThreads.IntentService.RxAndroid.IntentServiceWithRxAndroid"
             android:exported="false" />
         <service
-            android:name=".ServiceAndThreadDemos.CustomService.MyCustomService"
+            android:name=".ServicesAndThreads.CustomService.MyCustomService"
             android:exported="false" />
 
         <receiver
-            android:name=".ServiceAndThreadDemos.CustomService.MyAlarmReceiver"
+            android:name=".ServicesAndThreads.CustomService.MyAlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".ServiceAndThreadDemos.CustomService.CustomServiceDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.BoundService.BindServiceWithBinderClassDemoActivity" />
+        <activity android:name=".ServicesAndThreads.CustomService.CustomServiceActivity" />
+        <activity android:name=".ServicesAndThreads.BoundService.BindServiceWithBinderClassActivity" />
 
         <service
-            android:name=".ServiceAndThreadDemos.BoundService.ExtendedBinderClassService"
+            android:name=".ServicesAndThreads.BoundService.ExtendingBinderClassService"
             android:exported="false" />
 
-        <activity android:name=".ServiceAndThreadDemos.BoundService.BindServiceWithMessengerDemoActivity" />
+        <activity android:name=".ServicesAndThreads.BoundService.BindServiceWithMessengerActivity" />
 
         <service
-            android:name=".ServiceAndThreadDemos.BoundService.UsingMessengerService"
+            android:name=".ServicesAndThreads.BoundService.UsingMessengerService"
             android:exported="false"
             android:process=":remote" />
 
-        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingRunnableDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.AsyncTaskDemo.AsyncTaskDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.HandlerThreadDemo.HandlerThreadDemoActivity" />
-        <activity android:name=".ServiceAndThreadDemos.ThreadPoolExecutorDemo.ThreadPoolExecutorUsingCallableDemoActivity" />
-        <activity android:name=".ImagesTopic.ImageViewScaleTypeDemoActivity" />
-        <activity android:name=".ImagesTopic.ImagesTopicActivity" />
-        <activity android:name=".ImagesTopic.LoadImageFromSdCardDemoActivity" />
-        <activity android:name=".ImagesTopic.LoadImageFromUrlDemoActivity" />
-        <activity android:name=".ImagesTopic.CacheImageUsingMemoryDemoActivity" />
-        <activity android:name=".ImagesTopic.CacheImageUsingDiskDemoActivity" />
-        <activity android:name=".ImagesTopic.CacheImageUsingExternalLibraryDemoActivity" />
+        <activity android:name=".ServicesAndThreads.ThreadPoolExecutor.ThreadPoolExecutorUsingRunnableActivity" />
+        <activity android:name=".ServicesAndThreads.AsyncTask.AsyncTaskActivity" />
+        <activity android:name=".ServicesAndThreads.HandlerThread.HandlerThreadActivity" />
+        <activity android:name=".ServicesAndThreads.ThreadPoolExecutor.ThreadPoolExecutorUsingCallableActivity" />
+        <activity android:name=".ImagesProcessing.ScaleTypeActivity" />
+        <activity android:name=".ImagesProcessing.ImagesProcessingActivity" />
+        <activity android:name=".ImagesProcessing.LoadImages.LoadImageFromSdCardActivity" />
+        <activity android:name=".ImagesProcessing.LoadImages.LoadImageFromUrlActivity" />
+        <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingMemoryActivity" />
+        <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingDiskActivity" />
+        <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingExternalLibraryActivity" />
+        <activity android:name=".ExternalHardware.ExternalHardwareTopicActivity" />
+        <activity android:name=".Sensors.SensorTopicActivity"></activity>
     </application>
 
 </manifest>

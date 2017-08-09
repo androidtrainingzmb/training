@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tcd.training.com.trainingproject.FragmentsDemo.FragmentsDemoActivity">
+    tools:context="tcd.training.com.trainingproject.Fragments.FragmentTopicActivity">
 
     <ListView
         android:id="@+id/lv_fragments_demo"
