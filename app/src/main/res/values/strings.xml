@@ -75,5 +75,10 @@
     <string name="cache_explanation">Toggle the UseCache switch and all images will be reloaded with the according cache state.</string>
     <string name="refresh">Refresh</string>
     <string name="medium">Medium</string>
+
+    <!--external hardware-->
+    <string name="handling_cursor_error">There was a problem handling cursor</string>
+    <string name="no_media_error">No media on this device</string>
+    <string name="grant">Grant</string>
 </resources>
 

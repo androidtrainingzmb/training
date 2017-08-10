@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import java.util.LinkedHashMap;
 
+import tcd.training.com.trainingproject.ExternalHardware.AudioPlayer.AudioPlayerActivity;
 import tcd.training.com.trainingproject.R;
 
 public class ExternalHardwareTopicActivity extends AppCompatActivity {
@@ -22,7 +23,8 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple_list_view);
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
-//        topics.put("1. ImageView scaleType demo", ScaleTypeActivity.class);
+        topics.put("1. Audio playback with MediaPlayer", AudioPlayerActivity.class);
+        topics.put("2. Audio playback with ExoPlayer", AudioPlayerActivity.class);
 
         mTopicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
@@ -33,6 +35,11 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(ExternalHardwareTopicActivity.this, topics.get(key));
+                if (key.contains("MediaPlayer")) {
+                    intent.putExtra(getString(R.string.integer_type), AudioPlayerActivity.USING_MEDIA_PLAYER_METHOD);
+                } else if (key.contains("ExoPlayer")) {
+                    intent.putExtra(getString(R.string.integer_type), AudioPlayerActivity.USING_EXO_PLAYER_METHOD);
+                }
                 startActivity(intent);
             }
         });
