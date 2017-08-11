@@ -139,11 +139,6 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void fetchPlaylist() {
-        // check permission for accessing content resolver
-        if (!isReadExternalStoragePermissionGranted()) {
-            return;
-        }
-        // read songs list from content resolver
         ContentResolver contentResolver = getContentResolver();
         Uri uri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor cursor = contentResolver.query(uri, null, null, null, null);
@@ -231,46 +226,6 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
                     }
                 }
             } while (cursor.moveToNext());
-        }
-    }
-
-    private boolean isReadExternalStoragePermissionGranted() {
-        // check if image already exists
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
-                        getString(R.string.external_storage_access_error), Snackbar.LENGTH_LONG);
-                snackbar.setAction(getString(R.string.grant), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ActivityCompat.requestPermissions(AudioPlayerActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                    }
-                });
-                snackbar.show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    fetchPlaylist();
-                } else {
-                    isReadExternalStoragePermissionGranted();
-                }
-                return;
-            }
         }
     }
 

@@ -80,5 +80,9 @@
     <string name="handling_cursor_error">There was a problem handling cursor</string>
     <string name="no_media_error">No media on this device</string>
     <string name="grant">Grant</string>
+    <string name="current_position">curPos</string>
+    <string name="pick_using_action_get_content">Pick image using ACTION_GET_CONTENT action</string>
+    <string name="pick_using_MultipleImagePick">Pick image using MultipleImagePick library</string>
+    <string name="pick_using_custom_gallery">Pick images using custom gallery</string>
 </resources>
 

@@ -7,9 +7,13 @@ import android.net.Uri;
  */
 
 public class Song {
+    public static final int AUDIO_TYPE = 1;
+    public static final int VIDEO_TYPE = 2;
+
     private long mId;
     private String mName;
     private String mArtist;
+    private int mType;
     private Uri mUri;
 
     public Song(long id, String name, String artist) {
@@ -40,6 +44,14 @@ public class Song {
 
     public void setArtist(String artist) {
         mArtist = artist;
+    }
+
+    public int getType() {
+        return mType;
+    }
+
+    public void setType(int type) {
+        this.mType = type;
     }
 
     public Uri getUri() {

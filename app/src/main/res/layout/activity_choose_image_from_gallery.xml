@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    tools:context="tcd.training.com.trainingproject.ExternalHardware.Gallery.ChooseImageFromGalleryActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_slide_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </android.support.v4.view.ViewPager>
+
+    <Button
+        android:id="@+id/btn_pick_using_action_get_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_using_action_get_content"/>
+
+    <Button
+        android:id="@+id/btn_pick_using_custom_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_using_custom_gallery"/>
+
+</LinearLayout>

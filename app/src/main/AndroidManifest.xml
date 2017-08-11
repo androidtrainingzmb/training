@@ -19,11 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".IntentFlags.IntentFlagsActivity" />
         <activity android:name=".IntentFlags.IntentFlagsSecondActivity" />
@@ -93,15 +95,19 @@
         <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingMemoryActivity" />
         <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingDiskActivity" />
         <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingExternalLibraryActivity" />
-        <activity android:name=".ExternalHardware.ExternalHardwareTopicActivity" />
-        <activity android:name=".Sensors.SensorTopicActivity" />
-        <activity android:name=".ExternalHardware.AudioPlayer.AudioPlayerActivity">
+        <activity android:name=".ExternalHardware.ExternalHardwareTopicActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Sensors.SensorTopicActivity" />
+        <activity android:name=".ExternalHardware.AudioPlayer.AudioPlayerActivity" />
+        <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingMediaPlayerActivity" />
+        <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingExoPlayerActivity" />
+        <activity android:name=".ExternalHardware.Gallery.ChooseImageFromGalleryActivity" />
+        <activity android:name=".ExternalHardware.Gallery.CustomGalleryActivity"></activity>
     </application>
 
 </manifest>
