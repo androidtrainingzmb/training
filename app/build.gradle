@@ -39,5 +39,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
+    compile('com.sangcomz:FishBun:0.7.1@aar') {
+        transitive = true
+    }
     testCompile 'junit:junit:4.12'
 }

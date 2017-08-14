@@ -108,6 +108,7 @@
         <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingExoPlayerActivity" />
         <activity android:name=".ExternalHardware.Gallery.ChooseImageFromGalleryActivity" />
         <activity android:name=".ExternalHardware.Gallery.CustomGalleryActivity"></activity>
+        <activity android:name="com.tangxiaolv.telegramgallery.GalleryActivity" />
     </application>
 
 </manifest>

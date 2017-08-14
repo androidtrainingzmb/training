@@ -84,5 +84,6 @@
     <string name="pick_using_action_get_content">Pick image using ACTION_GET_CONTENT action</string>
     <string name="pick_using_MultipleImagePick">Pick image using MultipleImagePick library</string>
     <string name="pick_using_custom_gallery">Pick images using custom gallery</string>
+    <string name="pick_using_library">Pick images using custom library (FishBun)</string>
 </resources>
 

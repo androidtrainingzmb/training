@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,16 +23,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.zip.Inflater;
 
 import tcd.training.com.trainingproject.R;
 
 public class CustomGalleryActivity extends AppCompatActivity {
 
-    private ArrayList<Boolean> mThumbnailSelections = new ArrayList<>();
+    private static final int MENU_SELECT = 1;
+
     private int mCount;
-    private ArrayList<String> mArrPath = new ArrayList<>();
-    private ArrayList<Integer> mIds = new ArrayList<>();
+    private boolean[] mThumbnailSelections;
+    private String[] mArrPath;
+    private int[] mIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +47,18 @@ public class CustomGalleryActivity extends AppCompatActivity {
         final String[] columns = { MediaStore.Images.Media.DATA, MediaStore.Images.Media._ID };
         final String orderBy = MediaStore.Images.Media._ID;
         Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null, null, orderBy);
-        int image_column_index = imageCursor.getColumnIndex(MediaStore.Images.Media._ID);
+
         mCount = imageCursor.getCount();
+        mThumbnailSelections = new boolean[mCount];
+        mArrPath = new String[mCount];
+        mIds = new int[mCount];
+
+        int imageIdColumn = imageCursor.getColumnIndex(MediaStore.Images.Media._ID);
         for (int i = 0; i < mCount; i++) {
             imageCursor.moveToPosition(i);
-            mIds.add(imageCursor.getInt(image_column_index));
+            mIds[i] = imageCursor.getInt(imageIdColumn);
             int dataColumnIndex = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
-            mArrPath.add(imageCursor.getString(dataColumnIndex));
+            mArrPath[i] = imageCursor.getString(dataColumnIndex);
         }
 
         imageCursor.close();
@@ -61,36 +71,42 @@ public class CustomGalleryActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, 1, Menu.NONE, "Select")
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_SELECT:
+                // get the selected images
+                ArrayList<String> selectedImagesList = new ArrayList<>();
+                for (int i = 0; i < mCount; i++) {
+                    if (mThumbnailSelections[i]) {
+                        selectedImagesList.add(mArrPath[i]);
+                    }
+                }
+                // return to previous activity
+                if (selectedImagesList.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "Please select at least one image", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra(getString(R.string.data), selectedImagesList);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initializeUiComponents() {
         GridView imagesGridView = findViewById(R.id.gv_images);
         ImageAdapter imageAdapter = new ImageAdapter();
         imagesGridView.setAdapter(imageAdapter);
-
-
-        Button selectButton = findViewById(R.id.btn_select);
-        selectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final int len = mThumbnailSelections.size();
-                int count = 0;
-                String selectImages = "";
-                for (int i = 0; i < len; i++) {
-                    if (mThumbnailSelections.get(i)) {
-                        count++;
-                        selectImages = selectImages + mArrPath.get(i) + "|";
-                    }
-                }
-                if (count == 0) {
-                    Toast.makeText(getApplicationContext(), "Please select at least one image", Toast.LENGTH_LONG).show();
-                } else {
-                    Log.d("SelectedImages", selectImages);
-                    Intent intent = new Intent();
-                    intent.putExtra(getString(R.string.data), selectImages);
-                    setResult(Activity.RESULT_OK, intent);
-                    finish();
-                }
-            }
-        });
     }
 
     private void setBitmap(final ImageView imageView, final int id) {
@@ -98,7 +114,7 @@ public class CustomGalleryActivity extends AppCompatActivity {
             @Override
             protected Bitmap doInBackground(Void... params) {
                 return MediaStore.Images.Thumbnails.getThumbnail(
-                        getApplicationContext().getContentResolver(), id, MediaStore.Images.Thumbnails.MICRO_KIND, null);
+                        getApplicationContext().getContentResolver(), id, MediaStore.Images.Thumbnails.MINI_KIND, null);
             }
             @Override
             protected void onPostExecute(Bitmap result) {
@@ -121,8 +137,8 @@ public class CustomGalleryActivity extends AppCompatActivity {
         }
 
         @Override
-        public long getItemId(int id) {
-            return id;
+        public long getItemId(int position) {
+            return position;
         }
 
         @Override
@@ -132,8 +148,8 @@ public class CustomGalleryActivity extends AppCompatActivity {
                 holder = new ViewHolder();
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.custom_gallery_item, null);
-                holder.thumbnailImageView = (ImageView) convertView.findViewById(R.id.iv_thumbnail);
-                holder.pickCheckbox = (CheckBox) convertView.findViewById(R.id.cb_pick);
+                holder.thumbnailImageView = convertView.findViewById(R.id.iv_thumbnail);
+                holder.pickCheckbox = convertView.findViewById(R.id.cb_pick);
 
                 convertView.setTag(holder);
             } else {
@@ -147,12 +163,12 @@ public class CustomGalleryActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     CheckBox cb = (CheckBox) v;
                     int id = cb.getId();
-                    if (mThumbnailSelections.get(id)) {
+                    if (mThumbnailSelections[id]) {
                         cb.setChecked(false);
-                        mThumbnailSelections.set(id, false);
+                        mThumbnailSelections[id] = false;
                     } else {
                         cb.setChecked(true);
-                        mThumbnailSelections.set(id, true);
+                        mThumbnailSelections[id] = true;
                     }
                 }
             });
@@ -160,20 +176,20 @@ public class CustomGalleryActivity extends AppCompatActivity {
 
                 public void onClick(View v) {
                     int id = holder.pickCheckbox.getId();
-                    if (mThumbnailSelections.get(id)) {
+                    if (mThumbnailSelections[id]) {
                         holder.pickCheckbox.setChecked(false);
-                        mThumbnailSelections.set(id, false);
+                        mThumbnailSelections[id] = false;
                     } else {
                         holder.pickCheckbox.setChecked(true);
-                        mThumbnailSelections.set(id, true);
+                        mThumbnailSelections[id] = true;
                     }
                 }
             });
             try {
-                setBitmap(holder.thumbnailImageView, mIds.get(position));
+                setBitmap(holder.thumbnailImageView, mIds[position]);
             } catch (Throwable e) {
             }
-            holder.pickCheckbox.setChecked(mThumbnailSelections.get(position));
+            holder.pickCheckbox.setChecked(mThumbnailSelections[position]);
             holder.id = position;
             return convertView;
         }
