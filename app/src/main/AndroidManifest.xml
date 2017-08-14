@@ -2,11 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tcd.training.com.trainingproject">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.location.network" />
+    <uses-feature android:name="android.hardware.location.gps" />
 
     <application
         android:name=".CommunicationBetweenActivities.UsingApplicationObject.MyApplication"
@@ -107,8 +111,12 @@
         <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingMediaPlayerActivity" />
         <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingExoPlayerActivity" />
         <activity android:name=".ExternalHardware.Gallery.ChooseImageFromGalleryActivity" />
-        <activity android:name=".ExternalHardware.Gallery.CustomGalleryActivity"></activity>
-        <activity android:name="com.tangxiaolv.telegramgallery.GalleryActivity" />
+        <activity android:name=".ExternalHardware.Gallery.CustomGalleryActivity" />
+        <activity
+            android:name=".ExternalHardware.GPS.ObtainLocationUsingLocationManagerActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ExternalHardware.GPS.ObtainLocationUsingGooglePlayServicesActivity" />
+        <activity android:name=".ExternalHardware.Camera.TakePhotoUsingDefaultCameraActivity"></activity>
     </application>
 
 </manifest>

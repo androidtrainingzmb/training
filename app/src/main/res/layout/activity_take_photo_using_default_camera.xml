@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tcd.training.com.trainingproject.ImagesProcessing.ImagesProcessingActivity">
+    tools:context="tcd.training.com.trainingproject.ExternalHardware.Camera.TakePhotoUsingDefaultCameraActivity">
+
+    <ImageView
+        android:id="@+id/iv_taken_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"/>
 
 </LinearLayout>

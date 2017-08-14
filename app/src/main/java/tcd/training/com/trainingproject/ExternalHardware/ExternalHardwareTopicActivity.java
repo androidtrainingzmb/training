@@ -16,6 +16,9 @@ import android.widget.ListView;
 import java.util.LinkedHashMap;
 
 import tcd.training.com.trainingproject.ExternalHardware.AudioPlayer.AudioPlayerActivity;
+import tcd.training.com.trainingproject.ExternalHardware.Camera.TakePhotoUsingDefaultCameraActivity;
+import tcd.training.com.trainingproject.ExternalHardware.GPS.ObtainLocationUsingGooglePlayServicesActivity;
+import tcd.training.com.trainingproject.ExternalHardware.GPS.ObtainLocationUsingLocationManagerActivity;
 import tcd.training.com.trainingproject.ExternalHardware.Gallery.ChooseImageFromGalleryActivity;
 import tcd.training.com.trainingproject.ExternalHardware.VideoPlayer.VideoPlayerUsingExoPlayerActivity;
 import tcd.training.com.trainingproject.ExternalHardware.VideoPlayer.VideoPlayerUsingMediaPlayerActivity;
@@ -37,6 +40,9 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         topics.put("3. Video playback with MediaPlayer", VideoPlayerUsingMediaPlayerActivity.class);
         topics.put("4. Video playback with ExoPlayer", VideoPlayerUsingExoPlayerActivity.class);
         topics.put("5. Choose images from gallery", ChooseImageFromGalleryActivity.class);
+        topics.put("6. Obtain device's location using LocationManager", ObtainLocationUsingLocationManagerActivity.class);
+        topics.put("7. Obtain device's location using Google Play services API", ObtainLocationUsingGooglePlayServicesActivity.class);
+        topics.put("8. Take photo using default camera", TakePhotoUsingDefaultCameraActivity.class);
 
         mTopicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
@@ -48,7 +54,6 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
                 if (!isReadExternalStoragePermissionGranted()) {
                     return;
                 }
-
                 String key = (String) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(ExternalHardwareTopicActivity.this, topics.get(key));
                 if (key.contains("MediaPlayer")) {
