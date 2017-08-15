@@ -37,8 +37,6 @@ public class ObtainLocationUsingGooglePlayServicesActivity extends AppCompatActi
     private ImageView mMapImageView;
     private Button mOpenMapButton;
 
-    private Snackbar mRequestLocationPermissionSnackbar = null;
-
     private FusedLocationProviderClient mFusedLocationProviderClient = null;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
@@ -80,17 +78,6 @@ public class ObtainLocationUsingGooglePlayServicesActivity extends AppCompatActi
 
     private void initializeBasicComponents() {
         mFusedLocationProviderClient = new FusedLocationProviderClient(this);
-
-        mRequestLocationPermissionSnackbar = Snackbar.make(findViewById(android.R.id.content),
-                getString(R.string.fine_location_access_error), Snackbar.LENGTH_INDEFINITE);
-        mRequestLocationPermissionSnackbar.setAction(getString(R.string.grant), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(ObtainLocationUsingGooglePlayServicesActivity.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        RC_FINE_LOCATION_PERMISSION);
-            }
-        });
     }
 
     private void createLocationRequest() {
@@ -132,48 +119,8 @@ public class ObtainLocationUsingGooglePlayServicesActivity extends AppCompatActi
 
     private void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestFineLocationPermission();
             return;
         }
         mFusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
-    }
-
-    private void requestFineLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                mRequestLocationPermissionSnackbar = Snackbar.make(findViewById(android.R.id.content),
-                        getString(R.string.fine_location_access_error), Snackbar.LENGTH_INDEFINITE);
-                mRequestLocationPermissionSnackbar.setAction(getString(R.string.grant), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ActivityCompat.requestPermissions(ObtainLocationUsingGooglePlayServicesActivity.this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                RC_FINE_LOCATION_PERMISSION);
-                    }
-                });
-                mRequestLocationPermissionSnackbar.show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        RC_FINE_LOCATION_PERMISSION);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case RC_FINE_LOCATION_PERMISSION:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (mRequestLocationPermissionSnackbar != null) {
-                        mRequestLocationPermissionSnackbar.dismiss();
-                    }
-                    startLocationUpdates();
-                } else {
-                    requestFineLocationPermission();
-                }
-                return;
-        }
     }
 }

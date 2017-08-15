@@ -32,4 +32,4 @@ https://docs.google.com/a/vng.com.vn/document/d/1xjottkK89DQcsI7gCoYUiaoQ07y7YIK
 
 10. Sensors
 
-11. External Hardwares
+11. External Hardware

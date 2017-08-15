@@ -216,7 +216,7 @@ public class VideoPlayerUsingMediaPlayerActivity extends AppCompatActivity
     }
 
     private void startVideo() {
-        if (mIsVideoReadyToBePlayed && mIsVideoReadyToBePlayed) {
+        if (mIsVideoReadyToBePlayed && mIsVideoSizeKnown) {
             setVideoSize();
             mHolder.setFixedSize(mVideoWidth, mVideoHeight);
             mMediaPlayer.start();

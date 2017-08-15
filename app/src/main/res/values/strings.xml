@@ -8,7 +8,7 @@
     <string name="save_note">Save</string>
     <string name="empty_note_title_error">Note title is required.</string>
     <string name="empty_note_content_error">Note content is required.</string>
-    <string name="external_storage_access_error">This feature requires permission to access to external storage.</string>
+    <string name="require_external_storage_permission_error">This feature requires permission to access to external storage.</string>
     <string name="title_activity_settings">Settings</string>
 
     <!--fragment-->
@@ -90,7 +90,7 @@
     <string name="longitude">Longitude</string>
     <string name="map_image">Map Image</string>
     <string name="open_map">Open map</string>
-    <string name="fine_location_access_error">This feature requires permission to access fine location</string>
+    <string name="require_fine_location_permission_error">This feature requires permission to access fine location</string>
     <string name="network_provider">Network</string>
     <string name="gps_provider">GPS</string>
     <string name="location_provider">Provider</string>
@@ -99,5 +99,8 @@
     <string name="complete_action_using_label">Complete action using</string>
     <string name="no_app_handle_intent_error">No app can handle this request</string>
     <string name="require_camera_permission_error">This feature requires permission to access camera</string>
+    <string name="take_photo_default_camera">Take photo using default camera</string>
+    <string name="take_photo_camera_api">Take photo using Camera API</string>
+    <string name="take_photo_camera2_api">Take photo using Camera2 API</string>
 </resources>
 

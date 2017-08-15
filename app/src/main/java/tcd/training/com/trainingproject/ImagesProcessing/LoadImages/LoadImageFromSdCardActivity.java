@@ -59,7 +59,7 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
-                        getString(R.string.external_storage_access_error), Snackbar.LENGTH_LONG);
+                        getString(R.string.require_external_storage_permission_error), Snackbar.LENGTH_LONG);
                 snackbar.setAction("Grant", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -132,7 +132,7 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
     private void downloadAndSaveSampleImage() {
         // check if the external storage is available
         if (!isExternalStorageWritable()) {
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.external_storage_access_error), Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.require_external_storage_permission_error), Snackbar.LENGTH_SHORT).show();
             return;
         }
         final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.wait_download), Snackbar.LENGTH_INDEFINITE);

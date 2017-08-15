@@ -2,11 +2,13 @@ package tcd.training.com.trainingproject.ExternalHardware.Gallery;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -19,8 +21,10 @@ import tcd.training.com.trainingproject.R;
  */
 
 public class ViewPagerAdapter extends PagerAdapter {
-    Context mContext;
-    ArrayList<String> mImagesPath;
+    private static final String TAG = ViewPagerAdapter.class.getSimpleName();
+
+    private Context mContext;
+    private ArrayList<String> mImagesPath;
 
     public ViewPagerAdapter(Context context, ArrayList<String> imagesPath) {
         this.mContext = context;
@@ -44,6 +48,9 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         ImageView imageView = itemView.findViewById(R.id.iv_image_demo);
         Glide.with(mContext).load(mImagesPath.get(position)).into(imageView);
+
+        TextView pageNumberIndicator = itemView.findViewById(R.id.tv_page_number_indicator);
+        pageNumberIndicator.setText(String.valueOf(position + 1));
 
         container.addView(itemView);
         return itemView;

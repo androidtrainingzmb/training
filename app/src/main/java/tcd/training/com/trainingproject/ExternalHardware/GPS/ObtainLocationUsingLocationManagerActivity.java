@@ -27,7 +27,6 @@ public class ObtainLocationUsingLocationManagerActivity extends AppCompatActivit
     private static final String TAG = ObtainLocationUsingLocationManagerActivity.class.getSimpleName();
 
     private static final int RC_FINE_LOCATION_PERMISSION = 1;
-    private Snackbar mRequestLocationPermissionSnackbar = null;
 
     private TextView mLatitudeTextView;
     private TextView mLongitudeTextView;
@@ -120,18 +119,6 @@ public class ObtainLocationUsingLocationManagerActivity extends AppCompatActivit
             }
         };
 
-        // request location permission snackbar
-        mRequestLocationPermissionSnackbar = Snackbar.make(findViewById(android.R.id.content),
-                getString(R.string.fine_location_access_error), Snackbar.LENGTH_INDEFINITE);
-        mRequestLocationPermissionSnackbar.setAction(getString(R.string.grant), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(ObtainLocationUsingLocationManagerActivity.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        RC_FINE_LOCATION_PERMISSION);
-            }
-        });
-
         // request provider snackbar
         mRequestProviderSnackbar = Snackbar.make(findViewById(android.R.id.content),
                 getString(R.string.require_according_provider), Snackbar.LENGTH_INDEFINITE);
@@ -148,7 +135,6 @@ public class ObtainLocationUsingLocationManagerActivity extends AppCompatActivit
     private void registerLocationListener() {
         // check permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestFineLocationPermission();
             return;
         }
 
@@ -168,36 +154,6 @@ public class ObtainLocationUsingLocationManagerActivity extends AppCompatActivit
             mLocationManager.requestLocationUpdates(mSelectedProvider, 0, 0, mLocationListener);
         } else {
             mRequestProviderSnackbar.show();
-        }
-    }
-
-    private void requestFineLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                mRequestLocationPermissionSnackbar.show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        RC_FINE_LOCATION_PERMISSION);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case RC_FINE_LOCATION_PERMISSION:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (mRequestLocationPermissionSnackbar != null) {
-                        mRequestLocationPermissionSnackbar.dismiss();
-                    }
-                    registerLocationListener();
-                } else {
-                    requestFineLocationPermission();
-                }
-                return;
         }
     }
 
