@@ -127,6 +127,7 @@ public class TakePhotoUsingCameraApiActivity extends AppCompatActivity {
                     return;
                 }
 
+                Log.d(TAG, "onPictureTaken: ");
                 // save picture
                 try {
                     FileOutputStream outputStream = new FileOutputStream(pictureFile);

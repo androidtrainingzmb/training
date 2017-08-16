@@ -25,6 +25,7 @@ import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.Size;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.MissingResourceException;
 
 import tcd.training.com.trainingproject.R;
 
@@ -64,6 +66,7 @@ public class TakePhotoUsingCamera2ApiActivity extends AppCompatActivity {
     private android.util.Size mImageDimension = null;
     private CameraDevice.StateCallback mStateCallback = null;
     private CameraDevice mCameraDevice = null;
+    private ImageReader mImageReader = null;
     private CaptureRequest.Builder mCaptureRequestBuilder = null;
     private CameraCaptureSession mCameraCaptureSessions = null;
 
@@ -82,6 +85,11 @@ public class TakePhotoUsingCamera2ApiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo_using_camera2_api);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            Toast.makeText(getApplicationContext(), getString(R.string.require_lollipop_above_error), Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         initializeUiComponents();
     }
@@ -106,7 +114,7 @@ public class TakePhotoUsingCamera2ApiActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
-        //closeCamera();
+        closeCamera();
         mBackgroundThread.quitSafely();
         try {
             mBackgroundThread.join();
@@ -116,6 +124,17 @@ public class TakePhotoUsingCamera2ApiActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         super.onPause();
+    }
+
+    private void closeCamera() {
+        if (mCameraDevice != null) {
+            mCameraDevice.close();
+            mCameraDevice = null;
+        }
+        if (mImageReader != null) {
+            mImageReader.close();
+            mImageReader = null;
+        }
     }
 
     private void initializeUiComponents() {
@@ -274,76 +293,33 @@ public class TakePhotoUsingCamera2ApiActivity extends AppCompatActivity {
             Log.d(TAG, "cameraDevice is null");
             return;
         }
-        CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
         try {
-            CameraCharacteristics characteristics = manager.getCameraCharacteristics(mCameraDevice.getId());
-            android.util.Size[] jpegSizes = null;
-            if (characteristics != null) {
-                jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
-            }
-            int width = 640;
-            int height = 480;
-            if (jpegSizes != null && 0 < jpegSizes.length) {
-                width = jpegSizes[0].getWidth();
-                height = jpegSizes[0].getHeight();
-            }
-            ImageReader reader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
+            int imageSize[] = getJpegImageSize();
+            int width = imageSize[0];
+            int height = imageSize[1];
+            
+            mImageReader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
             List<Surface> outputSurfaces = new ArrayList<>(2);
-            outputSurfaces.add(reader.getSurface());
+            outputSurfaces.add(mImageReader.getSurface());
             outputSurfaces.add(new Surface(mCameraTextureView.getSurfaceTexture()));
+
             final CaptureRequest.Builder captureBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-            captureBuilder.addTarget(reader.getSurface());
+            captureBuilder.addTarget(mImageReader.getSurface());
             captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+            
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            final File file = new File(Environment.getExternalStorageDirectory()+"/IMG_" + timeStamp + ".jpg");
-            ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
-                @Override
-                public void onImageAvailable(ImageReader reader) {
-                    Image image = null;
-                    try {
-                        image = reader.acquireLatestImage();
-                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-                        byte[] bytes = new byte[buffer.capacity()];
-                        buffer.get(bytes);
-                        save(bytes);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (image != null) {
-                            image.close();
-                        }
-                    }
-                }
-                private void save(byte[] bytes) throws IOException {
-                    OutputStream output = null;
-                    try {
-                        output = new FileOutputStream(file);
-                        output.write(bytes);
-                    } finally {
-                        if (null != output) {
-                            output.close();
-                        }
-                    }
-                }
-            };
-            reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
-            final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
-                @Override
-                public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
-                    super.onCaptureCompleted(session, request, result);
-                    Log.d(TAG, "onCaptureCompleted: " + file.getAbsolutePath());
-                    // return to previous activity
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra(getString(R.string.data), file.getAbsolutePath());
-                    setResult(RESULT_OK, resultIntent);
-                    finish();
-                }
-            };
+
+            // create the image file
+            File mediaFile = getOutputMediaFile();
+
+            // image available listener
+            ImageReader.OnImageAvailableListener readerListener = initializeImageAvailableListener(mediaFile);
+            mImageReader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
+            
+            // capture callback
+            final CameraCaptureSession.CaptureCallback captureListener = initializeCaptureCallback(mediaFile);
             mCameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
                 @Override
                 public void onConfigured(CameraCaptureSession session) {
@@ -360,5 +336,111 @@ public class TakePhotoUsingCamera2ApiActivity extends AppCompatActivity {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
+    }
+    
+    private int[] getJpegImageSize() {
+        int[] imageSize = new int[2];
+        try {
+            CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
+            CameraCharacteristics characteristics = manager.getCameraCharacteristics(mCameraDevice.getId());
+            android.util.Size[] jpegSizes = null;
+            if (characteristics != null) {
+                jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
+            }
+            imageSize[0] = 640;
+            imageSize[1] = 480;
+            if (jpegSizes != null && 0 < jpegSizes.length) {
+                imageSize[0] = jpegSizes[0].getWidth();
+                imageSize[1] = jpegSizes[0].getHeight();
+            }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+        return imageSize;
+    }
+    
+    private ImageReader.OnImageAvailableListener initializeImageAvailableListener(final File mediaFile) {
+        ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
+            @Override
+            public void onImageAvailable(ImageReader reader) {
+                Image image = null;
+                try {
+                    image = reader.acquireLatestImage();
+                    ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                    byte[] bytes = new byte[buffer.capacity()];
+                    buffer.get(bytes);
+                    save(bytes);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (image != null) {
+                        image.close();
+                    }
+                }
+            }
+            private void save(byte[] bytes) throws IOException {
+                OutputStream output = null;
+                try {
+                    output = new FileOutputStream(mediaFile);
+                    output.write(bytes);
+                } finally {
+                    if (null != output) {
+                        output.close();
+                    }
+                }
+            }
+        };
+        return readerListener;
+    }
+    
+    private CameraCaptureSession.CaptureCallback initializeCaptureCallback(final File mediaFile) {
+        // initialize callback
+        CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
+            @Override
+            public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
+                super.onCaptureCompleted(session, request, result);
+                Log.d(TAG, "onCaptureCompleted: " + mediaFile.getAbsolutePath());
+
+                closeCamera();
+
+                // return to previous activity
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(getString(R.string.data), mediaFile.getAbsolutePath());
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            }
+        };
+        return captureListener;
+    }
+
+    private File getOutputMediaFile() {
+        if (!isExternalStorageWritable()) {
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.require_external_storage_permission_error), Snackbar.LENGTH_SHORT).show();
+            return null;
+        }
+
+        // navigate to the directory (create if it doesn't exist)
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                getPackageName());
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdir()) {
+                Log.d(TAG, "getOutputMediaFile: Failed to create directory");
+                return null;
+            }
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+        return mediaFile;
+    }
+
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 }

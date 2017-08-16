@@ -102,5 +102,6 @@
     <string name="take_photo_default_camera">Take photo using default camera</string>
     <string name="take_photo_camera_api">Take photo using Camera API</string>
     <string name="take_photo_camera2_api">Take photo using Camera2 API</string>
+    <string name="require_lollipop_above_error">This feature requires version Lollipop or above</string>
 </resources>
 

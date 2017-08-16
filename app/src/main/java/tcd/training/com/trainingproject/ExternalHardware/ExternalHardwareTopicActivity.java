@@ -55,6 +55,7 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         mTopicsList.put("7. Obtain device's location using Google Play services API", ObtainLocationUsingGooglePlayServicesActivity.class);
         mTopicsList.put("8. Take photo using default camera", TakePhotoTopicActivity.class);
         mTopicsList.put("9. Take photo using Camera API", TakePhotoTopicActivity.class);
+        mTopicsList.put("10. Take photo using Camera2 API", TakePhotoTopicActivity.class);
     }
 
     private void initializeUiComponents() {
