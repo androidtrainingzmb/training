@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 import java.util.LinkedHashMap;
 
-import tcd.training.com.trainingproject.ExternalHardware.ExternalHardwareTopicActivity;
 import tcd.training.com.trainingproject.R;
 
 public class SensorTopicActivity extends AppCompatActivity {
@@ -23,7 +22,8 @@ public class SensorTopicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple_list_view);
 
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
-//        topics.put("1. ImageView scaleType demo", ScaleTypeActivity.class);
+        topics.put("1. Proximity sensor, accelerometer, light sensor", ProximityLightAccelerometerActivity.class);
+        topics.put("2. Compass with magnetic field sensor and accelerometer", CompassWithMagneticFieldSensorActivity.class);
 
         mTopicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =

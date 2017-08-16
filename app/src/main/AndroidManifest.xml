@@ -9,10 +9,15 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature android:name="android.hardware.location.network" />
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.camera2.full" />
+    <uses-feature android:name="android.hardware.sensor.proximity" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" />
+    <uses-feature android:name="android.hardware.sensor.light" />
+    <uses-feature android:name="android.hardware.sensor.gyroscope" />
 
     <application
         android:name=".CommunicationBetweenActivities.UsingApplicationObject.MyApplication"
@@ -36,21 +41,16 @@
         <activity android:name=".IntentFlags.IntentFlagsActivity" />
         <activity android:name=".IntentFlags.IntentFlagsSecondActivity" />
         <activity android:name=".IntentFlags.IntentFlagsThirdActivity" />
-
         <activity android:name=".ExternalInternalIntentActivity" />
-
         <activity android:name=".CustomView.CreateCustomViewActivity" />
-
         <activity android:name=".PersistentStorage.PersistentStorageActivity" />
         <activity android:name=".PersistentStorage.AddNoteActivity" />
         <activity android:name=".PersistentStorage.DisplayNoteDetailsActivity" />
-
         <activity android:name=".Fragments.FragmentTopicActivity" />
         <activity android:name=".Fragments.TabLayout.TabLayoutWithFragmentsActivity" />
         <activity android:name=".Fragments.PagerTabStrip.PagerTabStripWithFragmentsActivity" />
         <activity android:name=".Fragments.FlexibleUIWithFragments.FlexibleUIWithFragmentsActivity" />
         <activity android:name=".Fragments.FlexibleUIWithFragments.DetailsActivity" />
-
         <activity android:name=".CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingBundle.ReceiveDataWithBundleActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingSerializeInterface.ReceiveObjectWithSerializableInterfaceActivity" />
@@ -58,7 +58,6 @@
         <activity android:name=".CommunicationBetweenActivities.UsingParcelableInterface.ReceiveObjectWithParcelableInterface" />
         <activity android:name=".CommunicationBetweenActivities.UsingIntentOnly.ReceiveIntentDataActivity" />
         <activity android:name=".CommunicationBetweenActivities.UsingApplicationObject.ReceiveDataWithApplicationObject" />
-
         <activity android:name=".ServicesAndThreads.ServiceTopicActivity" />
         <activity android:name=".ServicesAndThreads.IntentService.IntentServiceActivity" />
 
@@ -100,7 +99,6 @@
         <activity android:name=".ServicesAndThreads.AsyncTask.AsyncTaskActivity" />
         <activity android:name=".ServicesAndThreads.HandlerThread.HandlerThreadActivity" />
         <activity android:name=".ServicesAndThreads.ThreadPoolExecutor.ThreadPoolExecutorUsingCallableActivity" />
-
         <activity android:name=".ImagesProcessing.ScaleTypeActivity" />
         <activity android:name=".ImagesProcessing.ImagesProcessingActivity" />
         <activity android:name=".ImagesProcessing.LoadImages.LoadImageFromSdCardActivity" />
@@ -108,9 +106,7 @@
         <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingMemoryActivity" />
         <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingDiskActivity" />
         <activity android:name=".ImagesProcessing.CacheImages.CacheImageUsingExternalLibraryActivity" />
-
         <activity android:name=".ExternalHardware.ExternalHardwareTopicActivity" />
-        <activity android:name=".Sensors.SensorTopicActivity" />
         <activity android:name=".ExternalHardware.AudioPlayer.AudioPlayerActivity" />
         <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingMediaPlayerActivity" />
         <activity android:name=".ExternalHardware.VideoPlayer.VideoPlayerUsingExoPlayerActivity" />
@@ -119,9 +115,20 @@
         <activity android:name=".ExternalHardware.GPS.ObtainLocationUsingLocationManagerActivity" />
         <activity android:name=".ExternalHardware.GPS.ObtainLocationUsingGooglePlayServicesActivity" />
         <activity android:name=".ExternalHardware.Camera.TakePhotoTopicActivity" />
-        <activity android:name=".ExternalHardware.Camera.CameraAPI.TakePhotoUsingCameraApiActivity"
+        <activity
+            android:name=".ExternalHardware.Camera.CameraAPI.TakePhotoUsingCameraApiActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".ExternalHardware.Camera.TakePhotoUsingCamera2ApiActivity" />
+        <activity android:name=".Sensors.SensorTopicActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Sensors.ProximityLightAccelerometerActivity" />
+        <activity android:name=".Sensors.CompassWithMagneticFieldSensorActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

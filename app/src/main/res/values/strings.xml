@@ -103,5 +103,16 @@
     <string name="take_photo_camera_api">Take photo using Camera API</string>
     <string name="take_photo_camera2_api">Take photo using Camera2 API</string>
     <string name="require_lollipop_above_error">This feature requires version Lollipop or above</string>
+    <string name="proximity_not_available">Proximity sensor not available</string>
+    <string name="light_sensor_not_available">Light sensor not available</string>
+    <string name="sensors_explanation">This demonstrates multiple sensors capability (Proximity sensor, Light sensor and Accelerometer) by displaying its values when the event is triggered.\nAdditionally, there are some usage demos:\n- With light sensor, the screen brightness will be adjusted to fit the surrounding environment light.\n- In terms of the other two sensors, turn the phone face down the table and the phone will be changed to vibrate mode.</string>
+    <string name="proximity_sensor">Proximitiy sensor</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="light_sensor">Light sensor</string>
+    <string name="sensor_not_available">Sensor not available</string>
+    <string name="nothing_nearby">Nothing is nearby</string>
+    <string name="screen_face_up">Now screen is facing up</string>
+    <string name="phone_stand_up">Now the phone is standing up</string>
+    <string name="screen_face_down">Now the screen is facing down</string>
 </resources>
 
