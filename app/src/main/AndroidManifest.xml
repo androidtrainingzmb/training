@@ -30,13 +30,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".IntentFlags.IntentFlagsActivity" />
         <activity android:name=".IntentFlags.IntentFlagsSecondActivity" />
@@ -119,16 +116,14 @@
             android:name=".ExternalHardware.Camera.CameraAPI.TakePhotoUsingCameraApiActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".ExternalHardware.Camera.TakePhotoUsingCamera2ApiActivity" />
-        <activity android:name=".Sensors.SensorTopicActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Sensors.SensorTopicActivity" />
         <activity android:name=".Sensors.ProximityLightAccelerometerActivity" />
-        <activity android:name=".Sensors.CompassWithMagneticFieldSensorActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Sensors.CompassWithMagneticFieldSensorActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Sensors.GyroscopeActivity" />
+        <activity android:name=".Sensors.RotationVectorSensor" />
+        <activity android:name=".Sensors.PedometerActivity" />
     </application>
 
 </manifest>

@@ -114,18 +114,17 @@ public class CompassWithMagneticFieldSensorActivity extends AppCompatActivity im
             SensorManager.getOrientation(mR, mOrientation);
             float azimuthInRadians = mOrientation[0];
             float azimuthInDegrees = (float) (Math.toDegrees(azimuthInRadians) + 360) % 360;
-            RotateAnimation ra = new RotateAnimation(
+
+            RotateAnimation animation = new RotateAnimation(
                     mCurrentDegree,
                     -azimuthInDegrees,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF,
                     0.5f);
+            animation.setDuration(250);
+            animation.setFillAfter(true);
 
-            ra.setDuration(250);
-
-            ra.setFillAfter(true);
-
-            mNorthDirectionImageView.startAnimation(ra);
+            mNorthDirectionImageView.startAnimation(animation);
             mCurrentDegree = -azimuthInDegrees;
         }
     }

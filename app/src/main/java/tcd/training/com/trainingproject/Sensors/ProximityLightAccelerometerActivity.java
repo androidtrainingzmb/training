@@ -13,11 +13,16 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import tcd.training.com.trainingproject.R;
 
 public class ProximityLightAccelerometerActivity extends AppCompatActivity {
 
     private static final String TAG = ProximityLightAccelerometerActivity.class.getSimpleName();
+    private static final int NORMAL_LIGHT_MAGNITUDE = 50;
 
     private TextView mProximityDistanceTextView;
     private TextView mAccelerometerTextView;
@@ -176,7 +181,7 @@ public class ProximityLightAccelerometerActivity extends AppCompatActivity {
                         Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
                     }
                     WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-                    layoutParams.screenBrightness = lightMagnitude / mLightSensor.getMaximumRange();
+                    layoutParams.screenBrightness = lightMagnitude / NORMAL_LIGHT_MAGNITUDE;
                     getWindow().setAttributes(layoutParams);
 
                 } catch (Settings.SettingNotFoundException e) {

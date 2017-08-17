@@ -24,6 +24,9 @@ public class SensorTopicActivity extends AppCompatActivity {
         final LinkedHashMap<String, Class> topics = new LinkedHashMap<>();
         topics.put("1. Proximity sensor, accelerometer, light sensor", ProximityLightAccelerometerActivity.class);
         topics.put("2. Compass with magnetic field sensor and accelerometer", CompassWithMagneticFieldSensorActivity.class);
+        topics.put("3. Gyroscope", GyroscopeActivity.class);
+        topics.put("4. Rotation vector sensor", RotationVectorSensor.class);
+        topics.put("5. Pedometer using Step counter sensor", PedometerActivity.class);
 
         mTopicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =

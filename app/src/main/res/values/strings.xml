@@ -114,5 +114,10 @@
     <string name="screen_face_up">Now screen is facing up</string>
     <string name="phone_stand_up">Now the phone is standing up</string>
     <string name="screen_face_down">Now the screen is facing down</string>
+    <string name="gyroscope_not_available">Gyroscope not available</string>
+    <string name="gyroscope_explanation">Tilt the device to see the effect.</string>
+    <string name="rotation_vector_sensor_explanation">Rotate the device to see the effect.</string>
+    <string name="step_counter_not_available">Step counter sensor not available</string>
+    <string name="number_of_steps">Number of steps since reboot</string>
 </resources>
 
