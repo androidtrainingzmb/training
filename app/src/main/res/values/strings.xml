@@ -119,5 +119,6 @@
     <string name="rotation_vector_sensor_explanation">Rotate the device to see the effect.</string>
     <string name="step_counter_not_available">Step counter sensor not available</string>
     <string name="number_of_steps">Number of steps since reboot</string>
+    <string name="take_photo_library">Take photo using custom library</string>
 </resources>
 

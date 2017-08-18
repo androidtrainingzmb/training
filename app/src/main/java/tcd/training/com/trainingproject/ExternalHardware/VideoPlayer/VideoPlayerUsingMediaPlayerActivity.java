@@ -119,6 +119,7 @@ public class VideoPlayerUsingMediaPlayerActivity extends AppCompatActivity
         Uri contentUri = getUriFromContentResolver();
         if (contentUri != null) {
             try {
+
                 mMediaPlayer = new MediaPlayer();
                 mMediaPlayer.setDataSource(getApplicationContext(), contentUri);
                 mMediaPlayer.setDisplay(mHolder);

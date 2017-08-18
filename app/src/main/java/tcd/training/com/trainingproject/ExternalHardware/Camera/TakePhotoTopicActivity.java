@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.desmond.squarecamera.CameraActivity;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class TakePhotoTopicActivity extends AppCompatActivity {
     private static final int RC_TAKE_PHOTO_DEFAULT_CAMERA = 1;
     private static final int RC_TAKE_PHOTO_CAMERA_API = 2;
     private static final int RC_TAKE_PHOTO_CAMERA_2_API = 3;
+    private static final int RC_TAKE_PHOTO_LIBRARY_CAMERA = 4;
 
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
@@ -51,6 +54,14 @@ public class TakePhotoTopicActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 initializeDefaultCamera();
+            }
+        });
+
+        Button takePhotoUsingLibraryButton = findViewById(R.id.btn_take_photo_library);
+        takePhotoUsingLibraryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initializeLibraryCamera();
             }
         });
 
@@ -88,6 +99,11 @@ public class TakePhotoTopicActivity extends AppCompatActivity {
         } else {
             Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_app_handle_intent_error), Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    private void initializeLibraryCamera() {
+        Intent startCustomCameraIntent = new Intent(this, CameraActivity.class);
+        startActivityForResult(startCustomCameraIntent, RC_TAKE_PHOTO_LIBRARY_CAMERA);
     }
 
     private File getOutputMediaFile() {
@@ -136,6 +152,14 @@ public class TakePhotoTopicActivity extends AppCompatActivity {
             case RC_TAKE_PHOTO_DEFAULT_CAMERA:
                 if (resultCode == RESULT_OK) {
                     mImagesPathList.add(mTakenPhotoUri.toString());
+                    mViewPagerAdapter.notifyDataSetChanged();
+                    mViewPager.setCurrentItem(mImagesPathList.size() - 1);
+                }
+                break;
+            case RC_TAKE_PHOTO_LIBRARY_CAMERA:
+                if (resultCode == RESULT_OK) {
+                    Uri photoUri = data.getData();
+                    mImagesPathList.add(photoUri.toString());
                     mViewPagerAdapter.notifyDataSetChanged();
                     mViewPager.setCurrentItem(mImagesPathList.size() - 1);
                 }

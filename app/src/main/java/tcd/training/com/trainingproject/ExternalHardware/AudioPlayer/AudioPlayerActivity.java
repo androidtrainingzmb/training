@@ -80,8 +80,8 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
             mMediaPlayer = null;

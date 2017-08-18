@@ -54,6 +54,7 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         mTopicsList.put("6. Obtain device's location using LocationManager", ObtainLocationUsingLocationManagerActivity.class);
         mTopicsList.put("7. Obtain device's location using Google Play services API", ObtainLocationUsingGooglePlayServicesActivity.class);
         mTopicsList.put("8. Take photo using default camera", TakePhotoTopicActivity.class);
+        mTopicsList.put("8. Take photo using library camera", TakePhotoTopicActivity.class);
         mTopicsList.put("9. Take photo using Camera API", TakePhotoTopicActivity.class);
         mTopicsList.put("10. Take photo using Camera2 API", TakePhotoTopicActivity.class);
     }
@@ -94,8 +95,9 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         } else if (topic.contains("location")) {
             return requestFineLocationPermission();
         } else if (topic.contains("camera")) {
-            requestWriteExternalStoragePermission();
-            return requestCameraPermission();
+            // actually this should be requesting two permissions at once (in an array)
+            // but due to the code structure problem, I keep this to make it simpler and shorter
+            return requestWriteExternalStoragePermission() && requestCameraPermission();
         }
         return true;
     }
@@ -154,16 +156,12 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             switch (requestCode) {
                 case RC_READ_EXTERNAL_STORAGE_PERMISSION:
-                    requestReadExternalStoragePermission();
                     break;
                 case RC_FINE_LOCATION_PERMISSION:
-                    requestFineLocationPermission();
                     break;
                 case RC_WRITE_EXTERNAL_STORAGE_PERMISSION:
-                    requestWriteExternalStoragePermission();
                     break;
                 case RC_CAMERA_PERMISSION:
-                    requestCameraPermission();
                     break;
             }
         }
