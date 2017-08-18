@@ -30,6 +30,8 @@ https://docs.google.com/a/vng.com.vn/document/d/1N7UKr4BZmKg5WY6reXpmUjHmP0mZhkJ
 9. Image processing  
 https://docs.google.com/a/vng.com.vn/document/d/1xjottkK89DQcsI7gCoYUiaoQ07y7YIK96fdVG-cN6Ac/edit?usp=sharing
 
-10. Sensors
+10. Sensors  
+https://docs.google.com/a/vng.com.vn/document/d/1XK0Fl9ZXAbdyxaugdJMTbEEiK-Yfji1CoBegC2WBTe8/edit?usp=sharing
 
-11. External Hardware
+11. External Hardware  
+https://docs.google.com/a/vng.com.vn/document/d/1_tvR2hJpce5cer5OrAvwajmwzaHnIHl8sE1y3iDIiZA/edit?usp=sharing
