@@ -32,15 +32,16 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".IntentFlags.IntentFlagsActivity" />
         <activity android:name=".IntentFlags.IntentFlagsSecondActivity" />
         <activity android:name=".IntentFlags.IntentFlagsThirdActivity" />
-        <activity android:name=".ExternalInternalIntentActivity" />
+        <activity android:name=".ExternalInternalIntent.ExternalInternalIntentActivity" />
         <activity android:name=".CustomView.CreateCustomViewActivity" />
         <activity android:name=".PersistentStorage.PersistentStorageActivity" />
         <activity android:name=".PersistentStorage.AddNoteActivity" />
@@ -127,6 +128,13 @@
         <activity android:name=".Sensors.GyroscopeActivity" />
         <activity android:name=".Sensors.RotationVectorSensor" />
         <activity android:name=".Sensors.PedometerActivity" />
+        <activity android:name=".Networking.NetworkingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -120,5 +120,8 @@
     <string name="step_counter_not_available">Step counter sensor not available</string>
     <string name="number_of_steps">Number of steps since reboot</string>
     <string name="take_photo_library">Take photo using custom library</string>
+    <string name="near_the">Near by</string>
+    <string name="using_method">Using method</string>
+    <string name="volley_library">Volley Library</string>
 </resources>
 

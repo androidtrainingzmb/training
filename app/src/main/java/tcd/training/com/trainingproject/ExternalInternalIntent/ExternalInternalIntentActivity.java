@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject;
+package tcd.training.com.trainingproject.ExternalInternalIntent;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import tcd.training.com.trainingproject.IntentFlags.IntentFlagsActivity;
+import tcd.training.com.trainingproject.R;
 
 public class ExternalInternalIntentActivity extends AppCompatActivity {
 

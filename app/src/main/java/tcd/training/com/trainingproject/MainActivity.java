@@ -13,9 +13,11 @@ import java.util.LinkedHashMap;
 import tcd.training.com.trainingproject.CommunicationBetweenActivities.CommunicationBetweenActivitiesActivity;
 import tcd.training.com.trainingproject.CustomView.CreateCustomViewActivity;
 import tcd.training.com.trainingproject.ExternalHardware.ExternalHardwareTopicActivity;
+import tcd.training.com.trainingproject.ExternalInternalIntent.ExternalInternalIntentActivity;
 import tcd.training.com.trainingproject.IntentFlags.IntentFlagsActivity;
 import tcd.training.com.trainingproject.Fragments.FragmentTopicActivity;
 import tcd.training.com.trainingproject.ImagesProcessing.ImagesProcessingActivity;
+import tcd.training.com.trainingproject.Networking.NetworkingActivity;
 import tcd.training.com.trainingproject.PersistentStorage.PersistentStorageActivity;
 import tcd.training.com.trainingproject.Sensors.SensorTopicActivity;
 import tcd.training.com.trainingproject.ServicesAndThreads.ServiceTopicActivity;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         topics.put("8. Images processing", ImagesProcessingActivity.class);
         topics.put("9. Sensors", SensorTopicActivity.class);
         topics.put("10. External Hardware", ExternalHardwareTopicActivity.class);
+        topics.put("11. Networking", NetworkingActivity.class);
 
         mTopicsListView = findViewById(R.id.lv_topics_list);
         ArrayAdapter<String> arrayAdapter =

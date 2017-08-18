@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tcd.training.com.trainingproject.ExternalInternalIntentActivity">
+    tools:context="tcd.training.com.trainingproject.ExternalInternalIntent.ExternalInternalIntentActivity">
 
     <Button
         android:id="@+id/btn_external_intent"
