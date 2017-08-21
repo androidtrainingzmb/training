@@ -8,32 +8,93 @@
     android:layout_margin="@dimen/normal_margin"
     tools:context="tcd.training.com.trainingproject.Networking.NetworkingActivity">
 
-    <RadioGroup
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/normal_margin">
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/using_method"/>
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/rb_http_url_connection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="HttpUrlConnection"
-            android:onClick="onRadioButtonClicked"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/download_method"/>
 
-        <RadioButton
-            android:id="@+id/rb_volley_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/volley_library"
-            android:onClick="onRadioButtonClicked"/>
+            <RadioButton
+                android:id="@+id/rb_http_url_connection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="HttpUrlConnection"
+                android:onClick="onRadioButtonClicked"/>
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/rb_ok_http"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OkHttp"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/rb_volley_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volley_library"
+                android:onClick="onRadioButtonClicked"/>
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connection_type"/>
+
+            <RadioButton
+                android:id="@+id/rb_any"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/any"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/rb_mobile_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_data"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/rb_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wifi"
+                android:onClick="onRadioButtonClicked"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_download_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true" />
+
+    <TextView
+        android:id="@+id/tv_download_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_earthquakes_list"

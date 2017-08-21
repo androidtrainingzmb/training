@@ -121,7 +121,13 @@
     <string name="number_of_steps">Number of steps since reboot</string>
     <string name="take_photo_library">Take photo using custom library</string>
     <string name="near_the">Near by</string>
-    <string name="using_method">Using method</string>
     <string name="volley_library">Volley Library</string>
+    <string name="mobile_data">Mobile data</string>
+    <string name="wifi">Wifi</string>
+    <string name="any">Any</string>
+    <string name="network_not_available">Required network not available</string>
+    <string name="connection_type">Connection type</string>
+    <string name="download_method">Download method</string>
+    <string name="downloading">Downloading...</string>
 </resources>
 
