@@ -35,3 +35,6 @@ https://docs.google.com/a/vng.com.vn/document/d/1XK0Fl9ZXAbdyxaugdJMTbEEiK-Yfji1
 
 11. External Hardware  
 https://docs.google.com/a/vng.com.vn/document/d/1_tvR2hJpce5cer5OrAvwajmwzaHnIHl8sE1y3iDIiZA/edit?usp=sharing
+
+12. Networking with HTTP Request
+https://docs.google.com/a/vng.com.vn/document/d/1YSN5eS7tSi93AdOHeSQO8mcxmi1f6QEizhEvpjdqf14/edit?usp=sharing

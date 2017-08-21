@@ -105,7 +105,6 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
     private void loadImageUsingBitmapDecode() {
         addMethodNameTextView("BitmapDecode");
         try {
-            //
             Bitmap bitmap = BitmapFactory.decodeFile(mImagePath);
             createAnImageView().setImageBitmap(bitmap);
         } catch (OutOfMemoryError error) {

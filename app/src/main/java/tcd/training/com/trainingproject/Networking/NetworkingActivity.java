@@ -247,7 +247,7 @@ public class NetworkingActivity extends AppCompatActivity {
                 urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
                 urlConnection.connect();
 
-                if (urlConnection.getResponseCode() == 200) {
+                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     inputStream = urlConnection.getInputStream();
                     String jsonResponse = readFromStream(inputStream);
                     readEarthquakesFromJsonResponse(jsonResponse);
