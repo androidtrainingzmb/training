@@ -21,10 +21,12 @@ import tcd.training.com.trainingproject.R;
 
 public class AddNoteActivity extends AppCompatActivity {
 
+    public static final String SAVED_FILE_EXTENSION = ".psdemo";
+    
     private EditText mNoteTitleEditText;
     private EditText mNoteContentEditText;
     private Button mSaveNoteButton;
-
+    
     // radio buttons
     private static final int SHARED_PREFERENCE_METHOD = 0;
     private static final int SQLITE_METHOD = 1;
@@ -86,7 +88,7 @@ public class AddNoteActivity extends AppCompatActivity {
             Snackbar.make(findViewById(android.R.id.content), getString(R.string.require_external_storage_permission_error), Snackbar.LENGTH_SHORT).show();
             return;
         }
-        File file = new File(getExternalFilesDir(null), mNoteTitleEditText.getText().toString());
+        File file = new File(getExternalFilesDir(null), mNoteTitleEditText.getText().toString() + SAVED_FILE_EXTENSION);
         try {
             FileOutputStream outputStream = new FileOutputStream(file);
             outputStream.write(mNoteContentEditText.getText().toString().getBytes());
@@ -108,7 +110,7 @@ public class AddNoteActivity extends AppCompatActivity {
     private void saveNoteUsingInternalStorage() {
         FileOutputStream outputStream;
         try {
-            outputStream = openFileOutput(mNoteTitleEditText.getText().toString(), Context.MODE_PRIVATE);
+            outputStream = openFileOutput(mNoteTitleEditText.getText().toString() + SAVED_FILE_EXTENSION, Context.MODE_PRIVATE);
             outputStream.write(mNoteContentEditText.getText().toString().getBytes());
             outputStream.close();
         } catch (Exception e) {

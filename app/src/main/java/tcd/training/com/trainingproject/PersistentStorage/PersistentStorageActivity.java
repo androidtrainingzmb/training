@@ -24,11 +24,12 @@ import tcd.training.com.trainingproject.R;
 
 public class PersistentStorageActivity extends AppCompatActivity implements NotesListAdapter.ListItemClickListener {
 
-    private static final String TAG_LOG = PersistentStorageActivity.class.getSimpleName();
     private static final int RC_ADD_NODE = 1;
+
     private RecyclerView mNotesListRecyclerView;
     private NotesListAdapter mNoteListAdapter;
     private FloatingActionButton mFAB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +46,6 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
                 startActivityForResult(intent, RC_ADD_NODE);
             }
         });
-
-        Log.e("here", "onCreate: " + getExternalFilesDir(null));
-        Log.e("here", "onCreate: " + Environment.getExternalStorageDirectory());
-        Log.e("here", "onCreate: " + Environment.getDataDirectory());
-        Log.e("here", "onCreate: " + System.getenv("SECONDARY_STORAGE"));
     }
 
     private void initializeRecyclerViewList() {
@@ -70,9 +66,15 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
         if (getExternalFilesDir(null).exists()) {
             File[] files = getExternalFilesDir(null).listFiles();
             for (File file : files) {
-                Note note = readNoteFromFile(file);
-                note.setStorageType("External File");
-                mNoteListAdapter.addNoteToList(note);
+                String fileName = file.getName();
+                // make sure that it's a text file
+                if (fileName.length() > 4 &&
+                        fileName.substring(fileName.length() - AddNoteActivity.SAVED_FILE_EXTENSION.length())
+                                .equals(AddNoteActivity.SAVED_FILE_EXTENSION)) {
+                    Note note = readNoteFromFile(file);
+                    note.setStorageType("External File");
+                    mNoteListAdapter.addNoteToList(note);
+                }
             }
         }
     }
@@ -104,6 +106,7 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            noteTitle = noteTitle.substring(0, noteTitle.length() - AddNoteActivity.SAVED_FILE_EXTENSION.length());
             return new Note(noteTitle, noteContent, "");
         }
     }
