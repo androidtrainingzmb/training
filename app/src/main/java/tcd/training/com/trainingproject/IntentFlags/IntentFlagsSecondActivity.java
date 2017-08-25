@@ -25,7 +25,7 @@ public class IntentFlagsSecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_different_flags_topic2);
+        setContentView(R.layout.activity_intent_flags_2);
         getSupportActionBar().setTitle(getLocalClassName());
 
         Log.d(TAG, "onCreate: Instantiating activity 2");

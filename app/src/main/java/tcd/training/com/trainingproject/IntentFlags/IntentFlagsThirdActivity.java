@@ -10,7 +10,7 @@ public class IntentFlagsThirdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_different_flags_topic3);
+        setContentView(R.layout.activity_intent_flags_3);
 
         getSupportActionBar().setTitle(getLocalClassName());
     }

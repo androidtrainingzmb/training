@@ -22,6 +22,8 @@ import java.util.Map;
 
 import tcd.training.com.trainingproject.R;
 
+import static tcd.training.com.trainingproject.PersistentStorage.AddNoteActivity.SAVED_FILE_EXTENSION;
+
 public class PersistentStorageActivity extends AppCompatActivity implements NotesListAdapter.ListItemClickListener {
 
     private static final int RC_ADD_NODE = 1;
@@ -66,12 +68,8 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
         if (getExternalFilesDir(null).exists()) {
             File[] files = getExternalFilesDir(null).listFiles();
             for (File file : files) {
-                String fileName = file.getName();
-                // make sure that it's a text file
-                if (fileName.length() > 4 &&
-                        fileName.substring(fileName.length() - AddNoteActivity.SAVED_FILE_EXTENSION.length())
-                                .equals(AddNoteActivity.SAVED_FILE_EXTENSION)) {
-                    Note note = readNoteFromFile(file);
+                Note note = readNoteFromFile(file);
+                if (note != null) {
                     note.setStorageType("External File");
                     mNoteListAdapter.addNoteToList(note);
                 }
@@ -84,30 +82,38 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
             File[] files = getFilesDir().listFiles();
             for (File file : files) {
                 Note note = readNoteFromFile(file);
-                note.setStorageType("Internal File");
-                mNoteListAdapter.addNoteToList(note);
+                if (note != null) {
+                    note.setStorageType("Internal File");
+                    mNoteListAdapter.addNoteToList(note);
+                }
             }
         }
     }
 
     private Note readNoteFromFile(File file) {
-        String noteTitle = file.getName();
-        String noteContent = "";
+        String title = file.getName();
+        String content = "";
+        // make sure that it's the compatible file type
+        if (title.length() <= SAVED_FILE_EXTENSION.length() ||
+                !title.substring(title.length() - SAVED_FILE_EXTENSION.length()).equals(SAVED_FILE_EXTENSION)) {
+            return null;
+        }
+
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             StringBuilder sb = new StringBuilder();
             while (fileInputStream.available() > 0) {
                 sb.append((char) fileInputStream.read());
             }
-            noteContent = sb.toString();
+            content = sb.toString();
             fileInputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            noteTitle = noteTitle.substring(0, noteTitle.length() - AddNoteActivity.SAVED_FILE_EXTENSION.length());
-            return new Note(noteTitle, noteContent, "");
+            title = title.substring(0, title.length() - SAVED_FILE_EXTENSION.length());
+            return new Note(title, content, "");
         }
     }
 

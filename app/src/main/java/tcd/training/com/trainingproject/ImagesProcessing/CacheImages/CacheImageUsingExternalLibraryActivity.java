@@ -49,6 +49,7 @@ public class CacheImageUsingExternalLibraryActivity extends AppCompatActivity {
     private Switch mUsingCacheSwitch;
     private TextView mShownImagesTextView;
     private Spinner mMethodSpinner;
+    private Button mRefreshButton;
 
     // loading info
     private long mStartTime;
@@ -97,6 +98,7 @@ public class CacheImageUsingExternalLibraryActivity extends AppCompatActivity {
             long end = Calendar.getInstance().getTimeInMillis();
             mShownImagesTextView.append(" (" + String.valueOf(end - mStartTime) + "ms)");
             mUsingCacheSwitch.setEnabled(true);
+            mRefreshButton.setEnabled(true);
         }
     }
 
@@ -133,11 +135,12 @@ public class CacheImageUsingExternalLibraryActivity extends AppCompatActivity {
         });
         mIsUsingCache = mUsingCacheSwitch.isChecked();
 
-        Button refreshButton = findViewById(R.id.btn_refresh);
-        refreshButton.setVisibility(View.VISIBLE);
-        refreshButton.setOnClickListener(new View.OnClickListener() {
+        mRefreshButton = findViewById(R.id.btn_refresh);
+        mRefreshButton.setVisibility(View.VISIBLE);
+        mRefreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mRefreshButton.setEnabled(false);
                 loadAllImages();
             }
         });
