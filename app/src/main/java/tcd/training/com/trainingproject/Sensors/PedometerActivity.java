@@ -56,7 +56,6 @@ public class PedometerActivity extends AppCompatActivity implements SensorEventL
     }
 
     private void initializeStepCounterSensor() {
-        mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (mStepCounterSensor == null) {
             Log.e(TAG, "Proximity sensor not available.");
             Toast.makeText(getApplicationContext(), getString(R.string.step_counter_not_available), Toast.LENGTH_SHORT).show();

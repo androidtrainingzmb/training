@@ -16,11 +16,11 @@ public class ReceiveDataWithApplicationObject extends AppCompatActivity {
 
         DemoObject object = ((MyApplication)getApplication()).getObject();
         CommunicationBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content),
-                object.getmInteger(),
-                object.ismBoolean(),
-                object.getmDouble(),
-                object.getmString(),
-                object.getmArrayList(),
-                object.getmHashMap());
+                object.getInteger(),
+                object.isBoolean(),
+                object.getDouble(),
+                object.getString(),
+                object.getArrayList(),
+                object.getHashMap());
     }
 }

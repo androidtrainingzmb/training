@@ -15,8 +15,8 @@ import static android.content.ContentValues.TAG;
 public class NoteDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "NotesList.db";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "NotesList.db";
 
     // SQL statements
     private static final String SQL_CREATE_ENTRIES =

@@ -38,3 +38,6 @@ https://docs.google.com/a/vng.com.vn/document/d/1_tvR2hJpce5cer5OrAvwajmwzaHnIHl
 
 12. Networking with HTTP Request
 https://docs.google.com/a/vng.com.vn/document/d/1YSN5eS7tSi93AdOHeSQO8mcxmi1f6QEizhEvpjdqf14/edit?usp=sharing
+
+13. Performance monitor  
+https://docs.google.com/a/vng.com.vn/document/d/1-udx-ZnzPVOxiPtmum0n_CFs-anrD774M5DDGUFUOTg/edit?usp=sharing

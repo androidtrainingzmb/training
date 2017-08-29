@@ -25,8 +25,7 @@ public class AddNoteActivity extends AppCompatActivity {
     
     private EditText mNoteTitleEditText;
     private EditText mNoteContentEditText;
-    private Button mSaveNoteButton;
-    
+
     // radio buttons
     private static final int SHARED_PREFERENCE_METHOD = 0;
     private static final int SQLITE_METHOD = 1;
@@ -45,9 +44,9 @@ public class AddNoteActivity extends AppCompatActivity {
     private void initializeBasicComponents() {
         mNoteTitleEditText = findViewById(R.id.et_note_title);
         mNoteContentEditText = findViewById(R.id.et_note_content);
-        mSaveNoteButton = findViewById(R.id.btn_save_note);
+        Button saveNoteButton = findViewById(R.id.btn_save_note);
 
-        mSaveNoteButton.setOnClickListener(new View.OnClickListener() {
+        saveNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveNoteToStorage();
@@ -99,12 +98,9 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     /* Checks if external storage is available for read and write */
-    public boolean isExternalStorageWritable() {
+    private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     private void saveNoteUsingInternalStorage() {
@@ -138,7 +134,7 @@ public class AddNoteActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.note_shared_preferences), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(mNoteTitleEditText.getText().toString(), mNoteContentEditText.getText().toString());
-        editor.commit();
+        editor.apply();
     }
 
     public void onRadioButtonClicked(View view) {

@@ -1,52 +1,33 @@
 package tcd.training.com.trainingproject.ExternalHardware.VideoPlayer;
 
-import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.PersistableBundle;
 import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
-
 import java.io.IOException;
 
-import tcd.training.com.trainingproject.ExternalHardware.AudioPlayer.AudioPlayerActivity;
-import tcd.training.com.trainingproject.ExternalHardware.AudioPlayer.Song;
 import tcd.training.com.trainingproject.R;
 
 public class VideoPlayerUsingMediaPlayerActivity extends AppCompatActivity
         implements SurfaceHolder.Callback,
         MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener,
         MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener {
-    
+
     private final static String TAG = VideoPlayerUsingMediaPlayerActivity.class.getSimpleName();
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     private SurfaceView mPlayerSurfaceView;
     private SurfaceHolder mHolder;
 
@@ -147,15 +128,14 @@ public class VideoPlayerUsingMediaPlayerActivity extends AppCompatActivity
         } else if (!cursor.moveToFirst()) {
             Toast.makeText(this, getString(R.string.no_media_error), Toast.LENGTH_SHORT).show();
         } else {
-            int titleColumn = cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int idColumn = cursor.getColumnIndex(MediaStore.Audio.Media._ID);
-            do {
-                long id = cursor.getLong(idColumn);
-                String title = cursor.getString(titleColumn);
-                resultUri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
-                break;
-            } while (cursor.moveToNext());
+
+            // get the first found video
+            long id = cursor.getLong(idColumn);
+            resultUri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
         }
+        assert cursor != null;
+        cursor.close();
 
         return resultUri;
     }

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "tcd.training.com.trainingproject"
         minSdkVersion 16
@@ -29,7 +29,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile('com.sangcomz:FishBun:0.7.1@aar') {
         transitive = true
     }
@@ -46,11 +45,12 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
-    compile 'com.google.android.gms:play-services:11.0.4'
+    compile 'com.google.android.gms:play-services-location:11.2.0'
     compile 'com.github.boxme:squarecamera:1.1.0'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-vector-drawable:26.0.0-alpha1'
 }
 
 

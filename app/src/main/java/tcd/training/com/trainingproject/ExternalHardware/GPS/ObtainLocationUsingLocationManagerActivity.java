@@ -9,7 +9,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +24,6 @@ import tcd.training.com.trainingproject.R;
 public class ObtainLocationUsingLocationManagerActivity extends AppCompatActivity {
 
     private static final String TAG = ObtainLocationUsingLocationManagerActivity.class.getSimpleName();
-
-    private static final int RC_FINE_LOCATION_PERMISSION = 1;
 
     private TextView mLatitudeTextView;
     private TextView mLongitudeTextView;

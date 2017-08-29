@@ -23,7 +23,6 @@ public class BindServiceWithMessengerActivity extends AppCompatActivity {
     private static final String TAG = BindServiceWithMessengerActivity.class.getSimpleName();
 
     private TextView mIntegerValueTextView;
-    private Button mIncrementByOneButton;
 
     private int mInteger = 0;
     private ServiceConnection mConnection;
@@ -52,7 +51,7 @@ public class BindServiceWithMessengerActivity extends AppCompatActivity {
             }
         };
 
-        mIncrementByOneButton = findViewById(R.id.btn_increment_by_one);
+        Button mIncrementByOneButton = findViewById(R.id.btn_increment_by_one);
         mIncrementByOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

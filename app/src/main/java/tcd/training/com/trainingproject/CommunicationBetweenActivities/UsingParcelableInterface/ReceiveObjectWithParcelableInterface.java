@@ -13,13 +13,13 @@ public class ReceiveObjectWithParcelableInterface extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive_intent_data);
 
-        ParcelableObject object = (ParcelableObject) getIntent().getParcelableExtra(getString(R.string.data));
+        ParcelableObject object = getIntent().getParcelableExtra(getString(R.string.data));
         CommunicationBetweenActivitiesActivity.inflateLayout(findViewById(android.R.id.content),
-                object.getmInteger(),
-                object.ismBoolean(),
-                object.getmDouble(),
-                object.getmString(),
-                object.getmArrayList(),
-                object.getmHashMap());
+                object.getInteger(),
+                object.isBoolean(),
+                object.getDouble(),
+                object.getString(),
+                object.getArrayList(),
+                object.getHashMap());
     }
 }

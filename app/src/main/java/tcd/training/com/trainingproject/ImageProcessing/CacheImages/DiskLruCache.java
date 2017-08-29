@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package tcd.training.com.trainingproject.ImagesProcessing.CacheImages;
+package tcd.training.com.trainingproject.ImageProcessing.CacheImages;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
@@ -160,7 +160,7 @@ public final class DiskLruCache implements Closeable {
     private long size = 0;
     private Writer journalWriter;
     private final LinkedHashMap<String, Entry> lruEntries
-            = new LinkedHashMap<String, Entry>(0, 0.75f, true);
+            = new LinkedHashMap<>(0, 0.75f, true);
     private int redundantOpCount;
 
     /**
@@ -299,7 +299,7 @@ public final class DiskLruCache implements Closeable {
      * there.
      *
      * @param directory a writable directory
-     * @param appVersion
+     * @param appVersion 1.0
      * @param valueCount the number of values per cache entry. Must be positive.
      * @param maxSize the maximum number of bytes this cache should use to store
      * @throws IOException if reading or writing the cache directory fails
@@ -685,7 +685,7 @@ public final class DiskLruCache implements Closeable {
         if (journalWriter == null) {
             return; // already closed
         }
-        for (Entry entry : new ArrayList<Entry>(lruEntries.values())) {
+        for (Entry entry : new ArrayList<>(lruEntries.values())) {
             if (entry.currentEditor != null) {
                 entry.currentEditor.abort();
             }

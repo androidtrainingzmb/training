@@ -12,7 +12,7 @@ import tcd.training.com.trainingproject.R;
  */
 
 public class EarthQuake {
-    private static final String LOCATION_SEPERATOR = " of ";
+    private static final String LOCATION_SEPARATOR = " of ";
 
     private float mMagnitude;
     private String mPlace;
@@ -37,14 +37,14 @@ public class EarthQuake {
     }
 
     public String getLocationOffset(Context context) {
-        return mPlace.contains(LOCATION_SEPERATOR)
-                ? mPlace.split(LOCATION_SEPERATOR)[0] + LOCATION_SEPERATOR
+        return mPlace.contains(LOCATION_SEPARATOR)
+                ? mPlace.split(LOCATION_SEPARATOR)[0] + LOCATION_SEPARATOR
                 : context.getString(R.string.near_the);
     }
 
     public String getPrimaryLocation() {
-        return mPlace.contains(LOCATION_SEPERATOR)
-                ? mPlace.split(LOCATION_SEPERATOR)[1]
+        return mPlace.contains(LOCATION_SEPARATOR)
+                ? mPlace.split(LOCATION_SEPARATOR)[1]
                 : mPlace;
     }
 

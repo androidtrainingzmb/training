@@ -34,6 +34,7 @@ public class IntentServiceWithResultReceiver extends IntentService {
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        assert intent != null;
         mInteger = intent.getIntExtra(getString(R.string.integer_type), -1) + 1;
         mReceiver = intent.getParcelableExtra(getString(R.string.result_receiver));
         return super.onStartCommand(intent, flags, startId);

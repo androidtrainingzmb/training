@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="bottom"
-    tools:context="tcd.training.com.trainingproject.ExternalHardware.Camera.CameraAPI.TakePhotoUsingCameraApiActivity">
+    tools:context="tcd.training.com.trainingproject.ExternalHardware.Camera.CameraAPI.TakePhotoUsingCameraApiActivity"
+    android:baselineAligned="false">
 
     <FrameLayout
         android:id="@+id/fl_camera_preview"
@@ -35,6 +36,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@android:drawable/ic_menu_camera"
+            android:contentDescription="@string/capture"
             android:background="@android:color/transparent"/>
 
         <ImageButton
@@ -43,6 +45,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@android:drawable/stat_notify_sync"
+            android:contentDescription="@string/swap_camera"
             android:background="@android:color/transparent"/>
 
         <View

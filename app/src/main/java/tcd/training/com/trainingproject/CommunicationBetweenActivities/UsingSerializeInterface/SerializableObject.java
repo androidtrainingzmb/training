@@ -1,7 +1,5 @@
 package tcd.training.com.trainingproject.CommunicationBetweenActivities.UsingSerializeInterface;
 
-import tcd.training.com.trainingproject.CommunicationBetweenActivities.DemoObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,12 +10,12 @@ import java.util.HashMap;
 
 public class SerializableObject implements Serializable {
 
-    protected int mInteger;
-    protected double mDouble;
-    protected boolean mBoolean;
-    protected String mString;
-    protected ArrayList<String> mArrayList;
-    protected HashMap<String, String> mHashMap;
+    private int mInteger;
+    private double mDouble;
+    private boolean mBoolean;
+    private String mString;
+    private ArrayList<String> mArrayList;
+    private HashMap<String, String> mHashMap;
 
     public SerializableObject() {
 
@@ -32,51 +30,51 @@ public class SerializableObject implements Serializable {
         this.mHashMap = mHashMap;
     }
 
-    public void setmInteger(int mInteger) {
-        this.mInteger = mInteger;
+    public void setInteger(int integer) {
+        this.mInteger = integer;
     }
 
-    public void setmDouble(double mDouble) {
-        this.mDouble = mDouble;
+    public void setDouble(double doubleVal) {
+        this.mDouble = doubleVal;
     }
 
-    public void setmBoolean(boolean mBoolean) {
-        this.mBoolean = mBoolean;
+    public void setBoolean(boolean boolVal) {
+        this.mBoolean = boolVal;
     }
 
-    public void setmString(String mString) {
-        this.mString = mString;
+    public void setString(String string) {
+        this.mString = string;
     }
 
-    public void setmArrayList(ArrayList<String> mArrayList) {
+    public void setArrayList(ArrayList<String> mArrayList) {
         this.mArrayList = mArrayList;
     }
 
-    public void setmHashMap(HashMap<String, String> mHashMap) {
+    public void setHashMap(HashMap<String, String> mHashMap) {
         this.mHashMap = mHashMap;
     }
 
-    public int getmInteger() {
+    public int getInteger() {
         return mInteger;
     }
 
-    public double getmDouble() {
+    public double getDouble() {
         return mDouble;
     }
 
-    public String getmString() {
+    public String getString() {
         return mString;
     }
 
-    public boolean ismBoolean() {
+    public boolean isBoolean() {
         return mBoolean;
     }
 
-    public ArrayList<String> getmArrayList() {
+    public ArrayList<String> getArrayList() {
         return mArrayList;
     }
 
-    public HashMap<String, String> getmHashMap() {
+    public HashMap<String, String> getHashMap() {
         return mHashMap;
     }
 }

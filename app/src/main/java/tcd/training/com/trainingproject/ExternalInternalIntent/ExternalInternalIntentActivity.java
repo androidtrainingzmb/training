@@ -18,8 +18,8 @@ public class ExternalInternalIntentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_external_internal_intent);
 
-        Button internalIntentButton = (Button) findViewById(R.id.btn_internal_intent);
-        Button externalIntentButton = (Button) findViewById(R.id.btn_external_intent);
+        Button internalIntentButton = findViewById(R.id.btn_internal_intent);
+        Button externalIntentButton = findViewById(R.id.btn_external_intent);
 
         internalIntentButton.setOnClickListener(new View.OnClickListener() {
             @Override

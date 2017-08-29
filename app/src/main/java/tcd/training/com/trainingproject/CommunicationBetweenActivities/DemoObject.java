@@ -1,6 +1,5 @@
 package tcd.training.com.trainingproject.CommunicationBetweenActivities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,6 +8,7 @@ import java.util.HashMap;
  */
 
 public class DemoObject {
+
     protected int mInteger;
     protected double mDouble;
     protected boolean mBoolean;
@@ -29,51 +29,51 @@ public class DemoObject {
         this.mHashMap = mHashMap;
     }
 
-    public void setmInteger(int mInteger) {
+    public void setInteger(int mInteger) {
         this.mInteger = mInteger;
     }
 
-    public void setmDouble(double mDouble) {
-        this.mDouble = mDouble;
+    public void setDouble(double doubleVal) {
+        this.mDouble = doubleVal;
     }
 
-    public void setmBoolean(boolean mBoolean) {
-        this.mBoolean = mBoolean;
+    public void setBoolean(boolean boolVal) {
+        this.mBoolean = boolVal;
     }
 
-    public void setmString(String mString) {
-        this.mString = mString;
+    public void setString(String string) {
+        this.mString = string;
     }
 
-    public void setmArrayList(ArrayList<String> mArrayList) {
+    public void setArrayList(ArrayList<String> mArrayList) {
         this.mArrayList = mArrayList;
     }
 
-    public void setmHashMap(HashMap<String, String> mHashMap) {
+    public void setHashMap(HashMap<String, String> mHashMap) {
         this.mHashMap = mHashMap;
     }
 
-    public int getmInteger() {
+    public int getInteger() {
         return mInteger;
     }
 
-    public double getmDouble() {
+    public double getDouble() {
         return mDouble;
     }
 
-    public String getmString() {
+    public String getString() {
         return mString;
     }
 
-    public boolean ismBoolean() {
+    public boolean isBoolean() {
         return mBoolean;
     }
 
-    public ArrayList<String> getmArrayList() {
+    public ArrayList<String> getArrayList() {
         return mArrayList;
     }
 
-    public HashMap<String, String> getmHashMap() {
+    public HashMap<String, String> getHashMap() {
         return mHashMap;
     }
 }

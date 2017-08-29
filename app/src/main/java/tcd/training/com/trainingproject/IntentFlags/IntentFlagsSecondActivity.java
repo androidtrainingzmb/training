@@ -17,9 +17,9 @@ import tcd.training.com.trainingproject.R;
 public class IntentFlagsSecondActivity extends AppCompatActivity {
     private static final String TAG = IntentFlagsSecondActivity.class.getSimpleName();
 
-    Intent intent = null;
-    int flag = -1;
-    String instruction = "";
+    private Intent intent = null;
+    private int flag = -1;
+    private String instruction = "";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -50,11 +50,11 @@ public class IntentFlagsSecondActivity extends AppCompatActivity {
         flagOptions.put(Intent.FLAG_ACTIVITY_TASK_ON_HOME, "FLAG_ACTIVITY_TASK_ON_HOME");
 
         // layout components
-        Button toNextActivityButton = (Button) findViewById(R.id.btn_to_next_activity);
+        Button toNextActivityButton = findViewById(R.id.btn_to_next_activity);
         toNextActivityButton.setText(IntentFlagsThirdActivity.class.getSimpleName());
-        TextView intentFlagNameTextView = (TextView) findViewById(R.id.tv_intent_flag_name);
+        TextView intentFlagNameTextView = findViewById(R.id.tv_intent_flag_name);
         intentFlagNameTextView.setText(flagOptions.get(getIntent().getFlags()));
-        final TextView instructionTextView = (TextView) findViewById(R.id.tv_instruction);
+        final TextView instructionTextView = findViewById(R.id.tv_instruction);
 
         toNextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +133,7 @@ public class IntentFlagsSecondActivity extends AppCompatActivity {
                 toNextActivityButton.setVisibility(View.GONE);
         }
 
-        if (instructionTextView.getText().toString() == null) {
+        if (instructionTextView.getText().toString().length() == 0) {
             instructionTextView.setText("Tap below button to navigate to another activity.\n" + instruction);
         }
     }

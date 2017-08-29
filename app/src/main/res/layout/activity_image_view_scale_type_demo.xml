@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="16dp"
-    tools:context="tcd.training.com.trainingproject.ImagesProcessing.ScaleTypeActivity">
+    tools:context="tcd.training.com.trainingproject.ImageProcessing.ScaleTypeActivity">
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -140,6 +140,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/image"
         android:background="@android:color/darker_gray"
         android:padding="1dp"
         android:layout_gravity="center"

@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ImagesProcessing;
+package tcd.training.com.trainingproject.ImageProcessing;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +10,14 @@ import android.widget.ListView;
 
 import java.util.LinkedHashMap;
 
-import tcd.training.com.trainingproject.ImagesProcessing.CacheImages.CacheImageUsingDiskActivity;
-import tcd.training.com.trainingproject.ImagesProcessing.CacheImages.CacheImageUsingExternalLibraryActivity;
-import tcd.training.com.trainingproject.ImagesProcessing.CacheImages.CacheImageUsingMemoryActivity;
-import tcd.training.com.trainingproject.ImagesProcessing.LoadImages.LoadImageFromSdCardActivity;
-import tcd.training.com.trainingproject.ImagesProcessing.LoadImages.LoadImageFromUrlActivity;
+import tcd.training.com.trainingproject.ImageProcessing.CacheImages.CacheImageUsingDiskActivity;
+import tcd.training.com.trainingproject.ImageProcessing.CacheImages.CacheImageUsingExternalLibraryActivity;
+import tcd.training.com.trainingproject.ImageProcessing.CacheImages.CacheImageUsingMemoryActivity;
+import tcd.training.com.trainingproject.ImageProcessing.LoadImages.LoadImageFromSdCardActivity;
+import tcd.training.com.trainingproject.ImageProcessing.LoadImages.LoadImageFromUrlActivity;
 import tcd.training.com.trainingproject.R;
 
-public class ImagesProcessingActivity extends AppCompatActivity {
-
-    private ListView mTopicsListView;
+public class ImageProcessingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +33,15 @@ public class ImagesProcessingActivity extends AppCompatActivity {
         topics.put("6. Cache images using Glide demo", CacheImageUsingExternalLibraryActivity.class);
         topics.put("7. Cache images using Picasso demo", CacheImageUsingExternalLibraryActivity.class);
 
-        mTopicsListView = findViewById(R.id.list_view);
+        ListView topicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
-        mTopicsListView.setAdapter(arrayAdapter);
-        mTopicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
+        topicsListView.setAdapter(arrayAdapter);
+        topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(ImagesProcessingActivity.this, topics.get(key));
+                Intent intent = new Intent(ImageProcessingActivity.this, topics.get(key));
                 if (key.contains("Glide")) {
                     intent.putExtra(getString(R.string.integer_type), CacheImageUsingExternalLibraryActivity.GLIDE_METHOD);
                 } else if (key.contains("Picasso")) {

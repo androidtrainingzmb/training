@@ -1,5 +1,6 @@
-package tcd.training.com.trainingproject.ImagesProcessing.CacheImages;
+package tcd.training.com.trainingproject.ImageProcessing.CacheImages;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
@@ -48,14 +49,13 @@ public class CacheImageUsingExternalLibraryActivity extends AppCompatActivity {
     private LinearLayout mRootLinearLayout;
     private Switch mUsingCacheSwitch;
     private TextView mShownImagesTextView;
-    private Spinner mMethodSpinner;
     private Button mRefreshButton;
 
     // loading info
     private long mStartTime;
     private int mImageIndex = 0;
-    private String[] mImagesUrl = new String[] {
-            "https://source.unsplash.com/19NtUg2HjeQ/",
+    private final String[] mImagesUrl = new String[] {
+            "https://source.unsplash.com/KF6EEForBB0/",
             "https://source.unsplash.com/MUHe6nNMXVI/",
             "https://source.unsplash.com/_Ajm-ewEC24/",
             "https://source.unsplash.com/mtu6m_nLFQI/",
@@ -149,6 +149,7 @@ public class CacheImageUsingExternalLibraryActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadAllImages() {
         // clean previous process
         mRootLinearLayout.removeAllViews();
@@ -206,13 +207,13 @@ public class CacheImageUsingExternalLibraryActivity extends AppCompatActivity {
     }
 
     private void createMethodSpinner() {
-        mMethodSpinner = new Spinner(this);
-        mMethodSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{"Glide", "Picasso"}));
-        ((LinearLayout)findViewById(R.id.linear_layout_root)).addView(mMethodSpinner, 0);
+        Spinner methodSpinner = new Spinner(this);
+        methodSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{"Glide", "Picasso"}));
+        ((LinearLayout)findViewById(R.id.linear_layout_root)).addView(methodSpinner, 0);
 
-        mMethodSpinner.setSelection(mCurrentMethod);
+        methodSpinner.setSelection(mCurrentMethod);
 
-        mMethodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        methodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mCurrentMethod = i;

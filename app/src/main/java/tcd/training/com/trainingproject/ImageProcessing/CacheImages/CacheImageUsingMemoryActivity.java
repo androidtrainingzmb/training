@@ -1,5 +1,6 @@
-package tcd.training.com.trainingproject.ImagesProcessing.CacheImages;
+package tcd.training.com.trainingproject.ImageProcessing.CacheImages;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -22,7 +23,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
@@ -46,8 +46,8 @@ public class CacheImageUsingMemoryActivity extends AppCompatActivity {
     // loading info
     private long mStartTime;
     private int mImageIndex = 0;
-    private String[] mImagesUrl = new String[] {
-            "https://source.unsplash.com/19NtUg2HjeQ/",
+    private final String[] mImagesUrl = new String[] {
+            "https://source.unsplash.com/KF6EEForBB0/",
             "https://source.unsplash.com/MUHe6nNMXVI/",
             "https://source.unsplash.com/_Ajm-ewEC24/",
             "https://source.unsplash.com/mtu6m_nLFQI/",
@@ -114,6 +114,7 @@ public class CacheImageUsingMemoryActivity extends AppCompatActivity {
         mIsUsingCache = mUsingCacheSwitch.isChecked();
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadAllImages() {
         // clean previous process
         mRootLinearLayout.removeAllViews();
@@ -174,9 +175,7 @@ public class CacheImageUsingMemoryActivity extends AppCompatActivity {
             try {
                 bitmap = Glide.with(CacheImageUsingMemoryActivity.this).load(strings[0]).asBitmap().into(500, 500).get();
                 addBitmapToMemoryCache(strings[0], bitmap);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
             return bitmap;
@@ -201,8 +200,6 @@ public class CacheImageUsingMemoryActivity extends AppCompatActivity {
                             increaseImageIndex();
                         }
                     });
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

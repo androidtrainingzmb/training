@@ -1,30 +1,22 @@
 package tcd.training.com.trainingproject.ExternalHardware.AudioPlayer;
 
-import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -49,7 +41,6 @@ import tcd.training.com.trainingproject.R;
 public class AudioPlayerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = AudioPlayerActivity.class.getSimpleName();
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     public static final int USING_MEDIA_PLAYER_METHOD = 2;
     public static final int USING_EXO_PLAYER_METHOD = 3;
 
@@ -85,6 +76,10 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
             mMediaPlayer = null;
+        }
+        if (mExoPlayer != null) {
+            mExoPlayer.release();
+            mExoPlayer = null;
         }
     }
 
@@ -129,7 +124,6 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
 
     private void initializeExoPlayerComponents() {
         // 1. Create a default TrackSelector
-        Handler mainHandler = new Handler();
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
         TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
@@ -161,6 +155,8 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
 
             } while (cursor.moveToNext());
         }
+        assert cursor != null;
+        cursor.close();
     }
 
     private void playSong() {
@@ -227,6 +223,8 @@ public class AudioPlayerActivity extends AppCompatActivity implements View.OnCli
                 }
             } while (cursor.moveToNext());
         }
+        assert cursor != null;
+        cursor.close();
     }
 
     @Override

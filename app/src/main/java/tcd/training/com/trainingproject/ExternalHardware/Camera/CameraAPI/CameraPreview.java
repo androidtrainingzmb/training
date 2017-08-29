@@ -1,5 +1,6 @@
 package tcd.training.com.trainingproject.ExternalHardware.Camera.CameraAPI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
@@ -12,6 +13,7 @@ import java.io.IOException;
  * Created by cpu10661-local on 15/08/2017.
  */
 
+@SuppressLint("ViewConstructor")
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
 
     private static final String TAG = CameraPreview.class.getSimpleName();

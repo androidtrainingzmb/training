@@ -9,7 +9,6 @@
     <string name="empty_note_title_error">Note title is required.</string>
     <string name="empty_note_content_error">Note content is required.</string>
     <string name="require_external_storage_permission_error">This feature requires permission to access to external storage.</string>
-    <string name="title_activity_settings">Settings</string>
 
     <!--fragment-->
     <string name="rotate_screen_message">Rotate device to see the expanded screen.</string>
@@ -34,14 +33,11 @@
     <string name="choose_send_option">Choose a method to send data to another activity.\nThe data includes an integer, a boolean, a double, a string, an array list and a hash map.</string>
 
     <!--services-->
-    <string name="my_intent_service">MyIntentService</string>
     <string name="result_receiver">Result Receiver</string>
     <string name="broadcast_receiver">Broadcast Receiver</string>
     <string name="event_bus">Event bus</string>
     <string name="rx_java">RxJava</string>
     <string name="intent_service_explanation">This is an IntentService demo.\nChoose a communication option and the current integer will be sent to the corresponding service using that method. Right after that, the service will increment that value and send it back to this activity. Finally, the result will be updated on screen.</string>
-    <string name="start_alarm">Start alarm</string>
-    <string name="end_alarm">End alarm</string>
     <string name="extending_binder_service_explanation">This demonstrates the bound service using the extended Binder class.\nWhen the button is tapped, the current integer will be sent to the service via binding method.\nRight after that, the service will increment that value and send it back to this activity using Local Broadcast Manager. Finally, the result will be updated on screen.</string>
     <string name="increment_by_one">Increment by 1</string>
     <string name="custom_service_explanation">This is a custom service with a scheduled alarm.\nWhen the button StartAlarm is tapped, the alarm is fired and the below number will be automatically incremented after a certain time.</string>
@@ -55,9 +51,7 @@
     <string name="image_size">Image size</string>
     <string name="small">Small</string>
     <string name="large">Large</string>
-    <string name="orientation">Orientation</string>
     <string name="portrait">Portrait</string>
-    <string name="landscape">Landscape</string>
     <string name="choose_scale_type">Choose a scale type</string>
     <string-array name="scale_type_arrays">
         <item>center</item>
@@ -77,13 +71,19 @@
     <string name="medium">Medium</string>
 
     <!--external hardware-->
+    <string name="rewind">Rewind</string>
+    <string name="play">Play</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="fast_forward">Fast forward</string>
     <string name="handling_cursor_error">There was a problem handling cursor</string>
     <string name="no_media_error">No media on this device</string>
     <string name="grant">Grant</string>
     <string name="current_position">curPos</string>
     <string name="pick_using_action_get_content">Pick image using ACTION_GET_CONTENT action</string>
-    <string name="pick_using_MultipleImagePick">Pick image using MultipleImagePick library</string>
+    <string name="require_jelly_bean_mr2_above_error">This feature requires version JellyBean 4.2.2 or above</string>
     <string name="pick_using_custom_gallery">Pick images using custom gallery</string>
+    <string name="select">Select</string>
     <string name="pick_using_library">Pick images using custom library (FishBun)</string>
     <string name="current_location">Current location</string>
     <string name="latitude">Latitude</string>
@@ -101,25 +101,13 @@
     <string name="require_camera_permission_error">This feature requires permission to access camera</string>
     <string name="take_photo_default_camera">Take photo using default camera</string>
     <string name="take_photo_camera_api">Take photo using Camera API</string>
+    <string name="capture">Capture</string>
+    <string name="swap_camera">Swap camera</string>
     <string name="take_photo_camera2_api">Take photo using Camera2 API</string>
     <string name="require_lollipop_above_error">This feature requires version Lollipop or above</string>
-    <string name="proximity_not_available">Proximity sensor not available</string>
-    <string name="light_sensor_not_available">Light sensor not available</string>
-    <string name="sensors_explanation">This demonstrates multiple sensors capability (Proximity sensor, Light sensor and Accelerometer) by displaying its values when the event is triggered.\nAdditionally, there are some usage demos:\n- With light sensor, the screen brightness will be adjusted to fit the surrounding environment light.\n- In terms of the other two sensors, turn the phone face down the table and the phone will be changed to vibrate mode.</string>
-    <string name="proximity_sensor">Proximitiy sensor</string>
-    <string name="accelerometer">Accelerometer</string>
-    <string name="light_sensor">Light sensor</string>
-    <string name="sensor_not_available">Sensor not available</string>
-    <string name="nothing_nearby">Nothing is nearby</string>
-    <string name="screen_face_up">Now screen is facing up</string>
-    <string name="phone_stand_up">Now the phone is standing up</string>
-    <string name="screen_face_down">Now the screen is facing down</string>
-    <string name="gyroscope_not_available">Gyroscope not available</string>
-    <string name="gyroscope_explanation">Tilt the device to see the effect.</string>
-    <string name="rotation_vector_sensor_explanation">Rotate the device to see the effect.</string>
-    <string name="step_counter_not_available">Step counter sensor not available</string>
-    <string name="number_of_steps">Number of steps since reboot</string>
     <string name="take_photo_library">Take photo using custom library</string>
+
+    <!--networking-->
     <string name="near_the">Near by</string>
     <string name="volley_library">Volley Library</string>
     <string name="mobile_data">Mobile data</string>
@@ -128,6 +116,23 @@
     <string name="network_not_available">Required network not available</string>
     <string name="connection_type">Connection type</string>
     <string name="download_method">Download method</string>
-    <string name="downloading">Downloading...</string>
+    <string name="downloading">Downloading&#8230;</string>
+
+    <!--sensors-->
+    <string name="sensors_explanation">This demonstrates multiple sensors capability (Proximity sensor, Light sensor and Accelerometer) by displaying its values when the event is triggered.\nAdditionally, there are some usage demos:\n- With light sensor, the screen brightness will be adjusted to fit the surrounding environment light.\n- In terms of the other two sensors, turn the phone face down the table and the phone will be changed to vibrate mode.</string>
+    <string name="proximity_sensor">Proximity sensor</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="light_sensor">Light sensor</string>
+    <string name="sensor_not_available">Sensor not available</string>
+    <string name="nothing_nearby">Nothing is nearby</string>
+    <string name="screen_face_up">Now screen is facing up</string>
+    <string name="phone_stand_up">Now the phone is standing up</string>
+    <string name="screen_face_down">Now the screen is facing down</string>
+    <string name="north_direction">North direction</string>
+    <string name="gyroscope_not_available">Gyroscope not available</string>
+    <string name="gyroscope_explanation">Tilt the device to see the effect.</string>
+    <string name="rotation_vector_sensor_explanation">Rotate the device to see the effect.</string>
+    <string name="step_counter_not_available">Step counter sensor not available</string>
+    <string name="number_of_steps">Number of steps since reboot</string>
 </resources>
 

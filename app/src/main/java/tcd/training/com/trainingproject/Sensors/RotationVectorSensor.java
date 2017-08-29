@@ -1,17 +1,12 @@
 package tcd.training.com.trainingproject.Sensors;
 
-import android.graphics.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.Vibrator;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -25,7 +20,6 @@ public class RotationVectorSensor extends AppCompatActivity implements SensorEve
     private static final String TAG = RotationVectorSensor.class.getSimpleName();
 
     private ImageView mImageView;
-    private TextView mRotationVectorSensorTextView;
 
     private SensorManager mSensorManager;
     private Sensor mRotationVectorSensor;
@@ -50,8 +44,8 @@ public class RotationVectorSensor extends AppCompatActivity implements SensorEve
     private void initializeUiComponents() {
         mImageView = findViewById(R.id.iv_image_demo);
 
-        mRotationVectorSensorTextView = findViewById(R.id.tv_sensor_explanation);
-        mRotationVectorSensorTextView.setText(getString(R.string.rotation_vector_sensor_explanation));
+        TextView rotationVectorSensorTextView = findViewById(R.id.tv_sensor_explanation);
+        rotationVectorSensorTextView.setText(getString(R.string.rotation_vector_sensor_explanation));
     }
 
     @Override

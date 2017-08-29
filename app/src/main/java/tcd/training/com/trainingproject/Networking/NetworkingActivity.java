@@ -1,10 +1,8 @@
 package tcd.training.com.trainingproject.Networking;
 
-import android.app.ProgressDialog;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,8 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -23,11 +19,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,14 +31,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
-
-import javax.security.auth.login.LoginException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -66,7 +56,6 @@ public class NetworkingActivity extends AppCompatActivity {
     private final int READ_TIMEOUT = 10000;
     private final int CONNECT_TIMEOUT = 15000;
 
-    private RecyclerView mEarthquakeRecyclerView;
     private EarthQuakeAdapter mEarthQuakeAdapter;
     private ArrayList<EarthQuake> mEarthQuakeArrayList;
     private ProgressBar mProgressBar;
@@ -90,16 +79,16 @@ public class NetworkingActivity extends AppCompatActivity {
 
     private void initializeUiComponents() {
         // recycler view
-        mEarthquakeRecyclerView = findViewById(R.id.rv_earthquakes_list);
+        RecyclerView earthquakeRecyclerView = findViewById(R.id.rv_earthquakes_list);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mEarthquakeRecyclerView.setLayoutManager(layoutManager);
+        earthquakeRecyclerView.setLayoutManager(layoutManager);
 
-        mEarthquakeRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        earthquakeRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mEarthQuakeArrayList = new ArrayList<>();
         mEarthQuakeAdapter = new EarthQuakeAdapter(this, mEarthQuakeArrayList);
-        mEarthquakeRecyclerView.setAdapter(mEarthQuakeAdapter);
+        earthquakeRecyclerView.setAdapter(mEarthQuakeAdapter);
 
         // others
         mProgressBar = findViewById(R.id.pb_download_progress);
@@ -229,7 +218,7 @@ public class NetworkingActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    class RetrieveEarthquakesTask extends AsyncTask<String, Void, Void> {
+    private class RetrieveEarthquakesTask extends AsyncTask<String, Void, Void> {
 
         @Override
         protected Void doInBackground(String... strings) {
@@ -237,9 +226,6 @@ public class NetworkingActivity extends AppCompatActivity {
             InputStream inputStream = null;
             try {
                 URL url = new URL(strings[0]);
-                if (url == null) {
-                    return null;
-                }
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
@@ -253,8 +239,6 @@ public class NetworkingActivity extends AppCompatActivity {
                     readEarthquakesFromJsonResponse(jsonResponse);
                 }
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

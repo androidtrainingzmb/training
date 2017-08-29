@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.concurrent.Callable;
@@ -83,8 +82,6 @@ public class ThreadPoolExecutorUsingCallableActivity extends AppCompatActivity {
                             try {
                                 InputStream inputStream = new URL(mImageUrl).openStream();
                                 bitmap = BitmapFactory.decodeStream(inputStream);
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -97,9 +94,7 @@ public class ThreadPoolExecutorUsingCallableActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 displayImage(result.get(), threadId);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
+                            } catch (InterruptedException | ExecutionException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -132,8 +127,7 @@ public class ThreadPoolExecutorUsingCallableActivity extends AppCompatActivity {
         mStartTime = Calendar.getInstance().getTimeInMillis();
     }
 
-    private boolean displayImage(final Bitmap bitmap, final int threadId) {
-
+    private void displayImage(final Bitmap bitmap, final int threadId) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -153,8 +147,5 @@ public class ThreadPoolExecutorUsingCallableActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        return true;
     }
 }

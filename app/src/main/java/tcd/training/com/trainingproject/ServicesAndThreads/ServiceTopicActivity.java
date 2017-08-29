@@ -22,8 +22,6 @@ import tcd.training.com.trainingproject.ServicesAndThreads.ThreadPoolExecutor.Th
 
 public class ServiceTopicActivity extends AppCompatActivity {
 
-    private ListView topicsListView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +40,9 @@ public class ServiceTopicActivity extends AppCompatActivity {
         topics.put("10. ThreadPoolExecutor using Runnable demo", ThreadPoolExecutorUsingRunnableActivity.class);
         topics.put("11. ThreadPoolExecutor using Callable demo", ThreadPoolExecutorUsingCallableActivity.class);
 
-        topicsListView = (ListView) findViewById(R.id.list_view);
+        ListView topicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
         topicsListView.setAdapter(arrayAdapter);
         topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

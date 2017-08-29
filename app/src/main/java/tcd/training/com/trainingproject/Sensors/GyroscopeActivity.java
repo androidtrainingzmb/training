@@ -11,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,13 +22,11 @@ public class GyroscopeActivity extends AppCompatActivity implements  SensorEvent
     private static final String TAG = GyroscopeActivity.class.getSimpleName();
 
     private ImageView mImageView;
-    private TextView mGyroscopeExplanationTextView;
 
     private Matrix mMatrix;
-    private float MAX_ROTATE_ANGLE = 20;
+    private static final float MAX_ROTATE_ANGLE = 20f;
     private float mCurrentAngle = 0f;
-    int mImageHeight, mImageWidth;
-    int mScreenHeight, mScreenWidth;
+    private int mScreenHeight, mScreenWidth;
 
     private SensorManager mSensorManager;
     private Sensor mGyroscope;
@@ -62,15 +58,15 @@ public class GyroscopeActivity extends AppCompatActivity implements  SensorEvent
     private void initializeSizeComponents() {
         mMatrix = new Matrix();
 
-        mImageWidth = mImageView.getDrawable().getIntrinsicWidth();
-        mImageHeight = mImageView.getDrawable().getIntrinsicHeight();
+        int imageWidth = mImageView.getDrawable().getIntrinsicWidth();
+        int imageHeight = mImageView.getDrawable().getIntrinsicHeight();
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         mScreenWidth = displayMetrics.widthPixels;
         mScreenHeight = displayMetrics.heightPixels;
 
-        RectF drawableRect = new RectF(0, 0, mImageWidth, mImageHeight);
+        RectF drawableRect = new RectF(0, 0, imageWidth, imageHeight);
         RectF viewRect = new RectF(0, 0, mScreenWidth, mScreenHeight);
         mMatrix.setRectToRect(drawableRect, viewRect, Matrix.ScaleToFit.CENTER);
     }
@@ -78,8 +74,8 @@ public class GyroscopeActivity extends AppCompatActivity implements  SensorEvent
     private void initializeUiComponents() {
         mImageView = findViewById(R.id.iv_image_demo);
 
-        mGyroscopeExplanationTextView = findViewById(R.id.tv_sensor_explanation);
-        mGyroscopeExplanationTextView.setText(getString(R.string.gyroscope_explanation));
+        TextView gyroscopeExplanationTextView = findViewById(R.id.tv_sensor_explanation);
+        gyroscopeExplanationTextView.setText(getString(R.string.gyroscope_explanation));
     }
 
     private void initializeSensorComponents() {

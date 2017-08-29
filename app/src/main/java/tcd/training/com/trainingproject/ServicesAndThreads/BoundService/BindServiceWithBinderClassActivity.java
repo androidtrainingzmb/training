@@ -22,10 +22,9 @@ public class BindServiceWithBinderClassActivity extends AppCompatActivity {
 //    public static final TAG = BindServiceWithBinderClassActivity.class.getSimpleName();
 
     private TextView mIntegerValueTextView;
-    private Button incrementByOneButton;
 
-    ExtendingBinderClassService mExtendingBinderService;
-    boolean mBound = false;
+    private ExtendingBinderClassService mExtendingBinderService;
+    private boolean mBound = false;
     private ServiceConnection mConnection;
     private BroadcastReceiver mReceiver;
     private int mInteger = 0;
@@ -38,7 +37,7 @@ public class BindServiceWithBinderClassActivity extends AppCompatActivity {
         mIntegerValueTextView = findViewById(R.id.tv_integer_value);
         mIntegerValueTextView.setText(String.valueOf(mInteger));
 
-        incrementByOneButton = findViewById(R.id.btn_increment_by_one);
+        Button incrementByOneButton = findViewById(R.id.btn_increment_by_one);
         incrementByOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

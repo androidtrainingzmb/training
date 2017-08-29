@@ -1,5 +1,6 @@
-package tcd.training.com.trainingproject.ImagesProcessing.CacheImages;
+package tcd.training.com.trainingproject.ImageProcessing.CacheImages;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -18,7 +19,6 @@ import com.bumptech.glide.disklrucache.DiskLruCache;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 
@@ -117,6 +117,7 @@ public class CacheImageUsingDiskActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadAllImages() {
         // clean previous process
         mRootLinearLayout.removeAllViews();
@@ -155,8 +156,6 @@ public class CacheImageUsingDiskActivity extends AppCompatActivity {
                 try {
                     URL url = new URL(strings[0]);
                     bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

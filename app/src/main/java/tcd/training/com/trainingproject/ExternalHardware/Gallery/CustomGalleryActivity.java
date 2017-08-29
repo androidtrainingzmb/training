@@ -9,22 +9,18 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.zip.Inflater;
 
 import tcd.training.com.trainingproject.R;
 
@@ -48,6 +44,7 @@ public class CustomGalleryActivity extends AppCompatActivity {
         final String orderBy = MediaStore.Images.Media._ID;
         Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null, null, orderBy);
 
+        assert imageCursor != null;
         mCount = imageCursor.getCount();
         mThumbnailSelections = new boolean[mCount];
         mArrPath = new String[mCount];
@@ -73,8 +70,7 @@ public class CustomGalleryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, 1, Menu.NONE, "Select")
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(Menu.NONE, 1, Menu.NONE, R.string.select).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return true;
     }
 
@@ -124,7 +120,7 @@ public class CustomGalleryActivity extends AppCompatActivity {
         }.execute();
     }
 
-    public class ImageAdapter extends BaseAdapter {
+    private class ImageAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -187,7 +183,8 @@ public class CustomGalleryActivity extends AppCompatActivity {
             });
             try {
                 setBitmap(holder.thumbnailImageView, mIds[position]);
-            } catch (Throwable e) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             holder.pickCheckbox.setChecked(mThumbnailSelections[position]);
             holder.id = position;

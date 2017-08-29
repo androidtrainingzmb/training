@@ -65,6 +65,7 @@
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 android:src="@android:drawable/ic_media_rew"
+                android:contentDescription="@string/rewind"
                 android:onClick="onClick"/>
 
             <ImageButton
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/previous"
                 android:src="@android:drawable/ic_media_previous"/>
 
             <ImageButton
@@ -81,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/play"
                 android:src="@android:drawable/ic_media_play"/>
 
             <ImageButton
@@ -89,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/next"
                 android:src="@android:drawable/ic_media_next"/>
 
             <ImageButton
@@ -97,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/fast_forward"
                 android:src="@android:drawable/ic_media_ff"/>
 
         </LinearLayout>

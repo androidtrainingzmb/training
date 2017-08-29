@@ -18,7 +18,7 @@ public class ParcelableObject extends DemoObject implements Parcelable {
         super(mInteger, mDouble, mBoolean, mString, mArrayList, mHashMap);
     }
 
-    protected ParcelableObject(Parcel in) {
+    private ParcelableObject(Parcel in) {
         mInteger = in.readInt();
         mDouble = in.readDouble();
         mBoolean = in.readByte() != 0;

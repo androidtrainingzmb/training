@@ -1,6 +1,7 @@
 package tcd.training.com.trainingproject.Fragments;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,6 +44,7 @@ public class TabPageFragment extends Fragment {
         mPage = getArguments().getInt(ARG_PAGE);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

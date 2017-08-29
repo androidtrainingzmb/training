@@ -46,9 +46,9 @@ public class IntentFlagsActivity extends AppCompatActivity {
         flagOptions.put("FLAG_ACTIVITY_SINGLE_TOP", Intent.FLAG_ACTIVITY_SINGLE_TOP);
         flagOptions.put("FLAG_ACTIVITY_TASK_ON_HOME", Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 
-        ListView flagOptionsList = (ListView) findViewById(R.id.list_view);
+        ListView flagOptionsList = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text1, flagOptions.keySet().toArray(new String[0]));
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_2, android.R.id.text1, flagOptions.keySet().toArray(new String[0]));
         flagOptionsList.setAdapter(arrayAdapter);
         flagOptionsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

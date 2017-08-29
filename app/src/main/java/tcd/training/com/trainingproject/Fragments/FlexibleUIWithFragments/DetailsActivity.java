@@ -7,8 +7,6 @@ import android.os.Bundle;
 
 public class DetailsActivity extends AppCompatActivity implements DetailsFragment.ICommunicate {
 
-    private static final String TAG_LOG = DetailsActivity.class.getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

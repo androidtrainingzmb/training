@@ -15,7 +15,7 @@ import tcd.training.com.trainingproject.R;
 
 public class IntentServiceWithEventBus extends IntentService {
 
-    public static final String TAG = IntentServiceWithEventBus.class.getSimpleName();
+    private static final String TAG = IntentServiceWithEventBus.class.getSimpleName();
 
     private static int mInteger;
 
@@ -31,6 +31,7 @@ public class IntentServiceWithEventBus extends IntentService {
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         Log.e(TAG, "onHandleIntent: ");
+        assert intent != null;
         mInteger = intent.getIntExtra(getString(R.string.integer_type), -1) + 1;
         return super.onStartCommand(intent, flags, startId);
     }

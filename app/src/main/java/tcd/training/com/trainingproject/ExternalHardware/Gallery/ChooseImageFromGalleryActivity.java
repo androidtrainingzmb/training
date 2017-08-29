@@ -4,12 +4,12 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -36,6 +36,7 @@ public class ChooseImageFromGalleryActivity extends AppCompatActivity {
     private ViewPagerAdapter mViewPagerAdapter;
     private ArrayList<String> mImagesPathList;
     private int mCurrentPage;
+    private boolean mIsViewPagerSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +74,16 @@ public class ChooseImageFromGalleryActivity extends AppCompatActivity {
     }
 
     private void pickImagesUsingActionGetContent() {
+        // ensure compatible OS version
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            Toast.makeText(this, R.string.require_jelly_bean_mr2_above_error, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         Intent chooserIntent = Intent.createChooser(intent, "Select Image");
-        chooserIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(chooserIntent, PICK_IMAGE_USING_ACTION_GET_CONTENT);
     }
 
@@ -95,6 +101,7 @@ public class ChooseImageFromGalleryActivity extends AppCompatActivity {
         mViewPagerAdapter = new ViewPagerAdapter(this, mImagesPathList);
         mViewPager = findViewById(R.id.vp_slide_show);
         mViewPager.setAdapter(mViewPagerAdapter);
+        mIsViewPagerSet = false;
     }
 
     @Override
@@ -151,6 +158,7 @@ public class ChooseImageFromGalleryActivity extends AppCompatActivity {
     private String getPathFromContentUri(Uri uri) {
         // get the document ID
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        assert cursor != null;
         cursor.moveToFirst();
         String wholeId = cursor.getString(0);
         // get the id
@@ -161,6 +169,7 @@ public class ChooseImageFromGalleryActivity extends AppCompatActivity {
         cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, new String[]{ id }, null);
         // and now the file path
         String filePath = "";
+        assert cursor != null;
         int columnIndex = cursor.getColumnIndex(column[0]);
         if (cursor.moveToFirst()) {
             filePath = cursor.getString(columnIndex);
@@ -171,21 +180,25 @@ public class ChooseImageFromGalleryActivity extends AppCompatActivity {
     }
 
     private void startSlideShow() {
-        mViewPager.setVisibility(View.VISIBLE);
-        final Handler handler = new Handler();
-        final Runnable update = new Runnable() {
-            public void run() {
-                if (mCurrentPage == mImagesPathList.size()) {
-                    mCurrentPage = 0;
+        if (!mIsViewPagerSet) {
+            mIsViewPagerSet = true;
+
+            mViewPager.setVisibility(View.VISIBLE);
+            final Handler handler = new Handler();
+            final Runnable update = new Runnable() {
+                public void run() {
+                    if (mCurrentPage == mImagesPathList.size()) {
+                        mCurrentPage = 0;
+                    }
+                    mViewPager.setCurrentItem(mCurrentPage++, true);
                 }
-                mViewPager.setCurrentItem(mCurrentPage++, true);
-            }
-        };
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        }, 0, SLIDE_SHOW_INTERVAL);
+            };
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(update);
+                }
+            }, 0, SLIDE_SHOW_INTERVAL);
+        }
     }
 }

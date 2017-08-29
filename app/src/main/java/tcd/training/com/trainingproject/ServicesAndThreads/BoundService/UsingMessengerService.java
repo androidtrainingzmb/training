@@ -1,5 +1,6 @@
 package tcd.training.com.trainingproject.ServicesAndThreads.BoundService;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
@@ -25,7 +26,7 @@ public class UsingMessengerService extends Service {
     private ServiceHandler mServiceHandler;
     private volatile HandlerThread mHandlerThread;
 
-    final Messenger mMessenger = new Messenger(new IncomingHandler());
+    private final Messenger mMessenger = new Messenger(new IncomingHandler());
 
     private int mInteger;
 
@@ -40,6 +41,7 @@ public class UsingMessengerService extends Service {
         }
     }
 
+    @SuppressLint("HandlerLeak")
     private class IncomingHandler extends Handler {
         @Override
         public void handleMessage(final Message msg) {

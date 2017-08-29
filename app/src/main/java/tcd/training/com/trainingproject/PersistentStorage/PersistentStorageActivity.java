@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -28,9 +25,7 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
 
     private static final int RC_ADD_NODE = 1;
 
-    private RecyclerView mNotesListRecyclerView;
     private NotesListAdapter mNoteListAdapter;
-    private FloatingActionButton mFAB;
 
 
     @Override
@@ -40,8 +35,8 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
 
         initializeRecyclerViewList();
 
-        mFAB = findViewById(R.id.fab);
-        mFAB.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PersistentStorageActivity.this, AddNoteActivity.class);
@@ -51,12 +46,12 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
     }
 
     private void initializeRecyclerViewList() {
-        mNotesListRecyclerView = (RecyclerView) findViewById(R.id.rv_notes_list);
+        RecyclerView notesListRecyclerView = findViewById(R.id.rv_notes_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mNotesListRecyclerView.setLayoutManager(layoutManager);
-        mNotesListRecyclerView.setHasFixedSize(true);
+        notesListRecyclerView.setLayoutManager(layoutManager);
+        notesListRecyclerView.setHasFixedSize(true);
         mNoteListAdapter = new NotesListAdapter(this);
-        mNotesListRecyclerView.setAdapter(mNoteListAdapter);
+        notesListRecyclerView.setAdapter(mNoteListAdapter);
 
         readNoteFromSharedPreferences();
         readNoteFromSQLite();
@@ -93,6 +88,7 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
     private Note readNoteFromFile(File file) {
         String title = file.getName();
         String content = "";
+
         // make sure that it's the compatible file type
         if (title.length() <= SAVED_FILE_EXTENSION.length() ||
                 !title.substring(title.length() - SAVED_FILE_EXTENSION.length()).equals(SAVED_FILE_EXTENSION)) {
@@ -107,14 +103,12 @@ public class PersistentStorageActivity extends AppCompatActivity implements Note
             }
             content = sb.toString();
             fileInputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            title = title.substring(0, title.length() - SAVED_FILE_EXTENSION.length());
-            return new Note(title, content, "");
         }
+
+        title = title.substring(0, title.length() - SAVED_FILE_EXTENSION.length());
+        return new Note(title, content, "");
     }
 
     private void readNoteFromSQLite() {

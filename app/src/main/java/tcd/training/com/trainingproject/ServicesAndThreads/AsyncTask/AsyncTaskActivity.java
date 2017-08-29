@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 
@@ -36,7 +35,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
     private Switch mUsingExecuteOnExecutorSwitch;
     private Button mStartDownloadButton;
     
-    boolean mDisplayImages = true;
+    private boolean mDisplayImages = true;
     private long mStartTime;
     private int mCount = 0;
 
@@ -88,7 +87,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
     private class DownloadImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 
-        private int mThreadId;
+        private final int mThreadId;
         private String mImageUrl;
 
         public DownloadImageAsyncTask(int threadId) {
@@ -105,8 +104,6 @@ public class AsyncTaskActivity extends AppCompatActivity {
             try {
                 InputStream inputStream = new URL(mImageUrl).openStream();
                 bitmap = BitmapFactory.decodeStream(inputStream);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

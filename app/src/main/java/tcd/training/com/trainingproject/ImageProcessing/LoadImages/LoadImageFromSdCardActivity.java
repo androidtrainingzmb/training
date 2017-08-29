@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ImagesProcessing.LoadImages;
+package tcd.training.com.trainingproject.ImageProcessing.LoadImages;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -7,11 +7,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,7 +110,8 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(mImagePath);
             createAnImageView().setImageBitmap(bitmap);
         } catch (OutOfMemoryError error) {
-
+            Log.e(TAG, "OutOfMemoryError");
+            error.printStackTrace();
         }
     }
 
@@ -158,10 +161,7 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
 
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     private void addMethodNameTextView(String methodName) {
@@ -187,7 +187,7 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
@@ -200,6 +200,8 @@ public class LoadImageFromSdCardActivity extends AppCompatActivity {
                 }
                 return;
             }
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

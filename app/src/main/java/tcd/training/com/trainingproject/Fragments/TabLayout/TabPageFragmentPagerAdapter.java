@@ -15,7 +15,7 @@ import static tcd.training.com.trainingproject.Fragments.FragmentTopicActivity.m
 
 public class TabPageFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private Context mContext;
+    private final Context mContext;
 
     public TabPageFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);

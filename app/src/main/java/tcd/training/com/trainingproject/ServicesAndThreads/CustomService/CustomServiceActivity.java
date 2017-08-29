@@ -26,10 +26,8 @@ public class CustomServiceActivity extends AppCompatActivity {
     private static int mInteger = 0;
 
     private TextView mIntegerValueTextView;
-    private Switch mToggleAlarmSwitch;
-    private Switch mToggleNotificationIconSwitch;
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             mInteger++;
@@ -44,8 +42,8 @@ public class CustomServiceActivity extends AppCompatActivity {
 
         mIntegerValueTextView = findViewById(R.id.tv_integer_value);
 
-        mToggleAlarmSwitch = findViewById(R.id.sw_toggle_alarm);
-        mToggleAlarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Switch toggleAlarmSwitch = findViewById(R.id.sw_toggle_alarm);
+        toggleAlarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
@@ -58,8 +56,8 @@ public class CustomServiceActivity extends AppCompatActivity {
             }
         });
 
-        mToggleNotificationIconSwitch = findViewById(R.id.sw_toggle_notification_icon);
-        mToggleNotificationIconSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Switch toggleNotificationIconSwitch = findViewById(R.id.sw_toggle_notification_icon);
+        toggleNotificationIconSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 Intent intent = new Intent(CustomServiceActivity.this, MyCustomService.class);

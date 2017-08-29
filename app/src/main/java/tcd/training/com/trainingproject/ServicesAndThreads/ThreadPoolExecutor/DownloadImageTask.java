@@ -8,7 +8,6 @@ import android.os.Process;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -17,9 +16,9 @@ import java.net.URL;
 
 public class DownloadImageTask implements Runnable {
 
-    private int mThreadId;
-    private Handler mHandler;
-    private String mImageUrl;
+    private final int mThreadId;
+    private final Handler mHandler;
+    private final String mImageUrl;
 
     public DownloadImageTask(int threadId, Handler handler, String imageUrl) {
         this.mThreadId = threadId;
@@ -42,8 +41,6 @@ public class DownloadImageTask implements Runnable {
         try {
             InputStream inputStream = new URL(imageUrl).openStream();
             bitmap = BitmapFactory.decodeStream(inputStream);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

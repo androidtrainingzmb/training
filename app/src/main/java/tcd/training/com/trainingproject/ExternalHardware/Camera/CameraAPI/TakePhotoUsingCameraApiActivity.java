@@ -95,10 +95,10 @@ public class TakePhotoUsingCameraApiActivity extends AppCompatActivity {
 
     private boolean checkCameraHardware() {
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-            // this device has a camera
+            Log.d(TAG, "Camera available");
             return true;
         } else {
-            // no camera on this device
+            Log.d(TAG, "Camera unavailable");
             return false;
         }
     }
@@ -171,9 +171,6 @@ public class TakePhotoUsingCameraApiActivity extends AppCompatActivity {
 
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 }

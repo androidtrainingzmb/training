@@ -24,12 +24,12 @@ public class CompassWithMagneticFieldSensorActivity extends AppCompatActivity im
     private Sensor mMagneticFieldSensor;
     private Sensor mAccelerometer;
 
-    private float[] mLastAccelerometer = new float[3];
-    private float[] mLastMagnetometer = new float[3];
+    private final float[] mLastAccelerometer = new float[3];
+    private final float[] mLastMagnetometer = new float[3];
     private boolean mLastAccelerometerSet = false;
     private boolean mLastMagnetometerSet = false;
-    private float[] mR = new float[9];
-    private float[] mOrientation = new float[3];
+    private final float[] mR = new float[9];
+    private final float[] mOrientation = new float[3];
     private float mCurrentDegree = 0f;
 
     @Override

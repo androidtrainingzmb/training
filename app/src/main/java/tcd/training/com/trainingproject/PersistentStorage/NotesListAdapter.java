@@ -58,7 +58,6 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Numb
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
         Note note = mNotesList.get(position);
-        Context context = holder.noteTitleTextView.getContext();
         holder.noteTitleTextView.setText(note.getTitle());
         holder.storageTypeTextView.setText(note.getStorageType());
     }
@@ -77,8 +76,8 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Numb
         public NumberViewHolder(View itemView) {
             super(itemView);
 
-            noteTitleTextView = (TextView) itemView.findViewById(R.id.tv_note_title);
-            storageTypeTextView = (TextView) itemView.findViewById(R.id.tv_storage_type);
+            noteTitleTextView = itemView.findViewById(R.id.tv_note_title);
+            storageTypeTextView = itemView.findViewById(R.id.tv_storage_type);
 
             itemView.setOnClickListener(this);
         }

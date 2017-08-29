@@ -7,8 +7,6 @@ import android.net.Uri;
  */
 
 public class Song {
-    public static final int AUDIO_TYPE = 1;
-    public static final int VIDEO_TYPE = 2;
 
     private long mId;
     private String mName;

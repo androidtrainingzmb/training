@@ -33,6 +33,7 @@ public class IntentServiceWithBroadcastReceiver extends IntentService {
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        assert intent != null;
         mInteger = intent.getIntExtra(getString(R.string.integer_type), -1) + 1;
         return super.onStartCommand(intent, flags, startId);
     }

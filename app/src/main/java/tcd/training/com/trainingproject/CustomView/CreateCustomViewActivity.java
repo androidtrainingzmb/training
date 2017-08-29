@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -14,16 +13,15 @@ import tcd.training.com.trainingproject.R;
 public class CreateCustomViewActivity extends AppCompatActivity {
 
     private CircleView circleView;
-    private Button changeColorButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_custom_view);
 
-        circleView = (CircleView) findViewById(R.id.circle_view);
+        circleView = findViewById(R.id.circle_view);
 
-        changeColorButton = (Button) findViewById(R.id.btn_change_color);
+        Button changeColorButton = findViewById(R.id.btn_change_color);
         changeColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,6 +1,7 @@
 package tcd.training.com.trainingproject.Fragments.FlexibleUIWithFragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,11 +27,6 @@ public class DetailsFragment extends Fragment {
     private ICommunicate mCommunicate;
     private boolean mIsPortraitMode = false;
 
-    private Button sendDataUsingInterfaceButton;
-    private Button sendDataUsingGetActivityButton;
-    private Button sendDataUsingLocalBroadcastReceiverButton;
-    private TextView tapSendDataMessageTextView;
-
     public DetailsFragment() {
         // Required empty public constructor
     }
@@ -53,19 +49,20 @@ public class DetailsFragment extends Fragment {
         mPage = getArguments().getInt(ARG_PAGE);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        // initialize components
+        // initialize UI components
         TextView pageNumberIndicatorTextView = view.findViewById(R.id.tv_page_number_indicator);
         pageNumberIndicatorTextView.setText("Fragment #" + mPage);
-        sendDataUsingInterfaceButton = view.findViewById(R.id.btn_send_data_using_interface);
-        sendDataUsingGetActivityButton = view.findViewById(R.id.btn_send_data_using_get_activity);
-        sendDataUsingLocalBroadcastReceiverButton = view.findViewById(R.id.btn_send_data_using_local_broadcast_receiver);
-        tapSendDataMessageTextView = view.findViewById(R.id.tv_tap_send_data_message);
+        Button sendDataUsingInterfaceButton = view.findViewById(R.id.btn_send_data_using_interface);
+        Button sendDataUsingGetActivityButton = view.findViewById(R.id.btn_send_data_using_get_activity);
+        Button sendDataUsingLocalBroadcastReceiverButton = view.findViewById(R.id.btn_send_data_using_local_broadcast_receiver);
+        TextView tapSendDataMessageTextView = view.findViewById(R.id.tv_tap_send_data_message);
 
         // button appears in landscape mode
         if (mIsPortraitMode) {

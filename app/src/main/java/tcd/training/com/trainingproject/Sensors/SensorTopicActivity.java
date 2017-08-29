@@ -14,8 +14,6 @@ import tcd.training.com.trainingproject.R;
 
 public class SensorTopicActivity extends AppCompatActivity {
 
-    private ListView mTopicsListView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +26,11 @@ public class SensorTopicActivity extends AppCompatActivity {
         topics.put("4. Rotation vector sensor", RotationVectorSensor.class);
         topics.put("5. Pedometer using Step counter sensor", PedometerActivity.class);
 
-        mTopicsListView = findViewById(R.id.list_view);
+        ListView topicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
-        mTopicsListView.setAdapter(arrayAdapter);
-        mTopicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics.keySet().toArray(new String[0]));
+        topicsListView.setAdapter(arrayAdapter);
+        topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);

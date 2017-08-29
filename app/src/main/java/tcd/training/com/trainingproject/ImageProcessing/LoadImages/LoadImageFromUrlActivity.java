@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ImagesProcessing.LoadImages;
+package tcd.training.com.trainingproject.ImageProcessing.LoadImages;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import tcd.training.com.trainingproject.R;
@@ -28,7 +27,7 @@ public class LoadImageFromUrlActivity extends AppCompatActivity {
     private static final String TAG = LoadImageFromUrlActivity.class.getSimpleName();
 
     private LinearLayout mRootLinearLayout;
-    private String mImageUrl = "https://source.unsplash.com/daily";
+    private final String mImageUrl = "https://source.unsplash.com/daily";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,6 @@ public class LoadImageFromUrlActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    //
                     InputStream inputStream = (InputStream) new URL(mImageUrl).getContent();
                     final Drawable drawable = Drawable.createFromStream(inputStream, "image");
                     runOnUiThread(new Runnable() {
@@ -88,8 +86,6 @@ public class LoadImageFromUrlActivity extends AppCompatActivity {
                             imageView.setImageBitmap(bitmap);
                         }
                     });
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

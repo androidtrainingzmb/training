@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -32,9 +33,7 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
     private static final int RC_CAMERA_PERMISSION = 3;
     private static final int RC_WRITE_EXTERNAL_STORAGE_PERMISSION = 4;
 
-    private ListView mTopicsListView;
-
-    final LinkedHashMap<String, Class> mTopicsList = new LinkedHashMap<>();
+    private final LinkedHashMap<String, Class> mTopicsList = new LinkedHashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +52,15 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
         mTopicsList.put("5. Choose images from gallery", ChooseImageFromGalleryActivity.class);
         mTopicsList.put("6. Obtain device's location using LocationManager", ObtainLocationUsingLocationManagerActivity.class);
         mTopicsList.put("7. Obtain device's location using Google Play services API", ObtainLocationUsingGooglePlayServicesActivity.class);
-        mTopicsList.put("8. Take photo using default camera", TakePhotoTopicActivity.class);
-        mTopicsList.put("8. Take photo using library camera", TakePhotoTopicActivity.class);
-        mTopicsList.put("9. Take photo using Camera API", TakePhotoTopicActivity.class);
-        mTopicsList.put("10. Take photo using Camera2 API", TakePhotoTopicActivity.class);
+        mTopicsList.put("8. Take photo using camera", TakePhotoTopicActivity.class);
     }
 
     private void initializeUiComponents() {
-        mTopicsListView = findViewById(R.id.list_view);
+        ListView topicsListView = findViewById(R.id.list_view);
         ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, mTopicsList.keySet().toArray(new String[0]));
-        mTopicsListView.setAdapter(arrayAdapter);
-        mTopicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, mTopicsList.keySet().toArray(new String[0]));
+        topicsListView.setAdapter(arrayAdapter);
+        topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = (String) adapterView.getItemAtPosition(i);
@@ -151,7 +147,7 @@ public class ExternalHardwareTopicActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         // If request is cancelled, the result arrays are empty.
         if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             switch (requestCode) {

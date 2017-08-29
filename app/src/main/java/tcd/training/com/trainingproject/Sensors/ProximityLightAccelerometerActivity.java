@@ -13,10 +13,6 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import tcd.training.com.trainingproject.R;
 
 public class ProximityLightAccelerometerActivity extends AppCompatActivity {

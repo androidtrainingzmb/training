@@ -18,26 +18,26 @@ import tcd.training.com.trainingproject.R;
 
 public class CircleView extends View {
 
-    private Context mContext;
+    private final Context mContext;
 
     // attributes
     private int mCircleColor, mLabelColor, mCircleSize;
     private String mCircleLabel;
-    private Paint circlePaint;
+    private Paint mCirclePaint;
 
     // drawing properties
     private float radius;
     private float centerX, centerY;
 
     // gesture
-    private float x1,x2;
-    static final int MIN_DISTANCE = 150;
+    private float x1, x2;
+    private static final int MIN_DISTANCE = 150;
 
     public CircleView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
-        circlePaint = new Paint();
+        mCirclePaint = new Paint();
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CircleView, 0, 0);
         try {
             mCircleColor = a.getInteger(R.styleable.CircleView_circleColor, 0);
@@ -93,18 +93,18 @@ public class CircleView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        circlePaint.setStyle(Paint.Style.FILL);
-        circlePaint.setAntiAlias(true);
+        mCirclePaint.setStyle(Paint.Style.FILL);
+        mCirclePaint.setAntiAlias(true);
 
         // draw the circle
-        circlePaint.setColor(mCircleColor);
-        canvas.drawCircle(centerX, centerY, radius, circlePaint);
+        mCirclePaint.setColor(mCircleColor);
+        canvas.drawCircle(centerX, centerY, radius, mCirclePaint);
 
         // draw the label
-        circlePaint.setColor(mLabelColor);
-        circlePaint.setTextAlign(Paint.Align.CENTER);
-        circlePaint.setTextSize(50);
-        canvas.drawText(mCircleLabel, centerX, centerY, circlePaint);
+        mCirclePaint.setColor(mLabelColor);
+        mCirclePaint.setTextAlign(Paint.Align.CENTER);
+        mCirclePaint.setTextSize(50);
+        canvas.drawText(mCircleLabel, centerX, centerY, mCirclePaint);
     }
 
     @Override

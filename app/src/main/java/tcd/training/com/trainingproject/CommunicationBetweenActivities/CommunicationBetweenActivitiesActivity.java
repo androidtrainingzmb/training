@@ -36,9 +36,7 @@ import tcd.training.com.trainingproject.R;
 
 public class CommunicationBetweenActivitiesActivity extends AppCompatActivity {
 
-    private ListView mTopicsListView;
     private ArrayList<String> mTopicsList;
-
 
     private int mInteger;
     private double mDouble;
@@ -54,10 +52,10 @@ public class CommunicationBetweenActivitiesActivity extends AppCompatActivity {
 
         initializeDataSet();
 
-        mTopicsListView = findViewById(R.id.lv_topics_list);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mTopicsList);
-        mTopicsListView.setAdapter(arrayAdapter);
-        mTopicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListView topicsListView = findViewById(R.id.lv_topics_list);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mTopicsList);
+        topicsListView.setAdapter(arrayAdapter);
+        topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String key = mTopicsList.get(i);
@@ -132,7 +130,7 @@ public class CommunicationBetweenActivitiesActivity extends AppCompatActivity {
         mHashMap.put("key 2", "value 1");
     }
 
-    public Bundle getBundle() {
+    private Bundle getBundle() {
         Bundle bundle = new Bundle();
         bundle.putInt(getString(R.string.integer_type), mInteger);
         bundle.putDouble(getString(R.string.double_type), mDouble);
@@ -143,13 +141,13 @@ public class CommunicationBetweenActivitiesActivity extends AppCompatActivity {
         return bundle;
     }
 
-    public static void inflateLayout(View view, int intVal, boolean boolval, double doubleval,
+    public static void inflateLayout(View view, int intVal, boolean boolVal, double doubleVal,
                                      String stringVal, ArrayList arrayList, HashMap<String, String> hashMap) {
 
         ((TextView) view.findViewById(R.id.tv_integer_type)).setText(String.valueOf(intVal));
-        ((TextView) view.findViewById(R.id.tv_double_type)).setText(String.valueOf(doubleval));
+        ((TextView) view.findViewById(R.id.tv_double_type)).setText(String.valueOf(doubleVal));
         ((TextView) view.findViewById(R.id.tv_string_type)).setText(stringVal);
-        ((TextView) view.findViewById(R.id.tv_boolean_type)).setText(String.valueOf(boolval));
+        ((TextView) view.findViewById(R.id.tv_boolean_type)).setText(String.valueOf(boolVal));
 
         // array list
         ListView arrayListListView = view.findViewById(R.id.lv_array_list_type);

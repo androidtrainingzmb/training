@@ -1,4 +1,4 @@
-package tcd.training.com.trainingproject.ImagesProcessing;
+package tcd.training.com.trainingproject.ImageProcessing;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class ScaleTypeActivity extends AppCompatActivity {
     private ImageView mImageView;
     private Switch mAdjustViewBoundsSwitch;
 
-    enum ImageSize {SMALL, MEDIUM, LARGE};
+    enum ImageSize {SMALL, MEDIUM, LARGE}
     private ImageSize mImageSize;
     private boolean mIsImageInPortraitMode;
 
